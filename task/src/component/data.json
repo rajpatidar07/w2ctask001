@@ -53,15 +53,6 @@
       "status": "Not Started",
       "description": "h",
       "id": 11
-    },
-    {
-      "taskname": "React-Redux",
-      "end_date": "2022-11-23",
-      "priority": "Low",
-      "assignto": "Jyotish",
-      "status": "In Progress",
-      "description": "b",
-      "id": 12
     }
   ]
 }

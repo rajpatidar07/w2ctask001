@@ -208,9 +208,9 @@ const onSelectChange=(e)=>{
                             value={data.priority} name="priority" 
                           >
                             <option value={""}>Select</option>
-                            <option>{data.priority}</option>
-                            {/* <option value={"Medium"}>Medium</option>
-                            <option value={"Low"}>Low</option> */}
+                            <option value={"High"}>High</option>
+                            <option value={"Medium"}>Medium</option>
+                            <option value={"Low"}>Low</option>
                           </select>
                         </td>
                         <td>
@@ -220,11 +220,11 @@ const onSelectChange=(e)=>{
                           >
                             <option value={""}>Select</option>
                             <option>{data.assignto}</option>
-                            {/* <option value={"Shivani"}>Shivani</option>
+                            <option value={"Shivani"}>Shivani</option>
                             <option value={"Vijendra"}>Vijendra</option>
                             <option value={"Gaurav"}>Gaurav</option>
                             <option value={"Jyotish"}>Jyotish</option>
-                            <option value={"Shubham"}>Shubham</option> */}
+                            <option value={"Shubham"}>Shubham</option>
                           </select>
                         </td>
                         <td >
@@ -234,11 +234,11 @@ const onSelectChange=(e)=>{
                           >
                             <option value={""}>Select</option>
                             <option>{data.status}</option>
-                            {/* <option value={"Pending"}>Pending</option>
+                            <option value={"Pending"}>Pending</option>
                             <option value={"Done"}>Done</option>
                             <option value={"In Progress"}>In Progress</option>
                             <option value={"Not Started"}>Not Started</option>
-                            <option value={"Blocked"}>Blocked</option> */}
+                            <option value={"Blocked"}>Blocked</option>
                           </select>
                         </td>
                         <td>
@@ -269,8 +269,8 @@ const onSelectChange=(e)=>{
                         >
                           <option value={""}>Select</option>
                           <option>{data.priority}</option>
-                          {/* <option value={"Medium"}>Medium</option>
-                          <option value={"Low"}>Low</option> */}
+                          <option value={"Medium"}>Medium</option>
+                          <option value={"Low"}>Low</option>
                         </select>
                       </td>
                       <td>
@@ -280,11 +280,11 @@ const onSelectChange=(e)=>{
                         >
                           <option value={""}>Select</option>
                           <option>{data.assignto}</option>
-                          {/* <option value={"Shivani"}>Shivani</option>
+                          <option value={"Shivani"}>Shivani</option>
                           <option value={"Vijendra"}>Vijendra</option>
                           <option value={"Gaurav"}>Gaurav</option>
                           <option value={"Jyotish"}>Jyotish</option>
-                          <option value={"Shubham"}>Shubham</option> */}
+                          <option value={"Shubham"}>Shubham</option>
                         </select>
                       </td>
                       <td >
@@ -294,10 +294,10 @@ const onSelectChange=(e)=>{
                         >
                           <option value={""}>Select</option>
                           <option>{data.status}</option>
-                          {/* <option value={"Pending"}>Pending</option>
+                          <option value={"Pending"}>Pending</option>
                           <option value={"Done"}>Done</option>
                           <option value={"In Progress"}>In Progress</option>
-                          <option value={"Blocked"}>Blocked</option> */}
+                          <option value={"Blocked"}>Blocked</option>
                         </select>
                       </td>
                       <td>
