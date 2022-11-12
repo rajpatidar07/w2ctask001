@@ -29,7 +29,6 @@ const onSelectChange=(e)=>{
     // console.log("---------------"+response);
   };
   const editTaskDetails = async (taskid) => {
-    
     const response=await UpdateUser(taskid);
     setAddTask(response.data);
     setOpen(!open)
@@ -42,7 +41,7 @@ const onSelectChange=(e)=>{
  return(
     <>
      <div className="row">
-      <div className="col-lg-3">
+      <div className="col-md-3">
 
       <select className="select form-control"  onChange={(e) => onSelectChange(e)}>
 
@@ -54,7 +53,7 @@ const onSelectChange=(e)=>{
   <option value={"Not Started"}>Not Started</option>
 </select>
       </div>
-      <div className="col-lg-3">
+      <div className="col-md-3">
       <select className="select form-control"  onChange={(e) => onSelectChange(e)}>
 
 <option value={""}>Select Name</option>
@@ -65,7 +64,7 @@ const onSelectChange=(e)=>{
 <option value={"Shubham"}>Shubham</option>
 </select>
       </div>
-      <div className="col-lg-3">
+      <div className="col-md-3">
       <select
                 className="select form-control"
                  onChange={(e) => onSelectChange(e)}
@@ -76,7 +75,7 @@ const onSelectChange=(e)=>{
                 <option value={"Low"}>Low</option>
               </select>
               <Form>
-              <Form.Group className="col-lg-3">
+              <Form.Group>
                     <Form.Control
                     onChange={(e) => onSelectChange(e)}
                     className="mt-3"

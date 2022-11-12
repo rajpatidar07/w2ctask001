@@ -7,6 +7,14 @@ export const getallTask = async (id) => {
     id = id || '';
     return await axios.get(`${url}/${id}`);
 }
+export const addTask = async (task, id) => {
+    console.log("----id"+id)
+    if(id ==='' || id === null || id === undefined){
+        return await axios.post(url,task);
+    }else{
+        return await axios.put(`${url}/${id}`,task);
+    }
+}
 
 // export const addTask = async (task, id) => {
 //     if(task.id!=='' || task.id !== null || task.id !== undefined){
@@ -16,9 +24,9 @@ export const getallTask = async (id) => {
 //         return await axios.post(url,task);
 //     }
 // }
-export const addTask = async (task) => {
-    return await axios.post(url,task);
-}
+// export const addTask = async (task) => {
+//     return await axios.post(url,task);
+// }
 
 export const editTask = async (id, task) => {
     return await axios.put(`${url}/${id}`,task);

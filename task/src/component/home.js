@@ -13,8 +13,8 @@ const Home = () => {
   };
   const [open, setOpen] = useState(false);
  // console.log("---------------"+response);
-  const addTaskDetails = async () => {
-    await addTask(addtask);
+  const addTaskDetails = async (id) => {
+    await addTask(addtask,id);
     setOpen(false);
     window.location.reload(false);
   };
