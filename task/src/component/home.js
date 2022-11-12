@@ -194,6 +194,34 @@ const Home = () => {
                 <option value={"Not Started"}>Not Started</option>
               </select>
               <div className="table_contant">
+              <select className="select form-control"  onChange={(e) => onSelectChange(e)}>
+
+<option value={""}>Select Name</option>
+<option value={"Shivani"}>Shivani</option>
+<option value={"Vijendra"}>Vijendra</option>
+<option value={"Gaurav"}>Gaurav</option>
+<option value={"Jyotish"}>Jyotish</option>
+<option value={"Shubham"}>Shubham</option>
+</select>
+<select
+                className="select form-control"
+                 onChange={(e) => onSelectChange(e)}
+              >
+                <option value={""}>Select Priority</option>
+                <option value={"High"}>High</option>
+                <option value={"Medium"}>Medium</option>
+                <option value={"Low"}>Low</option>
+              </select>
+              <Form>
+              <Form.Group>
+                    <Form.Control
+                    onChange={(e) => onSelectChange(e)}
+                    className="mt-3"
+                      type="date"
+                      placeholder="Enter date"
+                    />
+              </Form.Group>
+              </Form>
               <Table className="mt-3" bordered hover>
                 <thead>
                   <tr>
