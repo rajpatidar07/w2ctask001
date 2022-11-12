@@ -1,15 +1,6 @@
 {
   "task": [
     {
-      "taskname": "Python",
-      "end_date": "2022-11-22",
-      "priority": "Low",
-      "assignto": "Jyotish",
-      "status": "Not Started",
-      "description": "n",
-      "id": 5
-    },
-    {
       "taskname": "React-Redux",
       "end_date": "2022-11-21",
       "priority": "Low",

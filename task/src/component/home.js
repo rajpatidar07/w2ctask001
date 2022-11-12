@@ -57,9 +57,6 @@ const Home = () => {
   return (
     <div class="container text-center">
       <div class="row align-items-start">
-        {/* <div className='col-md-3 col-sm-3 col-lg-2 sidebar bg-dark text-start'>
-            <h1 className='text-white'>LOGO HERE </h1>
-          </div> */}
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
             <h1>Heading Here </h1>
@@ -253,82 +250,10 @@ const Home = () => {
                 <tbody>
                   {(task || []).map((data) => {
                     return (data.status === status ? 
-                     
-                     
-
-
                       <Task id={data.id}  edit={() => editTaskDetails(data.id)} delete={() => deleteData(data.id)} taskname={data.taskname} end_date={data.end_date} description={data.description} priority={data.priority} assignto={data.assignto} status={data.status}/>
-                      // <tr
-                      //   className={
-                      //     data.priority === "High"
-                      //       ? "bg-danger bg-opacity-25"
-                      //       : "" || data.priority === "Medium"
-                      //       ? "bg-warning bg-opacity-25"
-                      //       : "" || data.priority === "Low"
-                      //       ? "bg-success  bg-opacity-25"
-                      //       : ""
-                      //   }
-                      // >
-                      //   <td>{data.id}</td>
-                      //   <td>{data.taskname}</td>
-                      //   <td>{data.end_date}</td>
-                      //   <td>{data.description}</td>
-                      //   <td>
-                      //     <select
-                      //       className="select form-control"
-                      //       value={data.priority}
-                      //       name="priority"
-                      //     >
-                      //       <option value={""}>Select</option>
-                      //       <option value={"High"}>High</option>
-                      //       <option value={"Medium"}>Medium</option>
-                      //       <option value={"Low"}>Low</option>
-                      //     </select>
-                      //   </td>
-                      //   <td>
-                      //     <select
-                      //       className="select form-control"
-                      //       value={data.assignto}
-                      //     >
-                      //       <option value={""}>Select</option>
-                      //       <option>{data.assignto}</option>
-                      //       <option value={"Shivani"}>Shivani</option>
-                      //       <option value={"Vijendra"}>Vijendra</option>
-                      //       <option value={"Gaurav"}>Gaurav</option>
-                      //       <option value={"Jyotish"}>Jyotish</option>
-                      //       <option value={"Shubham"}>Shubham</option>
-                      //     </select>
-                      //   </td>
-                      //   <td>
-                      //     <select
-                      //       className="select form-control"
-                      //       value={data.status}
-                      //     >
-                      //       <option value={""}>Select</option>
-                      //       <option>{data.status}</option>
-                      //       <option value={"Pending"}>Pending</option>
-                      //       <option value={"Done"}>Done</option>
-                      //       <option value={"In Progress"}>In Progress</option>
-                      //       <option value={"Not Started"}>Not Started</option>
-                      //       <option value={"Blocked"}>Blocked</option>
-                      //     </select>
-                      //   </td>
-                      //   <td>
-                      //     <button
-                      //       className="btn btn-info me-1"
-                      //       onClick={() => editTaskDetails(data.id)}
-                      //     >
-                      //       Edit
-                      //     </button>
-                      //     <button
-                      //       className="btn btn-danger"
-                      //       onClick={() => deleteData(data.id)}
-                      //     >
-                      //       Delete
-                      //     </button>
-                      //   </td>
-                      // </tr>
-                     : status === "" || data.assignto===assign||data.priority===priority||data.end_date===datee?  <Task id={data.id}  edit={() => editTaskDetails(data.id)} delete={() => deleteData(data.id)} taskname={data.taskname} end_date={data.end_date} description={data.description} priority={data.priority} assignto={data.assignto} status={data.status}/>: null
+
+                     : status === "" || data.assignto===assign||data.priority===priority||data.end_date===datee?  
+                     <Task id={data.id}  edit={() => editTaskDetails(data.id)} delete={() => deleteData(data.id)} taskname={data.taskname} end_date={data.end_date} description={data.description} priority={data.priority} assignto={data.assignto} status={data.status}/>: null
                     );
                   })}
                 </tbody>
