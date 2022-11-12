@@ -1,33 +1,6 @@
 {
   "task": [
     {
-      "taskname": "React",
-      "end_date": "2022-11-05",
-      "priority": "Medium",
-      "assignto": "Bhavna",
-      "status": "Done",
-      "description": "D",
-      "id": 2
-    },
-    {
-      "taskname": "Angular",
-      "end_date": "2022-11-18",
-      "priority": "Low",
-      "assignto": "Shubham",
-      "status": "Done",
-      "description": "D",
-      "id": 3
-    },
-    {
-      "taskname": "Angular",
-      "end_date": "2022-11-02",
-      "priority": "High",
-      "assignto": "Shivani",
-      "status": "Pending",
-      "description": "P",
-      "id": 4
-    },
-    {
       "taskname": "Python",
       "end_date": "2022-11-22",
       "priority": "Low",
@@ -37,22 +10,31 @@
       "id": 5
     },
     {
-      "taskname": "b",
-      "end_date": "2022-11-01",
-      "priority": "High",
-      "assignto": "Vijendra",
-      "status": "Not Started",
-      "description": "b",
-      "id": 9
+      "taskname": "React-Redux",
+      "end_date": "2022-11-21",
+      "priority": "Low",
+      "assignto": "Bhavna",
+      "status": "Pending",
+      "description": "ddhbrfgt",
+      "id": 13
     },
     {
       "taskname": "React-Redux",
-      "end_date": "2022-11-01",
+      "end_date": "2022-11-25",
       "priority": "Medium",
       "assignto": "Gaurav",
       "status": "Not Started",
       "description": "h",
       "id": 11
+    },
+    {
+      "taskname": "test1",
+      "end_date": "2022-11-26",
+      "description": "test1",
+      "priority": "High",
+      "assignto": "Bhavna",
+      "status": "Done",
+      "id": 14
     }
   ]
 }
