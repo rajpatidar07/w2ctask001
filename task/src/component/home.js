@@ -1,54 +1,22 @@
-import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
-import { addTask,deleteTask, getallTask, UpdateUser } from "../services/api";
+import React, { useState } from "react";
+import { addTask } from "../services/api";
 import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
+import Task from "./tasktable";
 const Home = () => {
-const[status,setStatus]=useState();
-const onSelectChange=(e)=>{
-  setStatus(e.target.value)
-}
   const [addtask, setAddTask] = useState([]);
   const onValueChange = (e) => {
     //  console.log(e);
     // console.log(e.target.value);
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
-    // setEditTask({ ...edittask, [e.target.name]: e.target.value });
     // console.log(task);
   };
-  // useEffect(() => {
-  //   loadTaskData();
-  // }, []);
-
-  // const loadTaskData = async () => {
-    
-  //   // setTask(response.data);
-  // };
   const [open, setOpen] = useState(false);
-  const [task, setTask] = useState([]);
-  useEffect(() => {
-    getTasks();
-  }, []);
-
-  const getTasks = async () => {
-    const response = await getallTask();
-    setTask(response.data);
-    // console.log("---------------"+response);
-  };
+ // console.log("---------------"+response);
   const addTaskDetails = async () => {
     await addTask(addtask);
     setOpen(false);
     window.location.reload(false);
-  };
-  const editTaskDetails = async (taskid) => {
-    
-    const response=await UpdateUser(taskid);
-    setAddTask(response.data);
-    setOpen(!open)
-  };
-  const deleteData = async (id) => {
-    await deleteTask(id);
-    getTasks();
   };
   console.log("Addd Task----------"+JSON.stringify(addtask))
   return (
@@ -71,7 +39,7 @@ const onSelectChange=(e)=>{
           </div>
           <Collapse in={open}>
             <div id="example-collapse-text" className="row">
-              <Form class="form-row">
+              <Form className="form-row">
                 <input name="id" type={'hidden'} value={(addtask.id!=='' || addtask.id !== null || addtask.id !== undefined)?addtask.id:''} />
                 <div className="row" >
                   <Form.Group className="col-md-4 col-sm-6">
@@ -171,159 +139,7 @@ const onSelectChange=(e)=>{
           </Collapse>
           <div className="main_content">
             <div className="row">
-              <select className="select form-control"  onChange={(e) => onSelectChange(e)}>
-
-              <option value={""}>Select</option>
-                <option value={"Pending"}>Pending</option>
-                <option value={"Done"}>Done</option>
-                <option value={"Blocked"}>Blocked</option>
-                <option value={"In Progress"}>In Progress</option>
-                <option value={"Not Started"}>Not Started</option>
-              </select>
-              <Table className="mt-3" bordered hover>
-                <thead>
-                  <tr >
-                    <th>#</th>
-                    <th>Task Name</th>
-                    <th>End Date</th>
-                    <th>Description</th>
-                    <th>Priority</th>
-                    <th>Assign to</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(task || []).map((data) => {
-                    return (
-                      data.status===status? 
-                      <tr className={data.priority === "High"? "bg-danger bg-opacity-25" : '' || data.priority === "Medium"? "bg-warning bg-opacity-25" : '' ||data.priority === "Low"? "bg-success  bg-opacity-25" : ''}>
-                        <td>{data.id}</td>
-                        <td>{data.taskname}</td>
-                        <td>{data.end_date}</td>
-                        <td>{data.description}</td>
-                        <td>
-                        <select
-                            className="select form-control"
-                            value={data.priority} name="priority" 
-                          >
-                            <option value={""}>Select</option>
-                            <option>{data.priority}</option>
-                            {/* <option value={"Medium"}>Medium</option>
-                            <option value={"Low"}>Low</option> */}
-                          </select>
-                        </td>
-                        <td>
-                          <select
-                            className="select form-control"
-                            value={data.assignto}
-                          >
-                            <option value={""}>Select</option>
-                            <option>{data.assignto}</option>
-                            {/* <option value={"Shivani"}>Shivani</option>
-                            <option value={"Vijendra"}>Vijendra</option>
-                            <option value={"Gaurav"}>Gaurav</option>
-                            <option value={"Jyotish"}>Jyotish</option>
-                            <option value={"Shubham"}>Shubham</option> */}
-                          </select>
-                        </td>
-                        <td >
-                          <select
-                            className="select form-control"
-                            value={data.status} 
-                          >
-                            <option value={""}>Select</option>
-                            <option>{data.status}</option>
-                            {/* <option value={"Pending"}>Pending</option>
-                            <option value={"Done"}>Done</option>
-                            <option value={"In Progress"}>In Progress</option>
-                            <option value={"Not Started"}>Not Started</option>
-                            <option value={"Blocked"}>Blocked</option> */}
-                          </select>
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-info me-1"
-                            onClick={()=>editTaskDetails(data.id)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-danger"
-                            onClick={()=>deleteData(data.id)}>
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                       
-                      : status === '' ? 
-                      <tr className={data.priority === "High"? "bg-danger bg-opacity-25" : '' || data.priority === "Medium"? "bg-warning bg-opacity-25" : '' ||data.priority === "Low"? "bg-success  bg-opacity-25" :''}>
-                      <td>{data.id}</td>
-                      <td>{data.taskname}</td>
-                      <td>{data.end_date}</td>
-                      <td>{data.description}</td>
-                      <td>
-                      <select
-                          className="select form-control"
-                          value={data.priority} name="priority" 
-                        >
-                          <option value={""}>Select</option>
-                          <option>{data.priority}</option>
-                          {/* <option value={"Medium"}>Medium</option>
-                          <option value={"Low"}>Low</option> */}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="select form-control"
-                          value={data.assignto}
-                        >
-                          <option value={""}>Select</option>
-                          <option>{data.assignto}</option>
-                          {/* <option value={"Shivani"}>Shivani</option>
-                          <option value={"Vijendra"}>Vijendra</option>
-                          <option value={"Gaurav"}>Gaurav</option>
-                          <option value={"Jyotish"}>Jyotish</option>
-                          <option value={"Shubham"}>Shubham</option> */}
-                        </select>
-                      </td>
-                      <td >
-                        <select
-                          className="select form-control"
-                          value={data.status} 
-                        >
-                          <option value={""}>Select</option>
-                          <option>{data.status}</option>
-                          {/* <option value={"Pending"}>Pending</option>
-                          <option value={"Done"}>Done</option>
-                          <option value={"In Progress"}>In Progress</option>
-                          <option value={"Blocked"}>Blocked</option> */}
-                        </select>
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-info me-1"
-                          onClick={()=>editTaskDetails(data.id)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => {
-                             alert("Are you sure want to delete")
-                             deleteData(data.id)
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                      :
-                      null
-                    );
-                  })}
-                </tbody>
-              </Table>
+              <Task/>
             </div>
           </div>
         </div>
