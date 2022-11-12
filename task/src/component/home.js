@@ -58,7 +58,7 @@ const Home = () => {
       <div class="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
-            <h1>Heading Here </h1>
+            <h3>Heading Here </h3>
             <button
               className="btn btn-info  ms-auto"
               onClick={() => setOpen(!open)}
@@ -71,7 +71,8 @@ const Home = () => {
          
           <Collapse in={open}>
             <div className="add_form">
-              <div id="example-collapse-text" className="row">
+              <div id="example-collapse-text" className="row add-form_div">
+              <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
                 <Form class="form-row">
                   <input
                     name="id"
@@ -199,7 +200,7 @@ const Home = () => {
           </Collapse>
           <div className="main_content">
             <div className="row my-3">
-              <div className="col-md-3">
+              <div className="col-md-3 my-md-0 my-2">
                 <select
                   className="select form-control"
                   onChange={(e) => onSelectChange(e)}
@@ -212,7 +213,7 @@ const Home = () => {
                   <option value={"Not Started"}>Not Started</option>
                 </select>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 my-md-0 my-2">
                 <select
                   className="select form-control"
                   onChange={(e) => onSelectChange(e)}
@@ -225,7 +226,7 @@ const Home = () => {
                   <option value={"Shubham"}>Shubham</option>
                 </select>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 my-md-0 my-2">
                 <select
                   className="select form-control"
                   onChange={(e) => onSelectChange(e)}
@@ -236,7 +237,7 @@ const Home = () => {
                   <option value={"Low"}>Low</option>
                 </select>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 my-md-0 my-2 mb-0">
                 <Form>
                   <Form.Group>
                     <Form.Control
