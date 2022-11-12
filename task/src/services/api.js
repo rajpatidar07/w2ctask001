@@ -28,9 +28,9 @@ export const addTask = async (task, id) => {
 //     return await axios.post(url,task);
 // }
 
-export const editTask = async (id, task) => {
-    return await axios.put(`${url}/${id}`,task);
-}
+// export const editTask = async (id, task) => {
+//     return await axios.put(`${url}/${id}`,task);
+// }
 
 
 export const deleteTask = async (id) => {

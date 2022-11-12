@@ -20,15 +20,6 @@
     },
     {
       "taskname": "React-Redux",
-      "end_date": "2022-11-23",
-      "priority": "Low",
-      "assignto": "Jyotish",
-      "status": "In Progress",
-      "description": "b",
-      "id": 12
-    },
-    {
-      "taskname": "React-Redux",
       "end_date": "2022-11-21",
       "priority": "Low",
       "assignto": "Bhavna",
@@ -53,6 +44,15 @@
       "assignto": "Bhavna",
       "status": "Pending",
       "id": 15
+    },
+    {
+      "taskname": "React-Redux",
+      "end_date": "2022-11-14",
+      "priority": "High",
+      "assignto": "Vijendra",
+      "status": "In Progress",
+      "description": "bb",
+      "id": 16
     }
   ]
 }
