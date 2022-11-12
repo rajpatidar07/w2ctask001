@@ -70,12 +70,14 @@ const onSelectChange=(e)=>{
             </button>
           </div>
           <Collapse in={open}>
+          <div className="add_form">
             <div id="example-collapse-text" className="row">
               <Form class="form-row">
                 <input name="id" type={'hidden'} value={(addtask.id!=='' || addtask.id !== null || addtask.id !== undefined)?addtask.id:''} />
                 <div className="row" >
-                  <Form.Group className="col-md-4 col-sm-6">
-                    <Form.Label className="m-0 text-start w-100">
+                  <Form.Group className="col-12">
+                  
+                    <Form.Label className="m-0 pb-1 text-start w-100">
                       Task Name
                     </Form.Label>
                     <Form.Control
@@ -87,9 +89,10 @@ const onSelectChange=(e)=>{
                       value={addtask.taskname}
                     />
                     
-                    <div className="row">
+                    <div className="row my-3">
                     <div className="col-md-6">
-                    <Form.Label className="m-0 text-start w-100">Priority</Form.Label>
+                    
+                    <Form.Label className="m-0 pb-1 text-start w-100">Priority</Form.Label>
                     <select
                       className="select form-control"
                       name="priority"
@@ -103,7 +106,8 @@ const onSelectChange=(e)=>{
                     </select>
                     </div>
                     <div className="col-md-6">
-                    <Form.Label className="m-0 text-start w-100">Assign To</Form.Label>
+                   
+                    <Form.Label className="m-0 pb-1 text-start w-100">Assign To</Form.Label>
                     <select
                       className="select form-control"
                       name="assignto"
@@ -121,8 +125,8 @@ const onSelectChange=(e)=>{
                     </div>
                     </div>
                   </Form.Group>
-                  <Form.Group className="col-md-4 col-sm-6">
-                  <Form.Label className="m-0 text-start w-100">End Date</Form.Label>
+                  <Form.Group className="col-12">
+                  <Form.Label className="m-0 pb-1 text-start w-100">End Date</Form.Label>
                     <Form.Control
                     className="mb-3"
                       type="date"
@@ -131,7 +135,8 @@ const onSelectChange=(e)=>{
                       name="end_date"
                       value={addtask.end_date}
                     />
-                    <Form.Label className="m-0 text-start w-100">Status</Form.Label>
+                    <div className="my-3">
+                    <Form.Label className="m-0 pb-1 text-start w-100">Status</Form.Label>
                     <select
                       className="select form-control"
                       name="status"
@@ -145,9 +150,10 @@ const onSelectChange=(e)=>{
                       <option value={"Blocked"}>Blocked</option>
                       <option value={"Not Started"}>Not Started</option>
                     </select>
+                    </div>
                   </Form.Group>
-                  <Form.Group className="col-md-4 col-sm-6">
-                    <Form.Label className="m-0 text-start w-100">Description</Form.Label>
+                  <Form.Group className="col-12">
+                    <Form.Label className="m-0 pb-1 text-start w-100">Description</Form.Label>
                     <Form.Control
                     className="mb-3"
                       as="textarea"
@@ -168,6 +174,7 @@ const onSelectChange=(e)=>{
                   </button>
               </Form>
             </div>
+            </div>
           </Collapse>
           <div className="main_content">
             <div className="row">
@@ -180,6 +187,7 @@ const onSelectChange=(e)=>{
                 <option value={"In Progress"}>In Progress</option>
                 <option value={"Not Started"}>Not Started</option>
               </select>
+              <div className="table_contant">
               <Table className="mt-3" bordered hover>
                 <thead>
                   <tr >
@@ -324,11 +332,13 @@ const onSelectChange=(e)=>{
                   })}
                 </tbody>
               </Table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 export default Home;

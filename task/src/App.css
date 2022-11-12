@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 } */
+
+.add_form{
+  background: white;
+  padding: 19px;
+  border-radius: 6px;
+  width: 348px;
+  height: calc(100vh - 72px);
+  position: absolute;
+  right: 8px;
+  box-shadow: 0px 0px 6px 0px #000000ad;
+}
+.table_contant{
+  height: calc(100vh - 110px);
+  overflow: scroll;
+}

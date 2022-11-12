@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import Home from './component/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import Navbar from  './Components/Navbar';
