@@ -195,12 +195,11 @@ const Home = () => {
               </select>
               <div className="table_contant">
               <select className="select form-control"  onChange={(e) => onSelectChange(e)}>
-
-<option value={""}>Select Name</option>
-<option value={"Shivani"}>Shivani</option>
-<option value={"Vijendra"}>Vijendra</option>
-<option value={"Gaurav"}>Gaurav</option>
-<option value={"Jyotish"}>Jyotish</option>
+                  <option value={""}>Select Name</option>
+                  <option value={"Shivani"}>Shivani</option>
+                  <option value={"Vijendra"}>Vijendra</option>
+                  <option value={"Gaurav"}>Gaurav</option>
+                  <option value={"Jyotish"}>Jyotish</option>
 <option value={"Shubham"}>Shubham</option>
 </select>
 <select
@@ -237,7 +236,7 @@ const Home = () => {
                 </thead>
                 <tbody>
                   {(task || []).map((data) => {
-                    return (data.status === status ? 
+                    return (data.status === status?
                       <Task id={data.id}  edit={() => editTaskDetails(data.id)} delete={() => deleteData(data.id)} taskname={data.taskname} end_date={data.end_date} description={data.description} priority={data.priority} assignto={data.assignto} status={data.status}/>
 
                      : status === "" || data.assignto===assign||data.priority===priority||data.end_date===datee?  

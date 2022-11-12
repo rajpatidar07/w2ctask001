@@ -19,15 +19,6 @@
       "id": 11
     },
     {
-      "priority": "High",
-      "taskname": "sdf",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-09",
-      "status": "Pending",
-      "description": "sdf",
-      "id": 14
-    },
-    {
       "taskname": "this is my task",
       "priority": "Medium",
       "assignto": "Vijendra",
@@ -71,14 +62,6 @@
       "status": "Pending",
       "description": "fd",
       "id": 19
-    },{
-      "taskname": "test1",
-      "end_date": "2022-11-26",
-      "description": "test1",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "status": "Done",
-      "id": 14
     }
   ]
 }
