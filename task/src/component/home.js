@@ -2,9 +2,10 @@ import { addTask } from "../services/api";
 import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
-
+import Badge from 'react-bootstrap/Badge';
 import { deleteTask, getallTask, UpdateUser } from "../services/api";
-import Task from "./tasktable";
+// import Task from "./tasktable";
+import DatePicker from 'react-date-picker';
 import DataTable from 'react-data-table-component';
 const Home = () => {
   const columns = [
@@ -14,26 +15,20 @@ const Home = () => {
         sortable: true,
     },
     {
-        name: 'End_Date',
-        selector: row => row.end_date,
-        sortable: true,
-    },
-    {
-      name: 'Priority',
-      selector: row => row.priority  === "High"
-      ? "bg-danger bg-opacity-25"
-      : "" || row.priority === "Medium"
-      ? "bg-warning bg-opacity-25"
-      : "" || row.priority === "Low"
-      ? "bg-success  bg-opacity-25"
-      : "",
-      sortable: true,
-    },
-    {
       name: 'Description',
       selector: row => row.description,
       sortable: true,
     },
+    {
+      name: 'Priority',
+      selector: row => <Badge bg={row.priority==="High"?"danger":row.priority==="Medium"?"warning":"primary"}>{row.priority}</Badge>,
+      sortable: true,
+    },
+    {
+      name: 'End_Date',
+      selector: row => row.end_date,
+      sortable: true,
+  },
     {
       name: 'AssignTo',
       selector: row => <select
@@ -67,8 +62,9 @@ const Home = () => {
     {
       button: true,
       cell: () => (
-        <div className="">
-        <button
+        <div className="row">
+          <div className="col-md-12 col-sm-12 col-lg-12">
+          <button
               type="button"
               className="btn btn-info"
               onClick={editTaskDetails}
@@ -82,11 +78,22 @@ const Home = () => {
             >
               Delete
             </button>
-        </div>
+            </div>
+            </div>
             )
       },
 ];
   const [addtask, setAddTask] = useState([]);
+  const [validated, setValidated] = useState(false);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   const onValueChange = (e) => {
     //  console.log(e);
     // console.log(e.target.value);
@@ -94,6 +101,7 @@ const Home = () => {
     // console.log(task);
   };
   const [open, setOpen] = useState(false);
+  const [value, onChange] = useState(new Date());
   // console.log("---------------"+response);
   const addTaskDetails = async (id) => {
     await addTask(addtask, id);
@@ -101,15 +109,15 @@ const Home = () => {
     window.location.reload(false);
   };
   const [status, setStatus] = useState();
-  const [assign, setAssign] = useState();
-  const [priority, setPriority] = useState();
-  const [datee, setDate] = useState();
+  // const [assign, setAssign] = useState();
+  // const [priority, setPriority] = useState();
+  // const [datee, setDate] = useState();
 
   const onSelectChange = (e) => {
     setStatus(e.target.value);
-    setAssign(e.target.value);
-    setPriority(e.target.value);
-    setDate(e.target.value);
+    // setAssign(e.target.value);
+    // setPriority(e.target.value);
+    // setDate(e.target.value);
     
   };
   console.log("-----status--" + status);
@@ -154,7 +162,7 @@ const Home = () => {
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
               <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
-                <Form class="form-row">
+                <Form class="form-row" noValidate validated={validated} onSubmit={handleSubmit} >
                   <input
                     name="id"
                     type={"hidden"}
@@ -172,6 +180,7 @@ const Home = () => {
                         Task Name
                       </Form.Label>
                       <Form.Control
+                       required
                         className="mb-3"
                         type="text"
                         placeholder="Enter Task"
@@ -179,7 +188,7 @@ const Home = () => {
                         name="taskname"
                         value={addtask.taskname}
                       />
-
+                      <Form.Control.Feedback className="mr-0" type="invalid">Please Enter Task Name!</Form.Control.Feedback>
                       <div className="row my-3">
                         <div className="col-md-6">
                           <Form.Label className="m-0 pb-1 text-start w-100">
@@ -223,6 +232,7 @@ const Home = () => {
                         End Date
                       </Form.Label>
                       <Form.Control
+                       required
                         className="mb-3"
                         type="date"
                         placeholder="Enter date"
@@ -230,6 +240,7 @@ const Home = () => {
                         name="end_date"
                         value={addtask.end_date}
                       />
+                      <Form.Control.Feedback type="invalid">Please Enter Date!</Form.Control.Feedback>
                       <div className="my-3">
                         <Form.Label className="m-0 pb-1 text-start w-100">
                           Status
@@ -254,6 +265,7 @@ const Home = () => {
                         Description
                       </Form.Label>
                       <Form.Control
+                       required
                         className="mb-3"
                         as="textarea"
                         rows={4}
@@ -263,11 +275,12 @@ const Home = () => {
                         value={addtask.description}
                       />
                     </Form.Group>
+                      <Form.Control.Feedback type="invalid">Please Enter Description!</Form.Control.Feedback>
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
                     onClick={() => addTaskDetails(addtask.id)}
-                    type="button"
+                   type="submit"
                   >
                     {addtask.id !== "" ||
                     addtask.id !== null ||
@@ -319,7 +332,8 @@ const Home = () => {
                 </select>
               </div>
               <div className="col-md-3 my-md-0 my-2 mb-0">
-                <Form>
+              <DatePicker className="form-group" onChange={onChange} value={value} />
+                {/* <Form>
                   <Form.Group>
                     <Form.Control
                       onChange={(e) => onSelectChange(e)}
@@ -328,14 +342,16 @@ const Home = () => {
                       placeholder="Enter date"
                     />
                   </Form.Group>
-                </Form>
+                </Form> */}
               </div>
             </div>
             <div className="table_contant">
            
            <DataTable
             columns={columns}
-            data={task}/>
+            data={task}
+          
+             />
               {/* <Table className="mt-3" bordered hover>
                 <thead>
                   <tr>
