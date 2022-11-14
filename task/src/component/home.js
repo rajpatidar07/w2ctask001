@@ -5,7 +5,40 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { deleteTask, getallTask, UpdateUser } from "../services/api";
 import Task from "./tasktable";
+// import DataTable from 'react-data-table-component';
 const Home = () => {
+//   const columns = [
+//     // {
+//     //     name: 'taskname',
+//     //     selector: row => taskname,
+//     //     sortable: true,
+//     // },
+//     {
+//         name: 'end_date',
+//         selector: row => row.end_date,
+//         sortable: true,
+//     },
+//     {
+//       name: 'priority',
+//       selector: row => row.priority,
+//       sortable: true,
+//     },
+//     {
+//       name: 'assignto',
+//       selector: row => row.assignto,
+//       sortable: true,
+//     },
+//     {
+//       name: 'status',
+//       selector: row => row.status,
+//       sortable: true,
+//     },
+//     {
+//       name: 'description',
+//       selector: row => row.description,
+//       sortable: true,
+//     },
+// ];
   const [addtask, setAddTask] = useState([]);
   const onValueChange = (e) => {
     //  console.log(e);
@@ -24,12 +57,14 @@ const Home = () => {
   const [assign, setAssign] = useState();
   const [priority, setPriority] = useState();
   const [datee, setDate] = useState();
+  // const [data,setData]=useState();
 
   const onSelectChange = (e) => {
     setStatus(e.target.value);
     setAssign(e.target.value);
     setPriority(e.target.value);
     setDate(e.target.value);
+    
   };
   console.log("-----status--" + status);
   const [task, setTask] = useState([]);
@@ -251,6 +286,18 @@ const Home = () => {
               </div>
             </div>
             <div className="table_contant">
+            {}
+            {/* <DataTable
+          title="Movies"
+          columns={columns}
+          data={data}
+          defaultSortFieldID={1}
+          pagination
+          paginationComponent={""}
+          selectableRows
+          selectableRowsComponent={""}
+        /> */}
+
               <Table className="mt-3" bordered hover>
                 <thead>
                   <tr>
@@ -268,6 +315,7 @@ const Home = () => {
                   {(task || []).map((data) => {
                     return data.status === status ?
                     (
+                     
                       <Task
                         id={data.id}
                         edit={() => editTaskDetails(data.id)}

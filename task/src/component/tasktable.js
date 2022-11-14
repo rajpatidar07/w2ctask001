@@ -18,10 +18,10 @@ const Task=(props)=>{
     <td>{props.taskname}</td>
     <td>{props.end_date}</td>
     <td>{props.description}</td>
-    <td>
-      <select
+    <td>{props.priority}</td>
+      {/* <select
         className="select form-control"
-        value={props.priority}
+        value=
         name="priority"
       >
         <option value={""}>Select</option>
@@ -29,7 +29,7 @@ const Task=(props)=>{
         <option value={"Medium"}>Medium</option>
         <option value={"Low"}>Low</option>
       </select>
-    </td>
+    </td> */}
     <td>
       <select
         className="select form-control"
