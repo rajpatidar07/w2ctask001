@@ -23,7 +23,7 @@ const Task=(props)=>{
         className="select form-control"
         value=
         name="priority"
-      >
+      >s
         <option value={""}>Select</option>
         <option value={"High"}>High</option>
         <option value={"Medium"}>Medium</option>

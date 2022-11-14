@@ -2,43 +2,90 @@ import { addTask } from "../services/api";
 import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
+
 import { deleteTask, getallTask, UpdateUser } from "../services/api";
 import Task from "./tasktable";
-// import DataTable from 'react-data-table-component';
+import DataTable from 'react-data-table-component';
 const Home = () => {
-//   const columns = [
-//     // {
-//     //     name: 'taskname',
-//     //     selector: row => taskname,
-//     //     sortable: true,
-//     // },
-//     {
-//         name: 'end_date',
-//         selector: row => row.end_date,
-//         sortable: true,
-//     },
-//     {
-//       name: 'priority',
-//       selector: row => row.priority,
-//       sortable: true,
-//     },
-//     {
-//       name: 'assignto',
-//       selector: row => row.assignto,
-//       sortable: true,
-//     },
-//     {
-//       name: 'status',
-//       selector: row => row.status,
-//       sortable: true,
-//     },
-//     {
-//       name: 'description',
-//       selector: row => row.description,
-//       sortable: true,
-//     },
-// ];
+  const columns = [
+    {
+        name: 'Task Name',
+        selector: row =>row.taskname,
+        sortable: true,
+    },
+    {
+        name: 'End_Date',
+        selector: row => row.end_date,
+        sortable: true,
+    },
+    {
+      name: 'Priority',
+      selector: row => row.priority  === "High"
+      ? "bg-danger bg-opacity-25"
+      : "" || row.priority === "Medium"
+      ? "bg-warning bg-opacity-25"
+      : "" || row.priority === "Low"
+      ? "bg-success  bg-opacity-25"
+      : "",
+      sortable: true,
+    },
+    {
+      name: 'Description',
+      selector: row => row.description,
+      sortable: true,
+    },
+    {
+      name: 'AssignTo',
+      selector: row => <select
+      className="select form-control"
+      value={row.assignto}
+    >
+      <option value={""}>Select</option>
+      <option value={"Shivani"}>Shivani</option>
+      <option value={"Vijendra"}>Vijendra</option>
+      <option value={"Gaurav"}>Gaurav</option>
+      <option value={"Jyotish"}>Jyotish</option>
+      <option value={"Shubham"}>Shubham</option>
+    </select>,
+      sortable: true,
+    },
+    {
+      name: 'Status',
+      selector: row =>  <select
+      className="select form-control"
+      value={row.status}
+    >
+      <option value={""}>Select</option>
+      <option value={"Pending"}>Pending</option>
+      <option value={"Done"}>Done</option>
+      <option value={"In Progress"}>In Progress</option>
+      <option value={"Not Started"}>Not Started</option>
+      <option value={"Blocked"}>Blocked</option>
+    </select>,
+      sortable: true,
+    },
+    {
+      button: true,
+      cell: () => (
+        <div className="">
+        <button
+              type="button"
+              className="btn btn-info"
+              onClick={editTaskDetails}
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={deleteData}
+            >
+              Delete
+            </button>
+        </div>
+            )
+      },
+];
   const [addtask, setAddTask] = useState([]);
   const onValueChange = (e) => {
     //  console.log(e);
@@ -57,7 +104,6 @@ const Home = () => {
   const [assign, setAssign] = useState();
   const [priority, setPriority] = useState();
   const [datee, setDate] = useState();
-  // const [data,setData]=useState();
 
   const onSelectChange = (e) => {
     setStatus(e.target.value);
@@ -286,19 +332,11 @@ const Home = () => {
               </div>
             </div>
             <div className="table_contant">
-            {}
-            {/* <DataTable
-          title="Movies"
-          columns={columns}
-          data={data}
-          defaultSortFieldID={1}
-          pagination
-          paginationComponent={""}
-          selectableRows
-          selectableRowsComponent={""}
-        /> */}
-
-              <Table className="mt-3" bordered hover>
+           
+           <DataTable
+            columns={columns}
+            data={task}/>
+              {/* <Table className="mt-3" bordered hover>
                 <thead>
                   <tr>
                     <th>#</th>
@@ -315,7 +353,6 @@ const Home = () => {
                   {(task || []).map((data) => {
                     return data.status === status ?
                     (
-                     
                       <Task
                         id={data.id}
                         edit={() => editTaskDetails(data.id)}
@@ -345,7 +382,7 @@ const Home = () => {
                     ) : null;
                   })}
                 </tbody>
-              </Table>
+              </Table> */}
             </div>
           </div>
         </div>
