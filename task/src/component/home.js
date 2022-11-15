@@ -4,14 +4,36 @@ import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, UpdateUser, FilterUser } from "../services/api";
-import DataTable from 'react-data-table-component';
+import DataTable, { createTheme } from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
+import { FcEditImage,FcFullTrash } from "react-icons/fc";
 import Button from "react-bootstrap/Button";
+import { Action } from "@remix-run/router";
 // import { CKEditor } from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
-
+  // createTheme('solarized', {
+  //   text: {
+  //     primary: '#268bd2',
+  //     secondary: '#2aa198',
+  //   },
+  //   background: {
+  //     default: '#002b36',
+  //   },
+  //   context: {
+  //     background: '#cb4b16',
+  //     text: '#FFFFFF',
+  //   },
+  //   divider: {
+  //     default: '#073642',
+  //   },
+  //   action: {
+  //     button: 'rgba(0,0,0,.54)',
+  //     hover: 'rgba(0,0,0,.08)',
+  //     disabled: 'rgba(0,0,0,.12)',
+  //   },
+  // }, 'dark');
   const [value, onChange] = useState(new Date());
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
@@ -19,7 +41,36 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const [filter, setfilter] = useState([]);
   const [apicall, setapicall] = useState(false);
-
+  const ExpandedComponent = ({ data }) => <div className="taskdescription">
+    <p>{data.description}</p>
+    {/* <div className="prioritystatusbox"> 
+    
+      <select
+        className="select form-control"
+        value={data.assignto}
+      >
+        <option value={""}>Select</option>
+        <option value={"Shivani"}>Shivani</option>
+        <option value={"Vijendra"}>Vijendra</option>
+        <option value={"Gaurav"}>Gaurav</option>
+        <option value={"Jyotish"}>Jyotish</option>
+        <option value={"Shubham"}>Shubham</option>
+      </select>
+    
+      <select
+        className="select form-control"
+        value={data.status}
+      >
+        <option value={""}>Select</option>
+        <option value={"Pending"}>Pending</option>
+        <option value={"Done"}>Done</option>
+        <option value={"In Progress"}>In Progress</option>
+        <option value={"Not Started"}>Not Started</option>
+        <option value={"Blocked"}>Blocked</option>
+      </select>
+    </div>
+    */}
+    </div>;
   useEffect(() => {
     getTasks();
   }, [filter, apicall]);
@@ -65,20 +116,21 @@ const Home = () => {
   };
   const columns = [
     {
+      name: '#',
+      selector: row => <div>
+{'#'+row.id}
+<Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"} className='ms-1'>{row.priority}</Badge>
+      </div>,
+      sortable: true,
+      width:"150px"
+    },
+    {
       name: 'Task Name',
       selector: row => row.taskname,
       sortable: true,
+      width:"40%"
     },
-    {
-      name: 'Description',
-      selector: row => row.description,
-      sortable: true,
-    },
-    {
-      name: 'Priority',
-      selector: row => <Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"}>{row.priority}</Badge>,
-      sortable: true,
-    },
+   
     {
       name: 'End_Date',
       selector: row => row.end_date,
@@ -114,26 +166,30 @@ const Home = () => {
       </select>,
       sortable: true,
     },
-    {
+    {name:'Action',
       button: true,
       cell: (row) => (
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12">
             <Button
               type="button"
-              className="btn btn-info"
+              size='sm'
+              className="btn btn-light"
               onClick={editTaskDetails.bind(this, row.id)}
             >
-              <FiEdit />
+              <FcEditImage className="h4 mb-0"/>
+              {/* <FiEdit /> */}
             </Button>
+            
             <Button
              variant="danger"
-              size="sm"
+             size='sm'
               type="button"
-              className="btn btn-danger"
+              className="btn btn-light mx-2"
               onClick={deleteData.bind(this, row.id)}
             >
-              Delete
+              <FcFullTrash className="h4 mb-0"/>
+              {/* <AiOutlineDelete className="text-dark"/> */}
             </Button>
           </div>
         </div>
@@ -147,7 +203,7 @@ const Home = () => {
       <div class="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
-            <h3>Heading Here </h3>
+            <h3>Task Management </h3>
             <button
               className="btn btn-info  ms-auto"
               onClick={() => setOpen(!open)}
@@ -371,7 +427,10 @@ const Home = () => {
            <DataTable
             columns={columns}
             data={task}
-            pagination/>
+            pagination
+            fixedHeader
+            expandableRows expandableRowsComponent={ExpandedComponent}
+            theme="solarized" />
             </div>
           </div>
         </div>
