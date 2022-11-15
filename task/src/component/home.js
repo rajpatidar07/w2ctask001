@@ -5,8 +5,11 @@ import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, UpdateUser, FilterUser } from "../services/api";
 import DataTable from 'react-data-table-component';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
 
+  const [value, onChange] = useState(new Date());
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
   const [validated, setValidated] = useState(false);
@@ -14,33 +17,33 @@ const Home = () => {
   const [filter, setfilter] = useState([]);
   const [apicall, setapicall] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
+  useEffect(() => {
+    getTasks();
+  }, [filter, apicall]);
   const onValueChange = (e) => {
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
   };
-  const addTaskDetails = async (id) => {
-    await addTask(addtask, id);
-    setOpen(false);
-    setapicall(true)
-    // window.location.reload(false);
-  };
+
   const onSelectChange = async (e) => {
     setfilter(filter => {
       return { ...filter, [e.target.name]: e.target.value }
     });
+  }
+  const addTaskDetails = async (event,id) => {
+    const form = event.currentTarget;
+    console.log(form.checkValidity()+"hellooooooo")
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else{
+      event.preventDefault();
+      await addTask(addtask, id);
+      setOpen(false);
+      setapicall(true)
+    }
+    setValidated(true);
   };
-
-  useEffect(() => {
-    getTasks();
-  }, [filter, apicall]);
 
   const getTasks = async () => {
     const response = await FilterUser(filter);
@@ -134,6 +137,7 @@ const Home = () => {
     },
   ];
 
+  
   return (
     <div class="container text-center">
       <div class="row align-items-start">
@@ -153,8 +157,8 @@ const Home = () => {
           <Collapse in={open}>
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
-                <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
-                <Form class="form-row" noValidate validated={validated} onSubmit={handleSubmit} >
+              <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
+                <Form className="form-row" noValidate validated={validated} onSubmit={(event)=>addTaskDetails(event,addtask.id)}>
                   <input
                     name="id"
                     type={"hidden"}
@@ -256,6 +260,18 @@ const Home = () => {
                       <Form.Label className="m-0 pb-1 text-start w-100">
                         Description
                       </Form.Label>
+                      {/* <CKEditor
+                    editor={ ClassicEditor }
+                    
+                    value={addtask.description}
+                    name="description"
+                    type="text"
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onValueChange={(e) => onValueChange(e)}
+                /> */}
                       <Form.Control
                         required
                         className="mb-3"
@@ -263,7 +279,7 @@ const Home = () => {
                         rows={4}
                         onChange={(e) => onValueChange(e)}
                         name="description"
-                        type="comments"
+                        type="text"
                         value={addtask.description}
                       />
                     </Form.Group>
@@ -271,8 +287,8 @@ const Home = () => {
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
-                    onClick={() => addTaskDetails(addtask.id)}
-                    type="submit"
+                    // onClick={() => addTaskDetails(addtask.id)}
+                   type="submit"
                   >
                     {addtask.id !== "" ||
                       addtask.id !== null ||
@@ -342,12 +358,11 @@ const Home = () => {
               </div>
             </div>
             <div className="table_contant">
-
-              <DataTable
-                columns={columns}
-                data={task}
-
-              />
+           
+           <DataTable
+            columns={columns}
+            data={task}
+            pagination/>
             </div>
           </div>
         </div>
@@ -355,4 +370,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;
