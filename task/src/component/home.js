@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, UpdateUser, FilterUser } from "../services/api";
 import DataTable from 'react-data-table-component';
+import { AiOutlineDelete } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
+import Button from "react-bootstrap/Button";
 // import { CKEditor } from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
@@ -31,7 +34,6 @@ const Home = () => {
   }
   const addTaskDetails = async (event,id) => {
     const form = event.currentTarget;
-    console.log(form.checkValidity()+"hellooooooo")
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -117,20 +119,22 @@ const Home = () => {
       cell: (row) => (
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12">
-            <button
+            <Button
               type="button"
               className="btn btn-info"
               onClick={editTaskDetails.bind(this, row.id)}
             >
-              Edit
-            </button>
-            <button
+              <FiEdit />
+            </Button>
+            <Button
+             variant="danger"
+              size="sm"
               type="button"
               className="btn btn-danger"
               onClick={deleteData.bind(this, row.id)}
             >
               Delete
-            </button>
+            </Button>
           </div>
         </div>
       )
@@ -184,7 +188,9 @@ const Home = () => {
                         name="taskname"
                         value={addtask.taskname}
                       />
-                      <Form.Control.Feedback className="mr-0" type="invalid">Please Enter Task Name!</Form.Control.Feedback>
+                      <Form.Control.Feedback className="mr-0" type="invalid">
+                        Please Enter Task Name!
+                      </Form.Control.Feedback>
                       <div className="row my-3">
                         <div className="col-md-6">
                           <Form.Label className="m-0 pb-1 text-start w-100">
@@ -236,7 +242,9 @@ const Home = () => {
                         name="end_date"
                         value={addtask.end_date}
                       />
-                      <Form.Control.Feedback type="invalid">Please Enter Date!</Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Please Enter Date!
+                      </Form.Control.Feedback>
                       <div className="my-3">
                         <Form.Label className="m-0 pb-1 text-start w-100">
                           Status
@@ -283,7 +291,9 @@ const Home = () => {
                         value={addtask.description}
                       />
                     </Form.Group>
-                    <Form.Control.Feedback type="invalid">Please Enter Description!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Please Enter Description!
+                    </Form.Control.Feedback>
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
@@ -343,8 +353,7 @@ const Home = () => {
                 </select>
               </div>
               <div className="col-md-3 my-md-0 my-2 mb-0">
-                {/* <DatePicker className="form-group" onChange={(e)=>onSelectChange(e)} value={value} name={'end_date'}/> */}
-                <Form>
+                 <Form>
                   <Form.Group>
                     <Form.Control
                       onChange={(e) => onSelectChange(e)}
