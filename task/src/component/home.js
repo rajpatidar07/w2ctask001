@@ -7,6 +7,8 @@ import { deleteTask, getallTask, UpdateUser } from "../services/api";
 // import Task from "./tasktable";
 import DatePicker from 'react-date-picker';
 import DataTable from 'react-data-table-component';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
   const columns = [
     {
@@ -84,16 +86,7 @@ const Home = () => {
       },
 ];
   const [addtask, setAddTask] = useState([]);
-  const [validated, setValidated] = useState(false);
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
+ 
   const onValueChange = (e) => {
     //  console.log(e);
     // console.log(e.target.value);
@@ -142,6 +135,15 @@ const Home = () => {
   };
   console.log("Addd Task----------" + JSON.stringify(addtask));
   console.log("Addd Task----------" + JSON.stringify(addtask));
+  const [validated, setValidated] = useState(false);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
+  };
   return (
     <div class="container text-center">
       <div class="row align-items-start">
@@ -162,7 +164,7 @@ const Home = () => {
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
               <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
-                <Form class="form-row" noValidate validated={validated} onSubmit={handleSubmit} >
+                <Form className="form-row" noValidate validated={validated} onSubmit={handleSubmit}>
                   <input
                     name="id"
                     type={"hidden"}
@@ -264,6 +266,18 @@ const Home = () => {
                       <Form.Label className="m-0 pb-1 text-start w-100">
                         Description
                       </Form.Label>
+                      {/* <CKEditor
+                    editor={ ClassicEditor }
+                    
+                    value={addtask.description}
+                    name="description"
+                    type="text"
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onValueChange={(e) => onValueChange(e)}
+                /> */}
                       <Form.Control
                        required
                         className="mb-3"
@@ -271,7 +285,7 @@ const Home = () => {
                         rows={4}
                         onChange={(e) => onValueChange(e)}
                         name="description"
-                        type="comments"
+                        type="text"
                         value={addtask.description}
                       />
                     </Form.Group>
@@ -349,56 +363,7 @@ const Home = () => {
            
            <DataTable
             columns={columns}
-            data={task}
-          
-             />
-              {/* <Table className="mt-3" bordered hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Task Name</th>
-                    <th>End Date</th>
-                    <th>Description</th>
-                    <th>Priority</th>
-                    <th>Assign to</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(task || []).map((data) => {
-                    return data.status === status ?
-                    (
-                      <Task
-                        id={data.id}
-                        edit={() => editTaskDetails(data.id)}
-                        delete={() => deleteData(data.id)}
-                        taskname={data.taskname}
-                        end_date={data.end_date}
-                        description={data.description}
-                        priority={data.priority}
-                        assignto={data.assignto}
-                        status={data.status}
-                      />
-                    ) : status === "" ||
-                      data.assignto === assign ||
-                      data.priority === priority ||
-                      data.end_date === datee ? (
-                      <Task
-                        id={data.id}
-                        edit={() => editTaskDetails(data.id)}
-                        delete={() => deleteData(data.id)}
-                        taskname={data.taskname}
-                        end_date={data.end_date}
-                        description={data.description}
-                        priority={data.priority}
-                        assignto={data.assignto}
-                        status={data.status}
-                      />
-                    ) : null;
-                  })}
-                </tbody>
-              </Table> */}
+            data={task}/>
             </div>
           </div>
         </div>
