@@ -37,12 +37,12 @@
   }
 } */
 
-.content_div .add_form{
+.content_div .add_form {
   background: white;
   z-index: 9;
   padding: 19px;
   border-radius: 6px;
-  max-width:332px ;
+  max-width: 332px;
   width: 100%;
   /* height: calc(100vh - 72px); */
   height: 100vh;
@@ -51,41 +51,41 @@
   right: 8px;
   box-shadow: 0px 0px 6px 0px #000000ad;
 }
-.content_div .add_form .add-form_div{
+.content_div .add_form .add-form_div {
   position: relative;
 }
-.content_div .add_form .add_fome_close{
+.content_div .add_form .add_fome_close {
   position: absolute;
   left: -38px;
   right: 0;
-cursor: pointer;
+  cursor: pointer;
   display: inherit;
 
   font-size: 24px;
 }
-.content_div .table_contant{
-  height: calc(100vh - 143px);
+.content_div .table_contant .rdt_TableBody {
+  height: calc(100vh - 185px);
   overflow: scroll;
 }
-.content_div .header .btn{
+.content_div .header .btn {
   padding: 0px 5px 0px 5px;
   font-size: 14px;
 }
-.content_div .header{
-border-bottom: solid 1px #0000003d;
+.content_div .header {
+  border-bottom: solid 1px #0000003d;
 }
-.table_contant .beUiVL{
+.table_contant .beUiVL {
   font-size: 18px;
 }
-.rdt_TableCell.row{
+.rdt_TableCell.row {
   font-size: 25px;
 }
-.dwPlXY:not(:last-of-type){
-font-size: 16px;
+.dwPlXY:not(:last-of-type) {
+  font-size: 16px;
 }
 .react-date-picker__wrapper {
   display: flex;
-  flex-grow: 1; 
+  flex-grow: 1;
   flex-shrink: 0;
   border: thin solid gray;
   display: block;
@@ -100,5 +100,5 @@ font-size: 16px;
   border: 1px solid #ced4da;
   appearance: none;
   border-radius: 0.375rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

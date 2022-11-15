@@ -4,6 +4,9 @@ import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, getallTask, UpdateUser } from "../services/api";
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
+
 // import Task from "./tasktable";
 import DatePicker from 'react-date-picker';
 import DataTable from 'react-data-table-component';
@@ -66,17 +69,17 @@ const Home = () => {
           <div className="col-md-12 col-sm-12 col-lg-12">
           <button
               type="button"
-              className="btn btn-info"
+              className="btn btn-info btn-sm fs-5 me-2"
               onClick={editTaskDetails}
             >
-              Edit
+              <FiEdit/>
             </button>
             <button
               type="button"
-              className="btn btn-danger"
+              className="btn btn-danger btn-sm fs-5"
               onClick={deleteData}
             >
-              Delete
+            <AiOutlineDelete/>
             </button>
             </div>
             </div>
