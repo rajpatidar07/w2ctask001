@@ -2,64 +2,76 @@ import { addTask } from "../services/api";
 import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
-import Badge from 'react-bootstrap/Badge';
+import Badge from "react-bootstrap/Badge";
 import { deleteTask, getallTask, UpdateUser } from "../services/api";
-import { AiOutlineDelete } from 'react-icons/ai';
-import { FiEdit } from 'react-icons/fi';
-
+import { AiOutlineDelete } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
+import Button from "react-bootstrap/Button";
 // import Task from "./tasktable";
-import DatePicker from 'react-date-picker';
-import DataTable from 'react-data-table-component';
+import DatePicker from "react-date-picker";
+import DataTable from "react-data-table-component";
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
   const columns = [
     {
-        name: 'Task Name',
-        selector: row =>row.taskname,
-        sortable: true,
-    },
-    {
-      name: 'Description',
-      selector: row => row.description,
+      name: "Task Name",
+      selector: (row) => row.taskname,
       sortable: true,
     },
     {
-      name: 'Priority',
-      selector: row => <Badge bg={row.priority==="High"?"danger":row.priority==="Medium"?"warning":"primary"}>{row.priority}</Badge>,
+      name: "Description",
+      selector: (row) => row.description,
       sortable: true,
     },
     {
-      name: 'End_Date',
-      selector: row => row.end_date,
-      sortable: true,
-  },
-    {
-      name: 'AssignTo',
-      selector: row => <select
-      className="select form-control"
-      value={row.assignto}
-    >
-      <option value={""}>Select</option>
-      <option value={"Shivani"}>Shivani</option>
-      <option value={"Vijendra"}>Vijendra</option>
-      <option value={"Gaurav"}>Gaurav</option>
-      <option value={"Jyotish"}>Jyotish</option>
-      <option value={"Shubham"}>Shubham</option>
-    </select>,
+      name: "Priority",
+      selector: (row) => (
+        <Badge
+          bg={
+            row.priority === "High"
+              ? "danger"
+              : row.priority === "Medium"
+              ? "warning"
+              : "primary"
+          }
+        >
+          {row.priority}
+        </Badge>
+      ),
       sortable: true,
     },
     {
-      name: 'Status',
-      selector: row =>  <select
-      className="select form-control"
-      value={row.status}
-    >
-      <option value={""}>Select</option>
-      <option value={"Pending"}>Pending</option>
-      <option value={"Done"}>Done</option>
-      <option value={"In Progress"}>In Progress</option>
-      <option value={"Not Started"}>Not Started</option>
-      <option value={"Blocked"}>Blocked</option>
-    </select>,
+      name: "End_Date",
+      selector: (row) => row.end_date,
+      sortable: true,
+    },
+    {
+      name: "AssignTo",
+      selector: (row) => (
+        <select className="select form-control" value={row.assignto}>
+          <option value={""}>Select</option>
+          <option value={"Shivani"}>Shivani</option>
+          <option value={"Vijendra"}>Vijendra</option>
+          <option value={"Gaurav"}>Gaurav</option>
+          <option value={"Jyotish"}>Jyotish</option>
+          <option value={"Shubham"}>Shubham</option>
+        </select>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Status",
+      selector: (row) => (
+        <select className="select form-control" value={row.status}>
+          <option value={""}>Select</option>
+          <option value={"Pending"}>Pending</option>
+          <option value={"Done"}>Done</option>
+          <option value={"In Progress"}>In Progress</option>
+          <option value={"Not Started"}>Not Started</option>
+          <option value={"Blocked"}>Blocked</option>
+        </select>
+      ),
       sortable: true,
     },
     {
@@ -67,36 +79,31 @@ const Home = () => {
       cell: () => (
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12">
-          <button
+            <Button
+              variant="primary"
+              size="sm"
               type="button"
-              className="btn btn-info btn-sm fs-5 me-2"
+              className="fs-6 me-1"
               onClick={editTaskDetails}
             >
-              <FiEdit/>
-            </button>
-            <button
+              <FiEdit />
+            </Button>
+            <Button
+             variant="danger"
+              size="sm"
               type="button"
-              className="btn btn-danger btn-sm fs-5"
+              className="fs-5"
               onClick={deleteData}
             >
-            <AiOutlineDelete/>
-            </button>
-            </div>
-            </div>
-            )
-      },
-];
+              <AiOutlineDelete />
+            </Button>
+          </div>
+        </div>
+      ),
+    },
+  ];
   const [addtask, setAddTask] = useState([]);
-  const [validated, setValidated] = useState(false);
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
 
-    setValidated(true);
-  };
   const onValueChange = (e) => {
     //  console.log(e);
     // console.log(e.target.value);
@@ -121,7 +128,6 @@ const Home = () => {
     // setAssign(e.target.value);
     // setPriority(e.target.value);
     // setDate(e.target.value);
-    
   };
   console.log("-----status--" + status);
   const [task, setTask] = useState([]);
@@ -145,6 +151,15 @@ const Home = () => {
   };
   console.log("Addd Task----------" + JSON.stringify(addtask));
   console.log("Addd Task----------" + JSON.stringify(addtask));
+  const [validated, setValidated] = useState(false);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
+  };
   return (
     <div class="container text-center">
       <div class="row align-items-start">
@@ -160,12 +175,19 @@ const Home = () => {
               Add Task
             </button>
           </div>
-         
+
           <Collapse in={open}>
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
-              <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
-                <Form class="form-row" noValidate validated={validated} onSubmit={handleSubmit} >
+                <span className="add_fome_close" onClick={() => setOpen(!open)}>
+                  &times;
+                </span>
+                <Form
+                  className="form-row"
+                  noValidate
+                  validated={validated}
+                  onSubmit={handleSubmit}
+                >
                   <input
                     name="id"
                     type={"hidden"}
@@ -183,7 +205,7 @@ const Home = () => {
                         Task Name
                       </Form.Label>
                       <Form.Control
-                       required
+                        required
                         className="mb-3"
                         type="text"
                         placeholder="Enter Task"
@@ -191,7 +213,9 @@ const Home = () => {
                         name="taskname"
                         value={addtask.taskname}
                       />
-                      <Form.Control.Feedback className="mr-0" type="invalid">Please Enter Task Name!</Form.Control.Feedback>
+                      <Form.Control.Feedback className="mr-0" type="invalid">
+                        Please Enter Task Name!
+                      </Form.Control.Feedback>
                       <div className="row my-3">
                         <div className="col-md-6">
                           <Form.Label className="m-0 pb-1 text-start w-100">
@@ -235,7 +259,7 @@ const Home = () => {
                         End Date
                       </Form.Label>
                       <Form.Control
-                       required
+                        required
                         className="mb-3"
                         type="date"
                         placeholder="Enter date"
@@ -243,7 +267,9 @@ const Home = () => {
                         name="end_date"
                         value={addtask.end_date}
                       />
-                      <Form.Control.Feedback type="invalid">Please Enter Date!</Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Please Enter Date!
+                      </Form.Control.Feedback>
                       <div className="my-3">
                         <Form.Label className="m-0 pb-1 text-start w-100">
                           Status
@@ -267,23 +293,37 @@ const Home = () => {
                       <Form.Label className="m-0 pb-1 text-start w-100">
                         Description
                       </Form.Label>
+                      {/* <CKEditor
+                    editor={ ClassicEditor }
+                    
+                    value={addtask.description}
+                    name="description"
+                    type="text"
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onValueChange={(e) => onValueChange(e)}
+                /> */}
                       <Form.Control
-                       required
+                        required
                         className="mb-3"
                         as="textarea"
                         rows={4}
                         onChange={(e) => onValueChange(e)}
                         name="description"
-                        type="comments"
+                        type="text"
                         value={addtask.description}
                       />
                     </Form.Group>
-                      <Form.Control.Feedback type="invalid">Please Enter Description!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Please Enter Description!
+                    </Form.Control.Feedback>
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
                     onClick={() => addTaskDetails(addtask.id)}
-                   type="submit"
+                    type="submit"
                   >
                     {addtask.id !== "" ||
                     addtask.id !== null ||
@@ -335,7 +375,11 @@ const Home = () => {
                 </select>
               </div>
               <div className="col-md-3 my-md-0 my-2 mb-0">
-              <DatePicker className="form-group" onChange={onChange} value={value} />
+                <DatePicker
+                  className="form-group"
+                  onChange={onChange}
+                  value={value}
+                />
                 {/* <Form>
                   <Form.Group>
                     <Form.Control
@@ -349,59 +393,7 @@ const Home = () => {
               </div>
             </div>
             <div className="table_contant">
-           
-           <DataTable
-            columns={columns}
-            data={task}
-          
-             />
-              {/* <Table className="mt-3" bordered hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Task Name</th>
-                    <th>End Date</th>
-                    <th>Description</th>
-                    <th>Priority</th>
-                    <th>Assign to</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(task || []).map((data) => {
-                    return data.status === status ?
-                    (
-                      <Task
-                        id={data.id}
-                        edit={() => editTaskDetails(data.id)}
-                        delete={() => deleteData(data.id)}
-                        taskname={data.taskname}
-                        end_date={data.end_date}
-                        description={data.description}
-                        priority={data.priority}
-                        assignto={data.assignto}
-                        status={data.status}
-                      />
-                    ) : status === "" ||
-                      data.assignto === assign ||
-                      data.priority === priority ||
-                      data.end_date === datee ? (
-                      <Task
-                        id={data.id}
-                        edit={() => editTaskDetails(data.id)}
-                        delete={() => deleteData(data.id)}
-                        taskname={data.taskname}
-                        end_date={data.end_date}
-                        description={data.description}
-                        priority={data.priority}
-                        assignto={data.assignto}
-                        status={data.status}
-                      />
-                    ) : null;
-                  })}
-                </tbody>
-              </Table> */}
+              <DataTable columns={columns} data={task} />
             </div>
           </div>
         </div>
