@@ -113,10 +113,27 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const [value, onChange] = useState(new Date());
   // console.log("---------------"+response);
-  const addTaskDetails = async (id) => {
-    await addTask(addtask, id);
-    setOpen(false);
-    window.location.reload(false);
+  const addTaskDetails = async (event,id) => {
+   
+    // window.location.reload(false);
+    const form = event.currentTarget;
+    console.log(form.checkValidity()+"hellooooooo")
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log("Noooooo-------- -" + JSON.stringify(addtask));
+
+     
+    }
+    else{
+      await addTask(addtask, id);
+      console.log("Addd Task----------" + JSON.stringify(addtask));
+
+
+      // setOpen(false);
+    }
+    setValidated(true);
+   
   };
   const [status, setStatus] = useState();
   // const [assign, setAssign] = useState();
@@ -150,7 +167,6 @@ const Home = () => {
     getTasks();
   };
   console.log("Addd Task----------" + JSON.stringify(addtask));
-  console.log("Addd Task----------" + JSON.stringify(addtask));
   const [validated, setValidated] = useState(false);
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -179,6 +195,7 @@ const Home = () => {
           <Collapse in={open}>
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
+<<<<<<< HEAD
                 <span className="add_fome_close" onClick={() => setOpen(!open)}>
                   &times;
                 </span>
@@ -188,6 +205,10 @@ const Home = () => {
                   validated={validated}
                   onSubmit={handleSubmit}
                 >
+=======
+              <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
+                <Form className="form-row" noValidate validated={validated} onSubmit={(event)=>addTaskDetails(event,addtask.id)}>
+>>>>>>> 38522be90573af892ea28957f3f869cf17365bcb
                   <input
                     name="id"
                     type={"hidden"}
@@ -322,8 +343,13 @@ const Home = () => {
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
+<<<<<<< HEAD
                     onClick={() => addTaskDetails(addtask.id)}
                     type="submit"
+=======
+                    // onClick={() => addTaskDetails(addtask.id)}
+                   type="submit"
+>>>>>>> 38522be90573af892ea28957f3f869cf17365bcb
                   >
                     {addtask.id !== "" ||
                     addtask.id !== null ||
