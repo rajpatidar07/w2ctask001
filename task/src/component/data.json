@@ -28,33 +28,6 @@
       "id": 15
     },
     {
-      "taskname": "xcv",
-      "priority": "High",
-      "assignto": "Shivani",
-      "end_date": "2022-11-09",
-      "status": "In Progress",
-      "description": "xcvxcv",
-      "id": 16
-    },
-    {
-      "taskname": "dfg",
-      "priority": "High",
-      "assignto": "Shivani",
-      "end_date": "2022-11-11",
-      "status": "In Progress",
-      "description": "dfgfd",
-      "id": 17
-    },
-    {
-      "taskname": "dfg",
-      "priority": "Medium",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-25",
-      "status": "In Progress",
-      "description": "dfgfdg",
-      "id": 18
-    },
-    {
       "taskname": "df",
       "priority": "Medium",
       "assignto": "Vijendra",
@@ -64,7 +37,7 @@
       "id": 19
     },
     {
-      "taskname": "test1",
+      "taskname": "crud",
       "end_date": "2022-11-26",
       "description": "test1",
       "priority": "High",
@@ -80,24 +53,6 @@
       "status": "Pending",
       "description": "asd",
       "id": 20
-    },
-    {
-      "taskname": "asd",
-      "priority": "Medium",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-14",
-      "status": "In Progress",
-      "description": "asdas",
-      "id": 21
-    },
-    {
-      "taskname": "asd",
-      "priority": "Low",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-02",
-      "status": "Done",
-      "description": "asdas",
-      "id": 22
     },
     {
       "taskname": "asdf",

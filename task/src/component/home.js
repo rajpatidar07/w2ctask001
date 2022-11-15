@@ -3,88 +3,17 @@ import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
-import { deleteTask, getallTask, UpdateUser } from "../services/api";
-// import Task from "./tasktable";
-import DatePicker from 'react-date-picker';
+import { deleteTask, UpdateUser, FilterUser } from "../services/api";
 import DataTable from 'react-data-table-component';
 const Home = () => {
-  const columns = [
-    {
-        name: 'Task Name',
-        selector: row =>row.taskname,
-        sortable: true,
-    },
-    {
-      name: 'Description',
-      selector: row => row.description,
-      sortable: true,
-    },
-    {
-      name: 'Priority',
-      selector: row => <Badge bg={row.priority==="High"?"danger":row.priority==="Medium"?"warning":"primary"}>{row.priority}</Badge>,
-      sortable: true,
-    },
-    {
-      name: 'End_Date',
-      selector: row => row.end_date,
-      sortable: true,
-  },
-    {
-      name: 'AssignTo',
-      selector: row => <select
-      className="select form-control"
-      value={row.assignto}
-    >
-      <option value={""}>Select</option>
-      <option value={"Shivani"}>Shivani</option>
-      <option value={"Vijendra"}>Vijendra</option>
-      <option value={"Gaurav"}>Gaurav</option>
-      <option value={"Jyotish"}>Jyotish</option>
-      <option value={"Shubham"}>Shubham</option>
-    </select>,
-      sortable: true,
-    },
-    {
-      name: 'Status',
-      selector: row =>  <select
-      className="select form-control"
-      value={row.status}
-    >
-      <option value={""}>Select</option>
-      <option value={"Pending"}>Pending</option>
-      <option value={"Done"}>Done</option>
-      <option value={"In Progress"}>In Progress</option>
-      <option value={"Not Started"}>Not Started</option>
-      <option value={"Blocked"}>Blocked</option>
-    </select>,
-      sortable: true,
-    },
-    {
-      button: true,
-      cell: () => (
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-lg-12">
-          <button
-              type="button"
-              className="btn btn-info"
-              onClick={editTaskDetails}
-            >
-              Edit
-            </button>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={deleteData}
-            >
-              Delete
-            </button>
-            </div>
-            </div>
-            )
-      },
-];
+
+  const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
   const [validated, setValidated] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [filter, setfilter] = useState([]);
+  const [apicall, setapicall] = useState(false);
+
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -95,53 +24,116 @@ const Home = () => {
     setValidated(true);
   };
   const onValueChange = (e) => {
-    //  console.log(e);
-    // console.log(e.target.value);
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
-    // console.log(task);
   };
-  const [open, setOpen] = useState(false);
-  const [value, onChange] = useState(new Date());
-  // console.log("---------------"+response);
   const addTaskDetails = async (id) => {
     await addTask(addtask, id);
     setOpen(false);
-    window.location.reload(false);
+    setapicall(true)
+    // window.location.reload(false);
   };
-  const [status, setStatus] = useState();
-  // const [assign, setAssign] = useState();
-  // const [priority, setPriority] = useState();
-  // const [datee, setDate] = useState();
+  const onSelectChange = async (e) => {
+    setfilter(filter => {
+      return { ...filter, [e.target.name]: e.target.value }
+    });
+  };
 
-  const onSelectChange = (e) => {
-    setStatus(e.target.value);
-    // setAssign(e.target.value);
-    // setPriority(e.target.value);
-    // setDate(e.target.value);
-    
-  };
-  console.log("-----status--" + status);
-  const [task, setTask] = useState([]);
   useEffect(() => {
     getTasks();
-  }, []);
+  }, [filter, apicall]);
 
   const getTasks = async () => {
-    const response = await getallTask();
+    const response = await FilterUser(filter);
     setTask(response.data);
-    // console.log("---------------"+response);
+    setapicall(false)
   };
   const editTaskDetails = async (taskid) => {
     const response = await UpdateUser(taskid);
     setAddTask(response.data);
     setOpen(!open);
+    setapicall(true)
+
   };
   const deleteData = async (id) => {
     await deleteTask(id);
-    getTasks();
+    setapicall(true)
   };
-  console.log("Addd Task----------" + JSON.stringify(addtask));
-  console.log("Addd Task----------" + JSON.stringify(addtask));
+  const columns = [
+    {
+      name: 'Task Name',
+      selector: row => row.taskname,
+      sortable: true,
+    },
+    {
+      name: 'Description',
+      selector: row => row.description,
+      sortable: true,
+    },
+    {
+      name: 'Priority',
+      selector: row => <Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"}>{row.priority}</Badge>,
+      sortable: true,
+    },
+    {
+      name: 'End_Date',
+      selector: row => row.end_date,
+      sortable: true,
+    },
+    {
+      name: 'AssignTo',
+      selector: row => <select
+        className="select form-control"
+        value={row.assignto}
+      >
+        <option value={""}>Select</option>
+        <option value={"Shivani"}>Shivani</option>
+        <option value={"Vijendra"}>Vijendra</option>
+        <option value={"Gaurav"}>Gaurav</option>
+        <option value={"Jyotish"}>Jyotish</option>
+        <option value={"Shubham"}>Shubham</option>
+      </select>,
+      sortable: true,
+    },
+    {
+      name: 'Status',
+      selector: row => <select
+        className="select form-control"
+        value={row.status}
+      >
+        <option value={""}>Select</option>
+        <option value={"Pending"}>Pending</option>
+        <option value={"Done"}>Done</option>
+        <option value={"In Progress"}>In Progress</option>
+        <option value={"Not Started"}>Not Started</option>
+        <option value={"Blocked"}>Blocked</option>
+      </select>,
+      sortable: true,
+    },
+    {
+      button: true,
+      cell: (row) => (
+        <div className="row">
+          <div className="col-md-12 col-sm-12 col-lg-12">
+            <button
+              type="button"
+              className="btn btn-info"
+              onClick={editTaskDetails.bind(this, row.id)}
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={deleteData.bind(this, row.id)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )
+    },
+  ];
+
   return (
     <div class="container text-center">
       <div class="row align-items-start">
@@ -157,19 +149,19 @@ const Home = () => {
               Add Task
             </button>
           </div>
-         
+
           <Collapse in={open}>
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
-              <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
+                <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
                 <Form class="form-row" noValidate validated={validated} onSubmit={handleSubmit} >
                   <input
                     name="id"
                     type={"hidden"}
                     value={
                       addtask.id !== "" ||
-                      addtask.id !== null ||
-                      addtask.id !== undefined
+                        addtask.id !== null ||
+                        addtask.id !== undefined
                         ? addtask.id
                         : ""
                     }
@@ -180,7 +172,7 @@ const Home = () => {
                         Task Name
                       </Form.Label>
                       <Form.Control
-                       required
+                        required
                         className="mb-3"
                         type="text"
                         placeholder="Enter Task"
@@ -232,7 +224,7 @@ const Home = () => {
                         End Date
                       </Form.Label>
                       <Form.Control
-                       required
+                        required
                         className="mb-3"
                         type="date"
                         placeholder="Enter date"
@@ -265,7 +257,7 @@ const Home = () => {
                         Description
                       </Form.Label>
                       <Form.Control
-                       required
+                        required
                         className="mb-3"
                         as="textarea"
                         rows={4}
@@ -275,16 +267,16 @@ const Home = () => {
                         value={addtask.description}
                       />
                     </Form.Group>
-                      <Form.Control.Feedback type="invalid">Please Enter Description!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">Please Enter Description!</Form.Control.Feedback>
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
                     onClick={() => addTaskDetails(addtask.id)}
-                   type="submit"
+                    type="submit"
                   >
                     {addtask.id !== "" ||
-                    addtask.id !== null ||
-                    addtask.id !== undefined
+                      addtask.id !== null ||
+                      addtask.id !== undefined
                       ? "Update Task"
                       : "Add Task"}
                   </button>
@@ -298,6 +290,7 @@ const Home = () => {
                 <select
                   className="select form-control"
                   onChange={(e) => onSelectChange(e)}
+                  name={'status'}
                 >
                   <option value={""}>Select Status</option>
                   <option value={"Pending"}>Pending</option>
@@ -311,6 +304,7 @@ const Home = () => {
                 <select
                   className="select form-control"
                   onChange={(e) => onSelectChange(e)}
+                  name={'assignto'}
                 >
                   <option value={""}>Select Name</option>
                   <option value={"Shivani"}>Shivani</option>
@@ -324,6 +318,7 @@ const Home = () => {
                 <select
                   className="select form-control"
                   onChange={(e) => onSelectChange(e)}
+                  name={'priority'}
                 >
                   <option value={""}>Select Priority</option>
                   <option value={"High"}>High</option>
@@ -332,73 +327,27 @@ const Home = () => {
                 </select>
               </div>
               <div className="col-md-3 my-md-0 my-2 mb-0">
-              <DatePicker className="form-group" onChange={onChange} value={value} />
-                {/* <Form>
+                {/* <DatePicker className="form-group" onChange={(e)=>onSelectChange(e)} value={value} name={'end_date'}/> */}
+                <Form>
                   <Form.Group>
                     <Form.Control
                       onChange={(e) => onSelectChange(e)}
                       className=""
                       type="date"
                       placeholder="Enter date"
+                      name={'end_date'}
                     />
                   </Form.Group>
-                </Form> */}
+                </Form>
               </div>
             </div>
             <div className="table_contant">
-           
-           <DataTable
-            columns={columns}
-            data={task}
-          
-             />
-              {/* <Table className="mt-3" bordered hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Task Name</th>
-                    <th>End Date</th>
-                    <th>Description</th>
-                    <th>Priority</th>
-                    <th>Assign to</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(task || []).map((data) => {
-                    return data.status === status ?
-                    (
-                      <Task
-                        id={data.id}
-                        edit={() => editTaskDetails(data.id)}
-                        delete={() => deleteData(data.id)}
-                        taskname={data.taskname}
-                        end_date={data.end_date}
-                        description={data.description}
-                        priority={data.priority}
-                        assignto={data.assignto}
-                        status={data.status}
-                      />
-                    ) : status === "" ||
-                      data.assignto === assign ||
-                      data.priority === priority ||
-                      data.end_date === datee ? (
-                      <Task
-                        id={data.id}
-                        edit={() => editTaskDetails(data.id)}
-                        delete={() => deleteData(data.id)}
-                        taskname={data.taskname}
-                        end_date={data.end_date}
-                        description={data.description}
-                        priority={data.priority}
-                        assignto={data.assignto}
-                        status={data.status}
-                      />
-                    ) : null;
-                  })}
-                </tbody>
-              </Table> */}
+
+              <DataTable
+                columns={columns}
+                data={task}
+
+              />
             </div>
           </div>
         </div>
