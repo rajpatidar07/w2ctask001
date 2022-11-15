@@ -1,5 +1,4 @@
 import { addTask } from "../services/api";
-import Collapse from "react-bootstrap/Collapse";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
@@ -10,6 +9,9 @@ import { FiEdit } from "react-icons/fi";
 import { FcEditImage,FcFullTrash } from "react-icons/fc";
 import Button from "react-bootstrap/Button";
 import { Action } from "@remix-run/router";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
+import { Modal } from "bootstrap";
 // import { CKEditor } from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
@@ -77,6 +79,21 @@ const Home = () => {
   const onValueChange = (e) => {
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
   };
+  const inputHandler = (event, editor) => {
+    const data = editor.getData()
+    console.log(data);
+    setAddTask({ ...addtask, description: data });
+    // Define your onSubmit function here
+    // ...
+    // for example, setData() here
+
+};
+const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  // console.log("=--------"+content)
+
 
   const onSelectChange = async (e) => {
     setfilter(filter => {
@@ -88,6 +105,7 @@ const Home = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      
     }
     else{
       event.preventDefault();
@@ -96,6 +114,7 @@ const Home = () => {
       setapicall(true)
     }
     setValidated(true);
+   
   };
 
   const getTasks = async () => {
@@ -108,6 +127,7 @@ const Home = () => {
     setAddTask(response.data);
     setOpen(!open);
     setapicall(true)
+    handleShow();
 
   };
   const deleteData = async (id) => {
@@ -131,6 +151,16 @@ const Home = () => {
       width:"40%"
     },
    
+    {
+      name: 'Description',
+      selector: row => <pre>{row.description}</pre> ,
+      sortable: true,
+    },
+    {
+      name: 'Priority',
+      selector: row => <Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"}>{row.priority}</Badge>,
+      sortable: true,
+    },
     {
       name: 'End_Date',
       selector: row => row.end_date,
@@ -173,8 +203,9 @@ const Home = () => {
           <div className="col-md-12 col-sm-12 col-lg-12">
             <Button
               type="button"
-              size='sm'
-              className="btn btn-light"
+              variant="info"
+              size="sm"
+              className="fs-6 me-1"
               onClick={editTaskDetails.bind(this, row.id)}
             >
               <FcEditImage className="h4 mb-0"/>
@@ -185,11 +216,10 @@ const Home = () => {
              variant="danger"
              size='sm'
               type="button"
-              className="btn btn-light mx-2"
+              className="fs-6"
               onClick={deleteData.bind(this, row.id)}
             >
-              <FcFullTrash className="h4 mb-0"/>
-              {/* <AiOutlineDelete className="text-dark"/> */}
+              <AiOutlineDelete/>
             </Button>
           </div>
         </div>
@@ -203,18 +233,166 @@ const Home = () => {
       <div class="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
-            <h3>Task Management </h3>
+            <h3>Heading Here </h3>
+            {addtask.description}
             <button
               className="btn btn-info  ms-auto"
-              onClick={() => setOpen(!open)}
+              onClick={handleShow}
               aria-controls="example-collapse-text"
               aria-expanded={open}
             >
               Add Task
             </button>
           </div>
-
-          <Collapse in={open}>
+          <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><Form className="form-row" noValidate validated={validated} onSubmit={(event)=>addTaskDetails(event,addtask.id)}>
+                  <input
+                    name="id"
+                    type={"hidden"}
+                    value={
+                      addtask.id !== "" ||
+                        addtask.id !== null ||
+                        addtask.id !== undefined
+                        ? addtask.id
+                        : ""
+                    }
+                  />
+                  <div className="row">
+                    <Form.Group className="col-12">
+                      <Form.Label className="m-0 pb-1 text-start w-100">
+                        Task Name
+                      </Form.Label>
+                      <Form.Control
+                        required
+                        className="mb-3"
+                        type="text"
+                        placeholder="Enter Task"
+                        onChange={(e) => onValueChange(e)}
+                        name="taskname"
+                        value={addtask.taskname}
+                      />
+                      <Form.Control.Feedback className="mr-0" type="invalid">
+                        Please Enter Task Name!
+                      </Form.Control.Feedback>
+                      <div className="row my-3">
+                        <div className="col-md-6">
+                          <Form.Label className="m-0 pb-1 text-start w-100">
+                            Priority
+                          </Form.Label>
+                          <select
+                            className="select form-control"
+                            name="priority"
+                            onChange={(e) => onValueChange(e)}
+                            value={addtask.priority}
+                          >
+                            <option value={""}>select</option>
+                            <option value={"High"}>High</option>
+                            <option value={"Medium"}>Medium</option>
+                            <option value={"Low"}>Low</option>
+                          </select>
+                        </div>
+                        <div className="col-md-6">
+                          <Form.Label className="m-0 pb-1 text-start w-100">
+                            Assign To
+                          </Form.Label>
+                          <select
+                            className="select form-control"
+                            name="assignto"
+                            onChange={(e) => onValueChange(e)}
+                            value={addtask.assignto}
+                          >
+                            <option value={""}>Select</option>
+                            <option value={"Bhavna"}>Bhavna</option>
+                            <option value={"Shivani"}>Shivani</option>
+                            <option value={"Vijendra"}>Vijendra</option>
+                            <option value={"Gaurav"}>Gaurav</option>
+                            <option value={"Jyotish"}>Jyotish</option>
+                            <option value={"Shubham"}>Shubham</option>
+                          </select>
+                        </div>
+                      </div>
+                    </Form.Group>
+                    <Form.Group className="col-12">
+                      <Form.Label className="m-0 pb-1 text-start w-100">
+                        End Date
+                      </Form.Label>
+                      <Form.Control
+                        required
+                        className="mb-3"
+                        type="date"
+                        placeholder="Enter date"
+                        onChange={(e) => onValueChange(e)}
+                        name="end_date"
+                        value={addtask.end_date}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Please Enter Date!
+                      </Form.Control.Feedback>
+                      <div className="my-3">
+                        <Form.Label className="m-0 pb-1 text-start w-100">
+                          Status
+                        </Form.Label>
+                        <select
+                          className="select form-control"
+                          name="status"
+                          onChange={(e) => onValueChange(e)}
+                          value={addtask.status}
+                        >
+                          <option value={""}>Select</option>
+                          <option value={"In Progress"}>In Progress</option>
+                          <option value={"Pending"}>Pending</option>
+                          <option value={"Done"}>Done</option>
+                          <option value={"Blocked"}>Blocked</option>
+                          <option value={"Not Started"}>Not Started</option>
+                        </select>
+                      </div>
+                    </Form.Group>
+                    <Form.Group className="col-12 description">
+                      <Form.Label className="m-0 pb-1 text-start w-100">
+                        Description
+                      </Form.Label>
+                      <CKEditor
+                      data='<p>{addtask.description}</p>'
+                  id="inputText"
+                  editor={ClassicEditor}
+                  onChange={inputHandler}
+                  name={'description'}
+                  value={addtask.description}
+                  
+                />
+                      {/* <Form.Control
+                        required
+                        className="mb-3"
+                        as="textarea"
+                        rows={4}
+                        onChange={(e) => onValueChange(e)}
+                        name="description"
+                        type="text"
+                        value={addtask.description}
+                      /> */}
+                    </Form.Group>
+                    <Form.Control.Feedback type="invalid">
+                      Please Enter Description!
+                    </Form.Control.Feedback>
+                  </div>
+                  <button
+                    className="btn btn-info opecity  m-3"
+                    // onClick={() => addTaskDetails(addtask.id)}
+                   type="submit"
+                  >
+                    {addtask.id !== "" ||
+                      addtask.id !== null ||
+                      addtask.id !== undefined
+                      ? "Update Task"
+                      : "Add Task"}
+                  </button>
+                </Form>
+                </Modal.Body>
+      </Modal>
+          {/* <Collapse in={open}>
             <div className="add_form">
               <div id="example-collapse-text" className="row add-form_div">
               <span className="add_fome_close" onClick={() => setOpen(!open)}>&times;</span>
@@ -324,7 +502,7 @@ const Home = () => {
                       <Form.Label className="m-0 pb-1 text-start w-100">
                         Description
                       </Form.Label>
-                      {/* <CKEditor
+                      <CKEditor
                     editor={ ClassicEditor }
                     
                     value={addtask.description}
@@ -335,7 +513,7 @@ const Home = () => {
                         console.log( 'Editor is ready to use!', editor );
                     } }
                     onValueChange={(e) => onValueChange(e)}
-                /> */}
+                />
                       <Form.Control
                         required
                         className="mb-3"
@@ -353,7 +531,7 @@ const Home = () => {
                   </div>
                   <button
                     className="btn btn-info opecity  m-3"
-                    // onClick={() => addTaskDetails(addtask.id)}
+                    onClick={() => addTaskDetails(addtask.id)}
                    type="submit"
                   >
                     {addtask.id !== "" ||
@@ -365,7 +543,7 @@ const Home = () => {
                 </Form>
               </div>
             </div>
-          </Collapse>
+          </Collapse> */}
           <div className="main_content">
             <div className="row my-3">
               <div className="col-md-3 my-md-0 my-2">
