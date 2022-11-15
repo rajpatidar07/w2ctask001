@@ -77,8 +77,8 @@
 .table_contant .beUiVL {
   font-size: 18px;
 }
-.rdt_TableCell.row {
-  font-size: 25px;
+.rdt_TableCell{
+  font-size: 16px;
 }
 .dwPlXY:not(:last-of-type) {
   font-size: 16px;
