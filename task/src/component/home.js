@@ -11,10 +11,13 @@ import Button from "react-bootstrap/Button";
 import { Action } from "@remix-run/router";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
-import { Modal } from "bootstrap";
+import Modal from 'react-bootstrap/Modal';
+import moment from 'moment';
+import 'moment-timezone';
 // import { CKEditor } from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
+
   // createTheme('solarized', {
   //   text: {
   //     primary: '#268bd2',
@@ -36,7 +39,6 @@ const Home = () => {
   //     disabled: 'rgba(0,0,0,.12)',
   //   },
   // }, 'dark');
-  const [value, onChange] = useState(new Date());
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
   const [validated, setValidated] = useState(false);
@@ -44,7 +46,6 @@ const Home = () => {
   const [filter, setfilter] = useState([]);
   const [apicall, setapicall] = useState(false);
   const ExpandedComponent = ({ data }) => <div className="taskdescription">
-    <p>{data.description}</p>
     {/* <div className="prioritystatusbox"> 
     
       <select
@@ -163,8 +164,24 @@ const [show, setShow] = useState(false);
     },
     {
       name: 'End_Date',
-      selector: row => row.end_date,
-      sortable: true,
+      selector: row => moment(row.end_date).calendar(null, {
+        sameDay: '[Today]',
+        nextDay: '[Tomorrow]',
+        nextWeek: 'dddd',
+        lastDay: '[Yesterday]',
+        lastWeek: '[Last Week]',
+        sameElse: function (now) {
+          if (this.isBefore(now)) {
+            return 'MMMM YYYY';
+          } 
+          else {
+            return 'MMMM YYYY';
+          }
+          /* ... */
+        }
+    }),
+      sortable: true, 
+      width:"200px",
     },
     {
       name: 'AssignTo',
