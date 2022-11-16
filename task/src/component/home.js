@@ -11,29 +11,10 @@ import Button from "react-bootstrap/Button";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 import Modal from 'react-bootstrap/Modal';
+import moment from 'moment';
+import 'moment-timezone';
+
 const Home = () => {
-  // createTheme('solarized', {
-  //   text: {
-  //     primary: '#268bd2',
-  //     secondary: '#2aa198',
-  //   },
-  //   background: {
-  //     default: '#002b36',
-  //   },
-  //   context: {
-  //     background: '#cb4b16',
-  //     text: '#FFFFFF',
-  //   },
-  //   divider: {
-  //     default: '#073642',
-  //   },
-  //   action: {
-  //     button: 'rgba(0,0,0,.54)',
-  //     hover: 'rgba(0,0,0,.08)',
-  //     disabled: 'rgba(0,0,0,.12)',
-  //   },
-  // }, 'dark');
-  const [value, onChange] = useState(new Date());
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
   const [validated, setValidated] = useState(false);
@@ -44,33 +25,7 @@ const Home = () => {
   const ExpandedComponent = ({ data }) => <div className="taskdescription">
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
       </div>
-    {/* <div className="prioritystatusbox"> 
-    
-      <select
-        className="select form-control"
-        value={data.assignto}
-      >
-        <option value={""}>Select</option>
-        <option value={"Shivani"}>Shivani</option>
-        <option value={"Vijendra"}>Vijendra</option>
-        <option value={"Gaurav"}>Gaurav</option>
-        <option value={"Jyotish"}>Jyotish</option>
-        <option value={"Shubham"}>Shubham</option>
-      </select>
-    
-      <select
-        className="select form-control"
-        value={data.status}
-      >
-        <option value={""}>Select</option>
-        <option value={"Pending"}>Pending</option>
-        <option value={"Done"}>Done</option>
-        <option value={"In Progress"}>In Progress</option>
-        <option value={"Not Started"}>Not Started</option>
-        <option value={"Blocked"}>Blocked</option>
-      </select>
-    </div>
-    */}
+   
     </div>;
   useEffect(() => {
     getTasks();
@@ -151,6 +106,8 @@ const [show, setShow] = useState(false);
       sortable: true,
       width:"40%"
     },
+   
+   
     {
       name: 'AssignTo',
       selector: row => <select
@@ -183,9 +140,30 @@ const [show, setShow] = useState(false);
     },
     {
       name: 'End_Date',
-      selector: row => <div className="enddate_box"> {row.end_date}</div>,
-      sortable: true,
+      selector: row =>  moment(row.end_date).calendar(null, {
+        sameDay: '[Today]',
+        nextDay: '[Tomorrow]',
+        nextWeek: 'dddd',
+        lastDay: '[Yesterday]',
+        lastWeek: '[Last Week]',
+        sameElse: function (now) {
+          if (this.isBefore(now)) {
+            return 'MMMM YYYY';
+          } 
+          else {
+            return 'MMMM YYYY';
+          }
+          /* ... */
+        }
+    }),
+      sortable: true, 
+      width:"200px",
     },
+    // {
+    //   name: 'End_Date',
+    //   selector: row => <div className="enddate_box"> {row.end_date}</div>,
+    //   sortable: true,
+    // },
     {
       button: true,
       cell: (row) => (
@@ -342,8 +320,6 @@ const [show, setShow] = useState(false);
                       <Form.Label className="m-0 pb-1 text-start w-100">
                         Description
                       </Form.Label>
-                     
-                    
                 <CKEditor
                         editor={ClassicEditor}
                         data= {addtask.description}  
@@ -351,20 +327,6 @@ const [show, setShow] = useState(false);
                         name={'description'}
                         value={addtask.description}
                       />
-                   
-                    {/* <div dangerouslySetInnerHTML={createMarkup()} className='editor'>
-
-                    </div> */}
-                      {/* <Form.Control
-                        required
-                        className="mb-3"
-                        as="textarea"
-                        rows={4}
-                        onChange={(e) => onValueChange(e)}
-                        name="description"
-                        type="text"
-                        value={addtask.description}
-                      /> */}
                     </Form.Group>
                     <Form.Control.Feedback type="invalid">
                       Please Enter Description!
@@ -375,11 +337,11 @@ const [show, setShow] = useState(false);
                     // onClick={() => addTaskDetails(addtask.id)}
                    type="submit"
                   >
-                    {addtask.id !== "" ||
-                      addtask.id !== null ||
-                      addtask.id !== undefined
-                      ? "Update Task"
-                      : "Add Task"}
+                    {addtask.id === "" ||
+                      addtask.id === null ||
+                      addtask.id === undefined
+                      ? "Add Task"
+                      : "Update Task"}
                   </button>
                 </Form>
                 </Modal.Body>

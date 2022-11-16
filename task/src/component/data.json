@@ -4,7 +4,7 @@
       "taskname": "React-Redux",
       "priority": "High",
       "assignto": "Bhavna",
-      "end_date": "2022-11-02",
+      "end_date": "2022-09-02",
       "status": "In Progress",
       "description": "hh",
       "id": 1
@@ -43,19 +43,19 @@
       "end_date": "2022-11-10",
       "status": "Not Started",
       "id": 5,
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li><li>c++</li><li>gdrf</li></ol>"
+      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li>"
     },
     {
-      "taskname": "React-Redux",
+      "end_date": "2021-12-16",
       "priority": "High",
-      "assignto": "Shubham",
-      "end_date": "2022-11-25",
-      "status": "Done",
-      "id": 6,
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li><li>c++</li><li>gdrf</li></ol>"
+      "assignto": "Shivani",
+      "taskname": "ppppppppppppppppppppppppppp",
+      "status": "Pending",
+      "id": 6
     },
     {
-      "taskname": "React-Reduxxxxx",
+      "end_date": "2023-02-01",
+      "taskname": "ppppppppppppppppppppppppppp",
       "priority": "High",
       "assignto": "Shubham",
       "end_date": "2022-11-01",
