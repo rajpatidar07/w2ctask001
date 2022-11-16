@@ -11,9 +11,7 @@ import Button from "react-bootstrap/Button";
 import { Action } from "@remix-run/router";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
-import { Modal } from "bootstrap";
-// import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Modal from 'react-bootstrap/Modal';
 const Home = () => {
   // createTheme('solarized', {
   //   text: {
@@ -83,16 +81,12 @@ const Home = () => {
     const data = editor.getData()
     console.log(data);
     setAddTask({ ...addtask, description: data });
-    // Define your onSubmit function here
-    // ...
-    // for example, setData() here
-
 };
+
 const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // console.log("=--------"+content)
 
 
   const onSelectChange = async (e) => {
@@ -148,7 +142,6 @@ const [show, setShow] = useState(false);
       name: 'Task Name',
       selector: row => row.taskname,
       sortable: true,
-      width:"40%"
     },
    
     {
@@ -208,8 +201,8 @@ const [show, setShow] = useState(false);
               className="fs-6 me-1"
               onClick={editTaskDetails.bind(this, row.id)}
             >
-              <FcEditImage className="h4 mb-0"/>
-              {/* <FiEdit /> */}
+              {/* <FcEditImage className="h4 mb-0"/> */}
+              <FiEdit />
             </Button>
             
             <Button
@@ -248,7 +241,8 @@ const [show, setShow] = useState(false);
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body><Form className="form-row" noValidate validated={validated} onSubmit={(event)=>addTaskDetails(event,addtask.id)}>
+        <Modal.Body>
+          <Form className="form-row" noValidate validated={validated} onSubmit={(event)=>addTaskDetails(event,addtask.id)}>
                   <input
                     name="id"
                     type={"hidden"}
@@ -354,7 +348,8 @@ const [show, setShow] = useState(false);
                       <Form.Label className="m-0 pb-1 text-start w-100">
                         Description
                       </Form.Label>
-                      <CKEditor
+                     
+                     <CKEditor
                       data='<p>{addtask.description}</p>'
                   id="inputText"
                   editor={ClassicEditor}
@@ -362,7 +357,7 @@ const [show, setShow] = useState(false);
                   name={'description'}
                   value={addtask.description}
                   
-                />
+                /> 
                       {/* <Form.Control
                         required
                         className="mb-3"
