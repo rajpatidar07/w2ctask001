@@ -86,7 +86,7 @@ const Home = () => {
     },
     {
       name: 'Description',
-      selector: row => <pre>{row.description}</pre> ,
+      selector: row =>row.description,
       sortable: true,
     },
     {

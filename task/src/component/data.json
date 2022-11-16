@@ -43,14 +43,14 @@
       "end_date": "2022-11-10",
       "status": "Not Started",
       "id": 5,
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li><li>c++</li><li>gdrf</li></ol>"
+      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li>"
     },
     {
       "taskname": "React-Redux",
       "priority": "High",
       "assignto": "Shubham",
       "end_date": "2022-11-25",
-      "status": "Done",
+      "status": "Pending",
       "id": 6
     },
     {
@@ -60,47 +60,6 @@
       "end_date": "2022-11-01",
       "status": "Not Started",
       "id": 7
-    },
-    {
-      "taskname": "React-Redux",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-30",
-      "status": "Not Started",
-      "id": 8
-    },
-    {
-      "taskname": "React-Redux",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-30",
-      "status": "Not Started",
-      "id": 9
-    },
-    {
-      "status": "In Progress",
-      "end_date": "2022-11-12",
-      "priority": "High",
-      "assignto": "Shivani",
-      "taskname": "bhavna",
-      "id": 10
-    },
-    {
-      "status": "In Progress",
-      "end_date": "2022-11-12",
-      "priority": "High",
-      "assignto": "Shivani",
-      "taskname": "bhavna",
-      "id": 11
-    },
-    {
-      "description": "<p>njhuyt7yiyujio8l9putyu</p>",
-      "taskname": "ytgyyju",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-24",
-      "status": "Done",
-      "id": 12
     }
   ]
 }
