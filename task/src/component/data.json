@@ -10,56 +10,60 @@
       "id": 1
     },
     {
+      "end_date": "2022-11-16",
+      "priority": "High",
+      "assignto": "Vijendra",
       "taskname": "React-Redux",
-      "priority": "Medium",
-      "assignto": "Gaurav",
-      "end_date": "2022-11-19",
-      "status": "Blocked",
-      "description": "ff",
+      "status": "In Progress",
       "id": 2
     },
     {
-      "taskname": "React",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-11",
-      "status": "Blocked",
-      "description": "kkk",
+      "end_date": "2022-11-17",
+      "priority": "High",
+      "assignto": "Vijendra",
+      "taskname": "React-Redux",
+      "status": "In Progress",
       "id": 3
     },
     {
-      "taskname": "bhavna",
+      "end_date": "2022-11-15",
       "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-12",
-      "status": "Blocked",
-      "description": "aa",
+      "assignto": "Vijendra",
+      "taskname": "React-Redux",
+      "status": "In Progress",
       "id": 4
     },
     {
-      "taskname": "Reacttttttt",
+      "end_date": "2022-11-18",
       "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-10",
-      "status": "Not Started",
-      "id": 5,
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li>"
+      "assignto": "Vijendra",
+      "taskname": "React-Redux",
+      "status": "In Progress",
+      "id": 5
     },
     {
-      "end_date": "2021-12-16",
+      "end_date": "2022-12-01",
       "priority": "High",
-      "assignto": "Shivani",
-      "taskname": "ppppppppppppppppppppppppppp",
-      "status": "Pending",
+      "assignto": "Vijendra",
+      "taskname": "React-Redux",
+      "status": "In Progress",
       "id": 6
     },
     {
-      "end_date": "2023-02-01",
-      "taskname": "ppppppppppppppppppppppppppp",
+      "end_date": "2021-12-01",
       "priority": "High",
-      "assignto": "Bhavna",
-      "status": "Pending",
+      "assignto": "Vijendra",
+      "taskname": "React-Redux",
+      "status": "In Progress",
       "id": 7
+    },
+    {
+      "end_date": "2022-11-21",
+      "priority": "High",
+      "assignto": "Vijendra",
+      "taskname": "React-Redux",
+      "status": "In Progress",
+      "id": 8
     }
   ]
 }
