@@ -3,24 +3,76 @@ import Form from "react-bootstrap/Form";
 import React, { useEffect, useState } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, UpdateUser, FilterUser } from "../services/api";
-import DataTable from 'react-data-table-component';
+import DataTable, { createTheme } from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
+import { FcEditImage,FcFullTrash } from "react-icons/fc";
 import Button from "react-bootstrap/Button";
-import Modal from 'react-bootstrap/Modal';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Action } from "@remix-run/router";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
+import { Modal } from "bootstrap";
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const Home = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // createTheme('solarized', {
+  //   text: {
+  //     primary: '#268bd2',
+  //     secondary: '#2aa198',
+  //   },
+  //   background: {
+  //     default: '#002b36',
+  //   },
+  //   context: {
+  //     background: '#cb4b16',
+  //     text: '#FFFFFF',
+  //   },
+  //   divider: {
+  //     default: '#073642',
+  //   },
+  //   action: {
+  //     button: 'rgba(0,0,0,.54)',
+  //     hover: 'rgba(0,0,0,.08)',
+  //     disabled: 'rgba(0,0,0,.12)',
+  //   },
+  // }, 'dark');
+  const [value, onChange] = useState(new Date());
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
   const [filter, setfilter] = useState([]);
   const [apicall, setapicall] = useState(false);
+  const ExpandedComponent = ({ data }) => <div className="taskdescription">
+    <p>{data.description}</p>
+    {/* <div className="prioritystatusbox"> 
+    
+      <select
+        className="select form-control"
+        value={data.assignto}
+      >
+        <option value={""}>Select</option>
+        <option value={"Shivani"}>Shivani</option>
+        <option value={"Vijendra"}>Vijendra</option>
+        <option value={"Gaurav"}>Gaurav</option>
+        <option value={"Jyotish"}>Jyotish</option>
+        <option value={"Shubham"}>Shubham</option>
+      </select>
+    
+      <select
+        className="select form-control"
+        value={data.status}
+      >
+        <option value={""}>Select</option>
+        <option value={"Pending"}>Pending</option>
+        <option value={"Done"}>Done</option>
+        <option value={"In Progress"}>In Progress</option>
+        <option value={"Not Started"}>Not Started</option>
+        <option value={"Blocked"}>Blocked</option>
+      </select>
+    </div>
+    */}
+    </div>;
   useEffect(() => {
     getTasks();
   }, [filter, apicall]);
@@ -36,6 +88,10 @@ const Home = () => {
     // for example, setData() here
 
 };
+const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   // console.log("=--------"+content)
 
 
@@ -80,10 +136,21 @@ const Home = () => {
   };
   const columns = [
     {
+      name: '#',
+      selector: row => <div>
+{'#'+row.id}
+<Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"} className='ms-1'>{row.priority}</Badge>
+      </div>,
+      sortable: true,
+      width:"150px"
+    },
+    {
       name: 'Task Name',
       selector: row => row.taskname,
       sortable: true,
+      width:"40%"
     },
+   
     {
       name: 'Description',
       selector: row =>row.description,
@@ -129,7 +196,7 @@ const Home = () => {
       </select>,
       sortable: true,
     },
-    {
+    {name:'Action',
       button: true,
       cell: (row) => (
         <div className="row">
@@ -141,11 +208,13 @@ const Home = () => {
               className="fs-6 me-1"
               onClick={editTaskDetails.bind(this, row.id)}
             >
-              <FiEdit />
+              <FcEditImage className="h4 mb-0"/>
+              {/* <FiEdit /> */}
             </Button>
+            
             <Button
              variant="danger"
-              size="sm"
+             size='sm'
               type="button"
               className="fs-6"
               onClick={deleteData.bind(this, row.id)}
@@ -536,7 +605,10 @@ const Home = () => {
            <DataTable
             columns={columns}
             data={task}
-            pagination/>
+            pagination
+            fixedHeader
+            expandableRows expandableRowsComponent={ExpandedComponent}
+            theme="solarized" />
             </div>
           </div>
         </div>
