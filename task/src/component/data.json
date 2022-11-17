@@ -4,91 +4,12 @@
       "taskname": "React-Redux",
       "priority": "High",
       "assignto": "Bhavna",
-      "end_date": "2022-09-02",
-      "status": "In Progress",
-      "description": "hh",
-      "id": 1
-    },
-    {
-      "taskname": "React-Redux",
-      "priority": "Medium",
-      "assignto": "Gaurav",
-      "end_date": "2022-11-19",
-      "status": "Blocked",
-      "description": "ff",
-      "id": 2
-    },
-    {
-      "taskname": "React",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-11",
-      "status": "Blocked",
-      "description": "kkk",
-      "id": 3
-    },
-    {
-      "taskname": "bhavna",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-12",
-      "status": "Blocked",
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li><li>c++</li><li>gdrf</li></ol>",
-      "id": 4
-    },
-    {
-      "taskname": "Reacttttttt",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-10",
-      "status": "Not Started",
-      "id": 5,
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li>"
-    },
-    {
-      "end_date": "2021-12-16",
-      "priority": "High",
-      "assignto": "Shivani",
-      "taskname": "ppppppppppppppppppppppppppp",
-      "status": "Pending",
-      "id": 6
-    },
-    {
-      "end_date": "2023-02-01",
-      "taskname": "ppppppppppppppppppppppppppp",
-      "priority": "High",
-      "assignto": "Shubham",
-      "end_date": "2022-11-01",
-      "status": "Not Started",
-      "id": 7,
-      "description": "<h4>task name</h4><ol><li>angula</li><li>python</li><li>c</li><li>r</li><li>c++</li><li>gdrf</li></ol>"
-    },
-    {
-      "taskname": "React-Redux",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-30",
-      "status": "Not Started",
-      "id": 8
-    },
-    {
-      "taskname": "React-Redux",
-      "priority": "High",
-      "assignto": "Bhavna",
       "end_date": "2022-11-30",
       "status": "Not Started",
       "id": 9
     },
     {
-      "status": "In Progress",
-      "end_date": "2022-11-12",
-      "priority": "High",
-      "assignto": "Shivani",
-      "taskname": "bhavna",
-      "id": 10
-    },
-    {
-      "status": "In Progress",
+      "status": "Done",
       "end_date": "2022-11-12",
       "priority": "High",
       "assignto": "Shivani",
@@ -103,6 +24,65 @@
       "end_date": "2022-11-24",
       "status": "Done",
       "id": 12
+    },
+    {
+      "taskname": "crud",
+      "priority": "Medium",
+      "assignto": "Shivani",
+      "end_date": "2022-11-12",
+      "status": "Done",
+      "id": 13
+    },
+    {
+      "taskname": "Angular",
+      "priority": "Medium",
+      "assignto": "Vijendra",
+      "end_date": "2022-11-17",
+      "status": "Done",
+      "id": 14
+    },
+    {
+      "taskname": "filtertoday",
+      "priority": "High",
+      "assignto": "Shivani",
+      "end_date": "2022-11-16",
+      "status": "Done",
+      "id": 25
+    },
+    [],
+    {
+      "taskname": "angular",
+      "priority": "Medium",
+      "id": 34
+    },
+    {
+      "taskname": "angular",
+      "priority": "Medium",
+      "assignto": "Shivani",
+      "id": 35
+    },
+    {
+      "taskname": "angular",
+      "priority": "Medium",
+      "assignto": "Shivani",
+      "end_date": "2022-11-19",
+      "id": 36
+    },
+    {
+      "taskname": "angular",
+      "priority": "Medium",
+      "assignto": "Shivani",
+      "end_date": "2022-11-19",
+      "status": "Done",
+      "id": 37
+    },
+    {
+      "taskname": "angular",
+      "priority": "Medium",
+      "assignto": "Shivani",
+      "end_date": "2022-11-19",
+      "status": "Pending",
+      "id": 38
     }
   ]
 }

@@ -1,12 +1,12 @@
 import { addTask } from "../services/api";
 import Form from "react-bootstrap/Form";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, UpdateUser, FilterUser } from "../services/api";
 import DataTable, { createTheme } from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { FcEditImage,FcFullTrash } from "react-icons/fc";
+import { FcEditImage, FcFullTrash } from "react-icons/fc";
 import Button from "react-bootstrap/Button";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
@@ -22,32 +22,53 @@ const Home = () => {
   const [filter, setfilter] = useState([]);
   const [apicall, setapicall] = useState(false);
   const [data1, setdata1] = useState('');
+  const [tablestatus, settablestatus] = useState('');
+
   const ExpandedComponent = ({ data }) => <div className="taskdescription">
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
-      </div>
-   
-    </div>;
+    </div>
+  </div>;
   useEffect(() => {
     getTasks();
   }, [filter, apicall]);
-  const onValueChange = (e) => {
+  const onValueChange = async(e,id) => {
+    // e.preventDefault();
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
+    await addTask(addtask, id);
   };
+
+  // const onTableChange = async(e,id) => {
+  //   // e.preventDefault();
+  //   const response = await UpdateUser(id);
+  //   const dat = response.data;
+  //   // setAddTask(response.data);
+  // console.log("-valuye"+e.target.value+id)
+
+  //   setAddTask({ ...dat, [e.target.name]: e.target.value });
+  //   await addTask(addtask, id);
+  // };
+ 
+  console.log("-chalaternge"+JSON.stringify(addtask))
+
   const handledescription = (event, editor) => {
     setdata1(editor.getData());
-      console.log({ event, editor, data1 });
-      console.log(data1);
-      setAddTask({
-        ...addtask,
-        description: data1
-      });
-    }
-  //  const createMarkup = () => {
-  //     return { __html: addtask };
-  //   }
-const [show, setShow] = useState(false);
+    console.log({ event, editor, data1 });
+    console.log(data1);
+    setAddTask({
+      ...addtask,
+      description: data1
+    });
+  }
+const currentdate = moment().format('YYYY-MM-DD')
+  const formRef = useRef();
+  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () =>{
+    formRef.current.reset();
+    setAddTask('')
+    setValidated(false)
+    setShow(false)
+  };
   const handleShow = () => setShow(true);
 
 
@@ -55,28 +76,43 @@ const [show, setShow] = useState(false);
     setfilter(filter => {
       return { ...filter, [e.target.name]: e.target.value }
     });
+    
   }
-  const addTaskDetails = async (event,id) => {
+  const addTaskDetails = async (event, id) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      
+    setValidated(true);
     }
-    else{
+    else {
       event.preventDefault();
       await addTask(addtask, id);
-      setOpen(false);
+      handleClose();
       setapicall(true)
     }
-    setValidated(true);
-   
+
   };
 
   const getTasks = async () => {
     const response = await FilterUser(filter);
-    setTask(response.data);
+   const sorting =  (response.data).sort((a, b) => {
+      return new Date(a.end_date) - new Date(b.end_date); // descending
+    })
+    if(filter.status === 'Done'){
+      setTask(sorting);
+    }
+    else{
+      let finalData = [];
+  for(var i=0; i < sorting.length; i++)
+  {
+      if(sorting[i].status != 'Done'){
+          finalData.push(sorting[i]);
+      }
+    }
+    setTask(finalData);
     setapicall(false)
+    }
   };
   const editTaskDetails = async (taskid) => {
     const response = await UpdateUser(taskid);
@@ -94,25 +130,27 @@ const [show, setShow] = useState(false);
     {
       name: '#',
       selector: row => <div className="prioritydat_box">
-{'#'+row.id}
-<Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"} className='ms-1'>{row.priority}</Badge>
+        {'#' + row.id}
+        <Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"} className='ms-1'>{row.priority}</Badge>
       </div>,
       sortable: true,
-      width:"200px"
+      width: "200px"
     },
     {
       name: 'Task Name',
       selector: row => row.taskname,
       sortable: true,
-      width:"40%"
+      width: "40%"
     },
-   
-   
+
+
     {
       name: 'AssignTo',
       selector: row => <select
         className="select form-control assigntask"
         value={row.assignto}
+        onChange={undefined}
+        name='assignto'
       >
         <option value={""}>Select</option>
         <option value={"Shivani"}>Shivani</option>
@@ -128,6 +166,8 @@ const [show, setShow] = useState(false);
       selector: row => <select
         className="select form-control statusslect_box assigntask"
         value={row.status}
+        onChange={undefined}
+        name='status'
       >
         <option value={""}>Select</option>
         <option value={"Pending"}>Pending</option>
@@ -140,7 +180,9 @@ const [show, setShow] = useState(false);
     },
     {
       name: 'End_Date',
-      selector: row =>  moment(row.end_date).calendar(null, {
+      selector: row => 
+        <div>
+           {moment(row.end_date).calendar(null, {
         sameDay: '[Today]',
         nextDay: '[Tomorrow]',
         nextWeek: 'dddd',
@@ -148,16 +190,21 @@ const [show, setShow] = useState(false);
         lastWeek: '[Last Week]',
         sameElse: function (now) {
           if (this.isBefore(now)) {
-            return 'MMMM YYYY';
-          } 
+            return 'MMM YY';
+           
+          }
           else {
-            return 'MMMM YYYY';
+            return 'MMM YY';
           }
           /* ... */
         }
-    }),
-      sortable: true, 
-      width:"200px",
+      })}
+      <br/>
+      {row.end_date < currentdate ?  
+      <span className="text-danger overdue">{'Overdue'}</span> : null }
+        </div>,
+      sortable: true,
+      width: "200px",
     },
     // {
     //   name: 'End_Date',
@@ -165,6 +212,7 @@ const [show, setShow] = useState(false);
     //   sortable: true,
     // },
     {
+      name:"Action",
       button: true,
       cell: (row) => (
         <div className="row">
@@ -179,13 +227,13 @@ const [show, setShow] = useState(false);
               <FiEdit />
             </Button>
             <Button
-             variant="danger"
+              variant="danger"
               size="sm"
               type="button"
               className="fs-6"
               onClick={deleteData.bind(this, row.id)}
             >
-              <AiOutlineDelete/>
+              <AiOutlineDelete />
             </Button>
           </div>
         </div>
@@ -193,7 +241,7 @@ const [show, setShow] = useState(false);
     },
   ];
 
-  
+
   return (
     <div class="container text-center">
       <div class="row align-items-start">
@@ -210,142 +258,142 @@ const [show, setShow] = useState(false);
             </button>
           </div>
           <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form className="form-row" noValidate validated={validated} onSubmit={(event)=>addTaskDetails(event,addtask.id)}>
-                  <input
-                    name="id"
-                    type={"hidden"}
-                    value={
-                      addtask.id !== "" ||
-                        addtask.id !== null ||
-                        addtask.id !== undefined
-                        ? addtask.id
-                        : ""
-                    }
-                  />
-                  <div className="row">
-                    <Form.Group className="col-12">
-                      <Form.Label className="m-0 pb-1 text-start w-100">
-                        Task Name
-                      </Form.Label>
-                      <Form.Control
-                        required
-                        className="mb-3"
-                        type="text"
-                        placeholder="Enter Task"
-                        onChange={(e) => onValueChange(e)}
-                        name="taskname"
-                        value={addtask.taskname}
-                      />
-                      <Form.Control.Feedback className="mr-0" type="invalid">
-                        Please Enter Task Name!
-                      </Form.Control.Feedback>
-                      <div className="row my-3">
-                        <div className="col-md-6">
-                          <Form.Label className="m-0 pb-1 text-start w-100">
-                            Priority
-                          </Form.Label>
-                          <select
-                            className="select form-control"
-                            name="priority"
-                            onChange={(e) => onValueChange(e)}
-                            value={addtask.priority}
-                          >
-                            <option value={""}>select</option>
-                            <option value={"High"}>High</option>
-                            <option value={"Medium"}>Medium</option>
-                            <option value={"Low"}>Low</option>
-                          </select>
-                        </div>
-                        <div className="col-md-6">
-                          <Form.Label className="m-0 pb-1 text-start w-100">
-                            Assign To
-                          </Form.Label>
-                          <select
-                            className="select form-control"
-                            name="assignto"
-                            onChange={(e) => onValueChange(e)}
-                            value={addtask.assignto}
-                          >
-                            <option value={""}>Select</option>
-                            <option value={"Bhavna"}>Bhavna</option>
-                            <option value={"Shivani"}>Shivani</option>
-                            <option value={"Vijendra"}>Vijendra</option>
-                            <option value={"Gaurav"}>Gaurav</option>
-                            <option value={"Jyotish"}>Jyotish</option>
-                            <option value={"Shubham"}>Shubham</option>
-                          </select>
-                        </div>
-                      </div>
-                    </Form.Group>
-                    <Form.Group className="col-12">
-                      <Form.Label className="m-0 pb-1 text-start w-100">
-                        End Date
-                      </Form.Label>
-                      <Form.Control
-                        required
-                        className="mb-3"
-                        type="date"
-                        placeholder="Enter date"
-                        onChange={(e) => onValueChange(e)}
-                        name="end_date"
-                        value={addtask.end_date}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        Please Enter Date!
-                      </Form.Control.Feedback>
-                      <div className="my-3">
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form className="form-row" noValidate validated={validated} onSubmit={(event) => addTaskDetails(event, addtask.id)} ref={formRef}>
+                <input
+                  name="id"
+                  type={"hidden"}
+                  value={
+                    addtask.id !== "" ||
+                      addtask.id !== null ||
+                      addtask.id !== undefined
+                      ? addtask.id
+                      : ""
+                  }
+                />
+                <div className="row">
+                  <Form.Group className="col-12">
+                    <Form.Label className="m-0 pb-1 text-start w-100">
+                      Task Name
+                    </Form.Label>
+                    <Form.Control
+                      required
+                      className="mb-3"
+                      type="text"
+                      placeholder="Enter Task"
+                      onChange={(e) => onValueChange(e)}
+                      name="taskname"
+                      value={addtask.taskname}
+                    />
+                    <Form.Control.Feedback className="mr-0" type="invalid">
+                      Please Enter Task Name!
+                    </Form.Control.Feedback>
+                    <div className="row my-3">
+                      <div className="col-md-6">
                         <Form.Label className="m-0 pb-1 text-start w-100">
-                          Status
+                          Priority
                         </Form.Label>
                         <select
                           className="select form-control"
-                          name="status"
+                          name="priority"
                           onChange={(e) => onValueChange(e)}
-                          value={addtask.status}
+                          value={addtask.priority}
                         >
-                          <option value={""}>Select</option>
-                          <option value={"In Progress"}>In Progress</option>
-                          <option value={"Pending"}>Pending</option>
-                          <option value={"Done"}>Done</option>
-                          <option value={"Blocked"}>Blocked</option>
-                          <option value={"Not Started"}>Not Started</option>
+                          <option value={""}>select</option>
+                          <option value={"High"}>High</option>
+                          <option value={"Medium"}>Medium</option>
+                          <option value={"Low"}>Low</option>
                         </select>
                       </div>
-                    </Form.Group>
-                    <Form.Group className="col-12 description">
-                      <Form.Label className="m-0 pb-1 text-start w-100">
-                        Description
-                      </Form.Label>
-                <CKEditor
-                        editor={ClassicEditor}
-                        data= {addtask.description}  
-                        onChange={handledescription}
-                        name={'description'}
-                        value={addtask.description}
-                      />
-                    </Form.Group>
+                      <div className="col-md-6">
+                        <Form.Label className="m-0 pb-1 text-start w-100">
+                          Assign To
+                        </Form.Label>
+                        <select
+                          className="select form-control"
+                          name="assignto"
+                          onChange={(e) => onValueChange(e)}
+                          value={addtask.assignto}
+                        >
+                          <option value={""}>Select</option>
+                          <option value={"Bhavna"}>Bhavna</option>
+                          <option value={"Shivani"}>Shivani</option>
+                          <option value={"Vijendra"}>Vijendra</option>
+                          <option value={"Gaurav"}>Gaurav</option>
+                          <option value={"Jyotish"}>Jyotish</option>
+                          <option value={"Shubham"}>Shubham</option>
+                        </select>
+                      </div>
+                    </div>
+                  </Form.Group>
+                  <Form.Group className="col-12">
+                    <Form.Label className="m-0 pb-1 text-start w-100">
+                      End Date
+                    </Form.Label>
+                    <Form.Control
+                      required
+                      className="mb-3"
+                      type="date"
+                      placeholder="Enter date"
+                      onChange={(e) => onValueChange(e)}
+                      name="end_date"
+                      value={addtask.end_date}
+                    />
                     <Form.Control.Feedback type="invalid">
-                      Please Enter Description!
+                      Please Enter Date!
                     </Form.Control.Feedback>
-                  </div>
-                  <button
-                    className="btn btn-info opecity  m-3"
-                    // onClick={() => addTaskDetails(addtask.id)}
-                   type="submit"
-                  >
-                    {addtask.id === "" ||
-                      addtask.id === null ||
-                      addtask.id === undefined
-                      ? "Add Task"
-                      : "Update Task"}
-                  </button>
-                </Form>
-                </Modal.Body>
-      </Modal>
+                    <div className="my-3">
+                      <Form.Label className="m-0 pb-1 text-start w-100">
+                        Status
+                      </Form.Label>
+                      <select
+                        className="select form-control"
+                        name="status"
+                        onChange={(e) => onValueChange(e)}
+                        value={addtask.status}
+                      >
+                        <option value={""}>Select</option>
+                        <option value={"In Progress"}>In Progress</option>
+                        <option value={"Pending"}>Pending</option>
+                        <option value={"Done"}>Done</option>
+                        <option value={"Blocked"}>Blocked</option>
+                        <option value={"Not Started"}>Not Started</option>
+                      </select>
+                    </div>
+                  </Form.Group>
+                  <Form.Group className="col-12 description">
+                    <Form.Label className="m-0 pb-1 text-start w-100">
+                      Description
+                    </Form.Label>
+                    <CKEditor
+                      editor={ClassicEditor}
+                      data={addtask.description}
+                      onChange={handledescription}
+                      name={'description'}
+                      value={addtask.description}
+                    />
+                  </Form.Group>
+                  <Form.Control.Feedback type="invalid">
+                    Please Enter Description!
+                  </Form.Control.Feedback>
+                </div>
+                <button
+                  className="btn btn-info opecity  m-3"
+                  // onClick={() => addTaskDetails(addtask.id)}
+                  type="submit"
+                >
+                  {addtask.id === "" ||
+                    addtask.id === null ||
+                    addtask.id === undefined
+                    ? "Add Task"
+                    : "Update Task"}
+                </button>
+              </Form>
+            </Modal.Body>
+          </Modal>
           <div className="main_content">
             <div className="row my-3">
               <div className="col-md-3 my-md-0 my-2">
@@ -389,7 +437,7 @@ const [show, setShow] = useState(false);
                 </select>
               </div>
               <div className="col-md-3 my-md-0 my-2 mb-0">
-                 <Form>
+                <Form>
                   <Form.Group>
                     <Form.Control
                       onChange={(e) => onSelectChange(e)}
@@ -403,15 +451,15 @@ const [show, setShow] = useState(false);
               </div>
             </div>
             <div className="table_contant">
-           
-           <DataTable
-            columns={columns}
-            data={task}
-            pagination
-            fixedHeader
-            expandableRows expandableRowsComponent={ExpandedComponent}
-            theme="solarized"
-             />
+
+              <DataTable
+                columns={columns}
+                data={task}
+                pagination
+                fixedHeader
+                expandableRows expandableRowsComponent={ExpandedComponent}
+                theme="solarized"
+              />
             </div>
           </div>
         </div>

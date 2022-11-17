@@ -138,7 +138,6 @@ align-items: center;
   padding: 10px 0;
 }
 .table_contant [id*="cell-5-"] {
-  font-style: italic;
   font-size: 16px;
 }
 /* media query */
