@@ -5,6 +5,7 @@
       "mobile": "7894561232",
       "address": "Maharashtraaa",
       "email": "aayu01@gmail.com",
+      "status": "Active",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqG_IrW41OWowRakdludbu-8KSLJLrXifvvyW3djZd&s"
     },
     {
@@ -12,15 +13,8 @@
       "mobile": "78945612322",
       "address": "Maharashtraaaaaa",
       "email": "aayu0111@gmail.com",
+      "status": "InActive",
       "image": "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
-    },
-    {
-      "id": "3",
-      "name": "a3ayu",
-      "mobile": "789456123222",
-      "address": "Maharashtraaaaaaaaa",
-      "email": "aayu01111@gmail.com",
-      "image": "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
     }
   ],
   "task": [

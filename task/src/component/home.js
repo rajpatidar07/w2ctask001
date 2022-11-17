@@ -38,18 +38,7 @@ const Home = () => {
     await addTask(addtask, id);
   };
 
-  // const onTableChange = async(e,id) => {
-  //   // e.preventDefault();
-  //   const response = await UpdateUser(id);
-  //   const dat = response.data;
-  //   // setAddTask(response.data);
-  // console.log("-valuye"+e.target.value+id)
-
-  //   setAddTask({ ...dat, [e.target.name]: e.target.value });
-  //   await addTask(addtask, id);
-  // };
- 
-  console.log("-chalaternge"+JSON.stringify(addtask))
+  // console.log("-chalaternge"+JSON.stringify(addtask))
 
   const handledescription = (event, editor) => {
     setdata1(editor.getData());
