@@ -1,88 +1,52 @@
 {
+  "user": [
+    {
+      "name": "aayu",
+      "mobile": "7894561232",
+      "address": "Maharashtraaa",
+      "email": "aayu01@gmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqG_IrW41OWowRakdludbu-8KSLJLrXifvvyW3djZd&s"
+    },
+    {
+      "name": "a2ayu",
+      "mobile": "78945612322",
+      "address": "Maharashtraaaaaa",
+      "email": "aayu0111@gmail.com",
+      "image": "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
+    },
+    {
+      "id": "3",
+      "name": "a3ayu",
+      "mobile": "789456123222",
+      "address": "Maharashtraaaaaaaaa",
+      "email": "aayu01111@gmail.com",
+      "image": "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
+    }
+  ],
   "task": [
     {
-      "taskname": "React-Redux",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-11-30",
-      "status": "Not Started",
-      "id": 9
-    },
-    {
-      "status": "Done",
-      "end_date": "2022-11-12",
-      "priority": "High",
-      "assignto": "Shivani",
-      "taskname": "bhavna",
-      "id": 11
-    },
-    {
-      "description": "<p>njhuyt7yiyujio8l9putyu</p>",
-      "taskname": "ytgyyju",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-24",
-      "status": "Done",
-      "id": 12
-    },
-    {
-      "taskname": "crud",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-12",
-      "status": "Done",
-      "id": 13
-    },
-    {
-      "taskname": "Angular",
-      "priority": "Medium",
-      "assignto": "Vijendra",
       "end_date": "2022-11-17",
-      "status": "Done",
-      "id": 14
-    },
-    {
-      "taskname": "filtertoday",
       "priority": "High",
-      "assignto": "Shivani",
-      "end_date": "2022-11-16",
+      "taskname": "React-Redux",
+      "assignto": "Bhavna",
       "status": "Done",
-      "id": 25
-    },
-    [],
-    {
-      "taskname": "angular",
-      "priority": "Medium",
-      "id": 34
+      "id": 2
     },
     {
-      "taskname": "angular",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "id": 35
-    },
-    {
-      "taskname": "angular",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-19",
-      "id": 36
-    },
-    {
-      "taskname": "angular",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-19",
+      "end_date": "2022-11-18",
+      "priority": "High",
+      "taskname": "React-Redux",
+      "assignto": "Bhavna",
       "status": "Done",
-      "id": 37
+      "id": 3
     },
     {
-      "taskname": "angular",
-      "priority": "Medium",
-      "assignto": "Shivani",
-      "end_date": "2022-11-19",
+      "end_date": "2022-11-14",
+      "priority": "High",
+      "taskname": "React-Redux",
+      "assignto": "Bhavna",
       "status": "Pending",
-      "id": 38
+      "id": 5
     }
   ]
 }

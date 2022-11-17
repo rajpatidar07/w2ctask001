@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import React, { useEffect, useState, useRef } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { deleteTask, UpdateUser, FilterUser } from "../services/api";
-import DataTable, { createTheme } from 'react-data-table-component';
+import DataTable from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { FcEditImage, FcFullTrash } from "react-icons/fc";
@@ -13,7 +13,8 @@ import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 import Modal from 'react-bootstrap/Modal';
 import moment from 'moment';
 import 'moment-timezone';
-
+// import User from "./user";
+import { Link } from "react-router-dom";
 const Home = () => {
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
@@ -243,8 +244,8 @@ const currentdate = moment().format('YYYY-MM-DD')
 
 
   return (
-    <div class="container text-center">
-      <div class="row align-items-start">
+    <div className="container text-center">
+      <div className="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
             <h3>Task Management </h3>
@@ -255,6 +256,12 @@ const currentdate = moment().format('YYYY-MM-DD')
               aria-expanded={open}
             >
               Add Task
+            </button>
+            <button
+              className="btn btn-info  ms-auto"
+              aria-controls="example-collapse-text"
+            >
+              <Link to="/User">Add User</Link>
             </button>
           </div>
           <Modal show={show} onHide={handleClose}>
