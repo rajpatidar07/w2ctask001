@@ -1,6 +1,7 @@
 {
   "user": [
     {
+      "id": "1",
       "name": "aayu",
       "mobile": "7894561232",
       "address": "Maharashtraaa",
@@ -8,6 +9,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqG_IrW41OWowRakdludbu-8KSLJLrXifvvyW3djZd&s"
     },
     {
+      "id": "2",
       "name": "a2ayu",
       "mobile": "78945612322",
       "address": "Maharashtraaaaaa",
@@ -81,5 +83,41 @@
       "description": "efuihsduifhcisdjioasjd",
       "id": 8
     }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "userid": 1,
+      "username": "aman",
+      "date": "2022-01-01",
+      "status":"P"
+    },
+    {
+      "id": 2,
+      "userid": 1,
+      "username": "aman",
+      "date": "2022-01-02",
+      "status":"P"
+    },{
+      "id": 3,
+      "userid": 1,
+      "username": "aman",
+      "date": "2022-01-03",
+      "status":"A"
+    },{
+      "id": 4,
+      "userid": 2,
+      "username": "shiv",
+      "date": "2022-01-01",
+      "status":"A"
+    },{
+      "id": 5,
+      "userid": 2,
+      "username": "shiv",
+      "date": "2022-01-02",
+      "status":"P"
+    }
+   
   ]
 }
+

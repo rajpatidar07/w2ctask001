@@ -256,7 +256,9 @@ const Home = () => {
       <div className="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
+            <div className="header_section w-100 d-flex justify-content-between">
             <h3>Task Management </h3>
+            <div className=" button_section ">
             <button
               className="btn btn-info  ms-auto"
               onClick={handleShow}
@@ -266,11 +268,20 @@ const Home = () => {
               Add Task
             </button>
             <button
+             className="btn btn-info  ms-auto"
+             aria-controls="example-collapse-text"
+            >
+             <Link to="/attendance" className="text-dark text-decoration-none">Attendance</Link> 
+            </button>
+            <button
               className="btn btn-info  ms-auto"
               aria-controls="example-collapse-text"
             >
-              <Link to="/User">Add User</Link>
+              <Link to="/User" className="text-dark text-decoration-none">Add User</Link>
             </button>
+
+            </div>
+            </div>
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>

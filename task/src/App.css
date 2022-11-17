@@ -156,6 +156,12 @@ align-items: center;
   border-radius: 20px;
 }
 
+
+
+.header .header_section .button_section{
+display: flex;
+gap: 5px;
+}
 /* media query */
 @media only screen and (max-width: 600px) {
  .table_contant .hIWEKa {
