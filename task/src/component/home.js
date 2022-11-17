@@ -266,7 +266,7 @@ const currentdate = moment().format('YYYY-MM-DD')
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Title>Task</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form className="form-row" noValidate validated={validated} onSubmit={(event) => addTaskDetails(event, addtask.id)} ref={formRef}>
@@ -389,7 +389,6 @@ const currentdate = moment().format('YYYY-MM-DD')
                 </div>
                 <button
                   className="btn btn-info opecity  m-3"
-                  // onClick={() => addTaskDetails(addtask.id)}
                   type="submit"
                 >
                   {addtask.id === "" ||
