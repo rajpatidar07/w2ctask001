@@ -38,6 +38,7 @@ const Home = () => {
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
   };
 
+  // console.log("-chalaternge"+JSON.stringify(addtask))
   const onTableChange = async (e, id) => {
     e.preventDefault();
     const response = await UpdateUser(id);

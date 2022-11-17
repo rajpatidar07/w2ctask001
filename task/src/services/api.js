@@ -2,7 +2,21 @@ import axios from 'axios';
 
 
 const url = "http://127.0.0.1:3003/task";
-
+const urll = "http://127.0.0.1:3003/user";
+export const getallUser=async(id)=>{
+    id = id || '';
+    return await axios.get(`${urll}/${id}`);
+}
+export const addUser = async (user) => {
+    return await axios.post(urll,user);
+ }
+export const deleteUser = async (id) => {
+    return await axios.delete(`${urll}/${id}`);
+}
+export const UpdateUsers = async (id) => {
+    const data= await axios.get(`http://127.0.0.1:3003/user/${id}`);
+    return data;
+}
 export const getallTask = async (id) => {
     id = id || '';
     console.log("====alltask")
