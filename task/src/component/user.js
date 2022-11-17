@@ -15,11 +15,12 @@ const User = () => {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     getUser();
-  });
+  },[]);
   const onValueChange = async(e,id) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
     await setAddUser(adduser, id);
   };
+  console.log(JSON.stringify(adduser) )
   const handleClose = () =>{
     setAddUser('')
     setValidated(false)
