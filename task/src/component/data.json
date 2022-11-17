@@ -1,69 +1,52 @@
 {
+  "user": [
+    {
+      "name": "aayu",
+      "mobile": "7894561232",
+      "address": "Maharashtraaa",
+      "email": "aayu01@gmail.com",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqG_IrW41OWowRakdludbu-8KSLJLrXifvvyW3djZd&s"
+    },
+    {
+      "name": "a2ayu",
+      "mobile": "78945612322",
+      "address": "Maharashtraaaaaa",
+      "email": "aayu0111@gmail.com",
+      "image": "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
+    },
+    {
+      "id": "3",
+      "name": "a3ayu",
+      "mobile": "789456123222",
+      "address": "Maharashtraaaaaaaaa",
+      "email": "aayu01111@gmail.com",
+      "image": "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
+    }
+  ],
   "task": [
-    {
-      "taskname": "React-Redux",
-      "priority": "High",
-      "assignto": "Bhavna",
-      "end_date": "2022-09-02",
-      "status": "In Progress",
-      "description": "hh",
-      "id": 1
-    },
-    {
-      "end_date": "2022-11-16",
-      "priority": "High",
-      "assignto": "Vijendra",
-      "taskname": "React-Redux",
-      "status": "In Progress",
-      "id": 2
-    },
     {
       "end_date": "2022-11-17",
       "priority": "High",
-      "assignto": "Vijendra",
       "taskname": "React-Redux",
-      "status": "In Progress",
-      "id": 3
-    },
-    {
-      "end_date": "2022-11-15",
-      "priority": "High",
-      "assignto": "Vijendra",
-      "taskname": "React-Redux",
-      "status": "In Progress",
-      "id": 4
+      "assignto": "Bhavna",
+      "status": "Done",
+      "id": 2
     },
     {
       "end_date": "2022-11-18",
       "priority": "High",
-      "assignto": "Vijendra",
       "taskname": "React-Redux",
-      "status": "In Progress",
+      "assignto": "Bhavna",
+      "status": "Done",
+      "id": 3
+    },
+    {
+      "end_date": "2022-11-14",
+      "priority": "High",
+      "taskname": "React-Redux",
+      "assignto": "Bhavna",
+      "status": "Pending",
       "id": 5
-    },
-    {
-      "end_date": "2022-12-01",
-      "priority": "High",
-      "assignto": "Vijendra",
-      "taskname": "React-Redux",
-      "status": "In Progress",
-      "id": 6
-    },
-    {
-      "end_date": "2021-12-01",
-      "priority": "High",
-      "assignto": "Vijendra",
-      "taskname": "React-Redux",
-      "status": "In Progress",
-      "id": 7
-    },
-    {
-      "end_date": "2022-11-21",
-      "priority": "High",
-      "assignto": "Vijendra",
-      "taskname": "React-Redux",
-      "status": "In Progress",
-      "id": 8
     }
   ]
 }
