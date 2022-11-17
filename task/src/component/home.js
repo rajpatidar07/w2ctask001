@@ -142,7 +142,7 @@ const Home = () => {
         <Badge bg={row.priority === "High" ? "danger" : row.priority === "Medium" ? "warning" : "primary"} className='ms-1'>{row.priority}</Badge>
       </div>,
       sortable: true,
-      width: "200px"
+      width: "180px"
     },
     {
       name: 'Task Name',
@@ -218,7 +218,7 @@ const Home = () => {
             <span className="text-danger overdue">{'Overdue'}</span> : null}
         </div>,
       sortable: true,
-      width: "200px",
+      width: "120px",
     },
     {
       name: "Action",
