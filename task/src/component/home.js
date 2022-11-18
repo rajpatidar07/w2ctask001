@@ -2,7 +2,7 @@ import { addTask } from "../services/api";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState, useRef } from "react";
 import Badge from 'react-bootstrap/Badge';
-import { deleteTask, UpdateUser, FilterUser } from "../services/api";
+import { deleteTask, UpdateUser, FilterUser,getallUser } from "../services/api";
 import DataTable from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
@@ -26,17 +26,26 @@ const Home = () => {
   const currentdate = moment().format('YYYY-MM-DD')
   const formRef = useRef();
   const [show, setShow] = useState(false);
+  const [userdata, setuserdata] = useState([]);
+
   const ExpandedComponent = ({ data }) => <div className="taskdescription">
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
     </div>
   </div>;
   useEffect(() => {
     getTasks();
+    getUser();
+
   }, [filter, apicall]);
   const onValueChange = async (e) => {
     // e.preventDefault();
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
   };
+//  end array
+const getUser = async (e) => {
+    const response = await getallUser();
+    setuserdata(response.data)
+}
 
   // console.log("-chalaternge"+JSON.stringify(addtask))
   const onTableChange = async (e, id) => {
@@ -164,11 +173,15 @@ const Home = () => {
         name='assignto'
       >
         <option selected={row.assignto === '' ? true : false} value={""}>Select</option>
-        <option selected={row.assignto === 'Shivani' ? true : false} value={"Shivani"}>Shivani</option>
+        {(userdata || []).map((username) =>{
+        <option selected={row.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
+
+        })}
+        {/* <option selected={row.assignto === 'Shivani' ? true : false} value={"Shivani"}>Shivani</option>
         <option selected={row.assignto === 'Vijendra' ? true : false} value={"Vijendra"}>Vijendra</option>
         <option selected={row.assignto === 'Gaurav' ? true : false} value={"Gaurav"}>Gaurav</option>
         <option selected={row.assignto === 'Jyotish' ? true : false} value={"Jyotish"}>Jyotish</option>
-        <option selected={row.assignto === 'Shubham' ? true : false} value={"Shubham"}>Shubham</option>
+        <option selected={row.assignto === 'Shubham' ? true : false} value={"Shubham"}>Shubham</option> */}
       </select>
       </div>,
       width:"150px",
