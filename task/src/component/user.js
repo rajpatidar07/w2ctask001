@@ -3,44 +3,70 @@ import DataTable from "react-data-table-component";
 import data from "./data.json";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { deleteUser, getallUser,UpdateUsers } from "../services/api";
+import { addUser, deleteUser, getallUser,UpdateUsers } from "../services/api";
 const User = () => {
+  // const [selectedFile, setSelectedFile] = React.useState(null);
+  // const handleSubmit = async(event) => {
+  //   event.preventDefault()
+  //   const formData = new FormData();
+  //   formData.append("selectedFile", selectedFile);
+  //   try {
+  //     const response = await axios({
+  //       method: "post",
+  //       url: "/api/upload/file",
+  //       data: formData,
+  //       headers: { "Content-Type": "multipart/form-data" },
+  //     });
+  //   } catch(error) {
+  //     console.log(error)
+  //   }
+  // }
+  const formRef = useRef();
   const [user, setUser] = useState([]);
   const [adduser, setAddUser] = useState([]);
+  const [file, setFile] = useState();
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
     getUser();
   },[]);
-  const onValueChange = async(e,id) => {
+  const onValueChange = (e) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
-    await setAddUser(adduser, id);
+  };
+  const handleChange= (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
   };
   console.log(JSON.stringify(adduser) )
   const handleClose = () =>{
+    formRef.current.reset();
     setAddUser('')
     setValidated(false)
     setShow(false)
   };
   const handleShow = () => setShow(true);
+console.log("file-----------"+file)
   const addUserDetails = async (event, id) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    setValidated(true);
+      setValidated(true);
     }
     else {
       event.preventDefault();
-      await setAddUser(adduser, id);
-      handleClose();
+      await addUser(adduser, id);
+      formRef.current.reset();
+      setAddUser('')
+      setValidated(false)
+      setShow(false)
     }
-
   };
+
   const getUser = async () => {
     const response = await getallUser();
     setUser(response.data);
@@ -58,8 +84,6 @@ const User = () => {
     await deleteUser(id);
   };
   const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
 
   const columns = [
     {
@@ -155,7 +179,7 @@ const User = () => {
           <Modal.Title>Add User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-              <Form className="form-row" noValidate validated={validated} onSubmit={(event) => addUserDetails(event, adduser.id)}>
+              <Form className="form-row" noValidate validated={validated} onSubmit={(event) => addUserDetails(event, adduser.id)} ref={formRef}>
               <input
                     name="id"
                     type={"hidden"}
@@ -169,20 +193,20 @@ const User = () => {
                   />
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Name" onChange={(e) => onValueChange(e)} value={adduser.name} />
+                <Form.Control required type="text" placeholder="Enter Name" onChange={(e) => onValueChange(e)} value={adduser.name} name="name" />
               </Form.Group>
         
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Mobile Number</Form.Label>
-                <Form.Control type="number" required placeholder="Enter Number" onChange={(e) => onValueChange(e)} value={adduser.mobile}/>
+                <Form.Control type="number" required placeholder="Enter Number" onChange={(e) => onValueChange(e)} value={adduser.mobile} name="mobile"/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Address</Form.Label>
-                <Form.Control type="text" required placeholder="Enter Address" onChange={(e) => onValueChange(e)} value={adduser.address} />
+                <Form.Control type="text" required placeholder="Enter Address" onChange={(e) => onValueChange(e)} value={adduser.address} name="address" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" required placeholder="Enter Email"onChange={(e) => onValueChange(e)} value={adduser.email} />
+                <Form.Control type="email" required placeholder="Enter Email"onChange={(e) => onValueChange(e)} value={adduser.email} name="email"/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Status</Form.Label>
@@ -197,16 +221,27 @@ const User = () => {
                         <option value={"InActive"}>InActive</option>
                       </select>
               </Form.Group>
+              <Form.Group className="mb-3" type="file" controlId="formBasicPassword">
+                <Form.Label>Image</Form.Label>
+                <input type="file"  onChange={handleChange} />
+            <img src={file}height="200" width="200" alt="med1"value={adduser.image} />
+                {/* <Form.Control type="file" 	multiple accept="image/*,.png,.jpg,.jpeg,.gif" required placeholder="Select Image" onChange={(e) => onImageChange(e)}  value={adduser.image} name="image" >
+                </Form.Control> */}
+              </Form.Group>
               <button
-                          className="btn btn-info opecity  m-3"
-                          type="submit"
-                        >
-                         Add User
-                        </button>
+                  className="btn btn-info opecity  m-3"
+                  type="submit"
+                >
+                  {adduser.id === "" ||
+                    adduser.id === null ||
+                    adduser.id === undefined
+                    ? "Add User"
+                    : "Update User"}
+                </button>
             </Form>
         </Modal.Body>
       </Modal>
-          <DataTable columns={columns} data={data.user} />
+          <DataTable columns={columns} data={user}/>
         </div>
       </div>
     </div>

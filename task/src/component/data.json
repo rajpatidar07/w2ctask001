@@ -7,16 +7,44 @@
       "address": "Maharashtraaa",
       "email": "aayu01@gmail.com",
       "status": "Active",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqG_IrW41OWowRakdludbu-8KSLJLrXifvvyW3djZd&s"
+      "id": 1
     },
     {
-      "id": "2",
-      "name": "a2ayu",
-      "mobile": "78945612322",
-      "address": "Maharashtraaaaaa",
-      "email": "aayu0111@gmail.com",
-      "status": "InActive",
-      "image": "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
+      "name": "this is my story",
+      "mobile": "789456123",
+      "address": "mp",
+      "email": "vijendra@gmail.com",
+      "status": "Active",
+      "id": 2
+    },
+    {
+      "email": "bhavnaraut@gmail.com",
+      "address": "mp",
+      "mobile": "12345",
+      "name": "goru",
+      "id": 3
+    },
+    {
+      "email": "bhavnaraut@gmail.com",
+      "address": "mp",
+      "mobile": "1223",
+      "name": "goru",
+      "id": 4
+    },
+    {
+      "email": "shivani@gmail.com",
+      "address": "mp",
+      "mobile": "789456123",
+      "name": "shiavni",
+      "id": 5
+    },
+    {
+      "status": "Active",
+      "email": "bhavnaraut@gmail.com",
+      "address": "mp",
+      "mobile": "4546",
+      "name": "goru",
+      "id": 6
     }
   ],
   "task": [
@@ -76,6 +104,24 @@
       "status": "In Progress",
       "description": "efuihsduifhcisdjioasjd",
       "id": 8
+    },
+    {
+      "taskname": "React-Redux",
+      "priority": "High",
+      "assignto": "Shivani",
+      "end_date": "2022-11-17",
+      "status": "Done",
+      "description": "gdsfe",
+      "id": 9
+    },
+    {
+      "taskname": "pppppppppp",
+      "priority": "High",
+      "assignto": "Shivani",
+      "end_date": "2022-11-02",
+      "status": "In Progress",
+      "description": "aa",
+      "id": 10
     }
   ],
   "attendance": [

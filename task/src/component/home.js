@@ -404,13 +404,6 @@ const Home = () => {
                       name="description"
                       value={addtask.description}
                     />
-                    {/* <CKEditor
-                      editor={ClassicEditor}
-                      data={addtask.description}
-                      onChange={handledescription}
-                      name={'description'}
-                      value={addtask.description}
-                    /> */}
                   </Form.Group>
                   <Form.Control.Feedback type="invalid">
                     Please Enter Description!
