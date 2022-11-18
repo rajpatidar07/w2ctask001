@@ -7,8 +7,15 @@ export const getallUser=async(id)=>{
     id = id || '';
     return await axios.get(`${urll}/${id}`);
 }
-export const addUser = async (user) => {
-    return await axios.post(urll,user);
+export const addUser = async (user,id) => {
+    if(id ==='' || id === null || id === undefined){
+        console.log("====adduser")
+        return await axios.post(urll,user);
+    }else{
+        console.log("====updateuser")
+        return await axios.put(`${urll}/${id}`,user);
+    }
+   
  }
 export const deleteUser = async (id) => {
     return await axios.delete(`${urll}/${id}`);
