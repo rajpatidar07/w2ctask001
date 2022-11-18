@@ -1,6 +1,5 @@
 import React from "react";
 import DataTable from "react-data-table-component";
-import data from "./data.json";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useState, useEffect, useRef } from "react";
@@ -9,46 +8,39 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { addUser, deleteUser, getallUser, UpdateUsers } from "../services/api";
 const User = () => {
-  // const [selectedFile, setSelectedFile] = React.useState(null);
-  // const handleSubmit = async(event) => {
-  //   event.preventDefault()
-  //   const formData = new FormData();
-  //   formData.append("selectedFile", selectedFile);
-  //   try {
-  //     const response = await axios({
-  //       method: "post",
-  //       url: "/api/upload/file",
-  //       data: formData,
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //     });
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-  // }
+  const fs = require('fs-extra')
+
+fs.writeJsonSync('./package.json', {name: 'fs-extra'})
+  
   const formRef = useRef();
   const [user, setUser] = useState([]);
   const [adduser, setAddUser] = useState([]);
-  const [file, setFile] = useState();
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
+  const [image,setImage]=useState();
+  const [imagename,setImageName]=useState();
+  
   useEffect(() => {
     getUser();
   }, []);
   const onValueChange = (e) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
+    // setImage(URL.createObjectURL(e.target.files[0]));
+    setImage(URL.createObjectURL(e.target.files[0].name));
   };
-  const handleChange = (e) => {
-    setFile(URL.createObjectURL(e.target.files[0]));
-  };
-  console.log(JSON.stringify(adduser))
-  const handleClose = () => {
+  console.log("-----imgeeee- "+image)
+  // const handleChange= (e) => {
+    // setFile(URL.createObjectURL(e.target.files[0]));
+  // };
+  console.log(JSON.stringify(adduser) )
+  const handleClose = () =>{
     formRef.current.reset();
     setAddUser('')
     setValidated(false)
     setShow(false)
   };
   const handleShow = () => setShow(true);
-  console.log("file-----------" + file)
+// console.log("file-----------"+file)
   const addUserDetails = async (event, id) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -125,7 +117,7 @@ const User = () => {
       cell: (row) => (
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12">
-            <img src={row.image} style={{ width: "60px", height: "40px", borderRadius: "100%", marginTop: "5px" }} />
+            <img src={row.image}  style={{width:"60px",height:"40px",borderRadius:"100%",marginTop:"5px"}}/>
             <p>Nature</p>
           </div>
         </div>
@@ -160,6 +152,8 @@ const User = () => {
       )
     },
   ];
+
+  console.log("-----------"+adduser.image)
   return (
     <div className="container text-center">
       <div className="row align-items-start">
@@ -187,45 +181,47 @@ const User = () => {
                     adduser.id !== "" ||
                       adduser.id !== null ||
                       adduser.id !== undefined
-                      ? adduser.id
-                      : ""
-                  }
-                />
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control required type="text" placeholder="Enter Name" onChange={(e) => onValueChange(e)} value={adduser.name} name="name" />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Mobile Number</Form.Label>
-                  <Form.Control type="number" required placeholder="Enter Number" onChange={(e) => onValueChange(e)} value={adduser.mobile} name="mobile" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control type="text" required placeholder="Enter Address" onChange={(e) => onValueChange(e)} value={adduser.address} name="address" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" required placeholder="Enter Email" onChange={(e) => onValueChange(e)} value={adduser.email} name="email" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Status</Form.Label>
-                  <select
-                    className="select form-control"
-                    name="status"
-                    onChange={(e) => onValueChange(e)}
-                    value={adduser.status}
-                  >
-                    <option value={""}>Select</option>
-                    <option value={"Active"}>Active</option>
-                    <option value={"InActive"}>InActive</option>
-                  </select>
-                </Form.Group>
-                <Form.Group className="mb-3" type="file" controlId="formBasicPassword">
-                  <Form.Label>Image</Form.Label>
-                  <input type="file" onChange={handleChange} />
-                  <img src={file} height="200" width="200" alt="med1" value={adduser.image} />
-                  {/* <Form.Control type="file" 	multiple accept="image/*,.png,.jpg,.jpeg,.gif" required placeholder="Select Image" onChange={(e) => onImageChange(e)}  value={adduser.image} name="image" >
+                        ? adduser.id
+                        : ""
+                    }
+                  />
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Name</Form.Label>
+                <Form.Control required type="text" placeholder="Enter Name" onChange={(e) => onValueChange(e)} value={adduser.name} name="name" />
+              </Form.Group>
+        
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Mobile Number</Form.Label>
+                <Form.Control type="number" required placeholder="Enter Number" onChange={(e) => onValueChange(e)} value={adduser.mobile} name="mobile"/>
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label>Address</Form.Label>
+                <Form.Control type="text" required placeholder="Enter Address" onChange={(e) => onValueChange(e)} value={adduser.address} name="address" />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" required placeholder="Enter Email"onChange={(e) => onValueChange(e)} value={adduser.email} name="email"/>
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label>Status</Form.Label>
+                <select
+                        className="select form-control"
+                        name="status"
+                        onChange={(e) => onValueChange(e)}
+                        value={adduser.status}
+                      >
+                        <option value={""}>Select</option>
+                        <option value={"Active"}>Active</option>
+                        <option value={"InActive"}>InActive</option>
+                      </select>
+              </Form.Group>
+              <Form.Group className="mb-3" type="file" >
+                <Form.Label>Image</Form.Label>
+                <Form.Control type="file" name="image" onChange={(e) => onValueChange(e)} ></Form.Control>
+                <img src={image} style={{width:"140px"}}/>
+                {/* <input type="file"  onChange={handleChange} />
+            <img src={file}height="200" width="200" alt="med1"value={adduser.image} /> */}
+                {/* <Form.Control type="file" 	multiple accept="image/*,.png,.jpg,.jpeg,.gif" required placeholder="Select Image" onChange={(e) => onImageChange(e)}  value={adduser.image} name="image" >
                 </Form.Control> */}
                 </Form.Group>
                 <button
@@ -238,10 +234,11 @@ const User = () => {
                     ? "Add User"
                     : "Update User"}
                 </button>
-              </Form>
-            </Modal.Body>
-          </Modal>
-          <DataTable columns={columns} data={user} />
+            </Form>
+        </Modal.Body>
+      </Modal>
+          <DataTable columns={columns} data={user}  pagination
+                fixedHeader/>
         </div>
       </div>
     </div>

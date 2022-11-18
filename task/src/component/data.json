@@ -1,26 +1,11 @@
 {
   "user": [
     {
-      "id": "1",
-      "name": "aayu",
-      "mobile": "7894561232",
-      "address": "Maharashtraaa",
-      "email": "aayu01@gmail.com",
-      "status": "Active"
-    },
-    {
-      "name": "this is my story",
-      "mobile": "789456123",
-      "address": "mp",
-      "email": "vijendra@gmail.com",
-      "status": "Active",
-      "id": 2
-    },
-    {
       "email": "bhavnaraut@gmail.com",
       "address": "mp",
       "mobile": "12345",
       "name": "goru",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png",
       "id": 3
     },
     {
