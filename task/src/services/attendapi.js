@@ -1,20 +1,38 @@
 import axios from 'axios';
 
-const url = "http://127.0.0.1:3003/attendance";
+const url3 = "http://127.0.0.1:3003/attendance";
 
 export const getAllRecord = async (monthh,uid) => {
-    uid = uid || '';
-    console.log("====uid"+uid)
     return await axios.get(`http://127.0.0.1:3003/attendance?month=${monthh}&userid=${uid}`);
 
 }
 
-export const addattendance = async (task, id) => {
-    if(id ==='' || id === null || id === undefined){
-        console.log("====addattendance")
-        return await axios.post(url,task);
-    }else{
-        console.log("====updateattendance")
-        return await axios.put(`${url}/${id}`,task);
-    }
+export const AdddAttendance = async (addattenddata) => {
+        if(addattenddata.username === ''){
+console.log("--------------*********************************************")
+        }
+        else{
+                console.log("====addattendance")
+                return await axios.post(`http://127.0.0.1:3003/attendance`,addattenddata);
+        }
+       
+   
+}
+export const UpdateAttendance = async (addattenddata, attendidd) => {
+        if(addattenddata.username === ''){
+                console.log("-------------*********************************************")
+
+        }
+        else{
+                console.log("====updateattendance"+JSON.stringify(addattenddata))
+                return await axios.put(`http://127.0.0.1:3003/attendance/${attendidd}`,addattenddata);
+        }
+       
+       
+}
+export const SingleAttendance = async (id) => {
+console.log("--------------*********************************************")
+
+        const data= await axios.get(`http://127.0.0.1:3003/attendance/${id}`);
+        return data;
 }

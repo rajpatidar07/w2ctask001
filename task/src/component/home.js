@@ -55,7 +55,6 @@ const Home = () => {
       setupdateapicall(false)
     }
   }, [updateapicall]);
-  console.log("-chalaternge" + JSON.stringify(addtask))
 
   const handledescription = (event, editor) => {
     setdata1(editor.getData());

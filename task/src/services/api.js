@@ -46,8 +46,6 @@ export const deleteTask = async (id) => {
 }
 export const UpdateUser = async (id) => {
     console.log("====singlrtask")
-
-
         const data= await axios.get(`http://127.0.0.1:3003/task/${id}`);
         return data;
 }

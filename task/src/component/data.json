@@ -6,8 +6,7 @@
       "mobile": "7894561232",
       "address": "Maharashtraaa",
       "email": "aayu01@gmail.com",
-      "status": "Active",
-      "id": 1
+      "status": "Active"
     },
     {
       "name": "this is my story",
@@ -45,6 +44,14 @@
       "mobile": "4546",
       "name": "goru",
       "id": 6
+    },
+    {
+      "name": "Rajaram",
+      "mobile": "9455646465645",
+      "address": "indore",
+      "email": "raj.we2code@gmail.com",
+      "status": "Active",
+      "id": 7
     }
   ],
   "task": [
@@ -126,43 +133,140 @@
   ],
   "attendance": [
     {
-      "id": 1,
-      "userid": 1,
-      "username": "aman",
-      "date": "2022-11-03",
-      "month":"Nov",
-      "status":"P"
+      "userid": "1",
+      "username": "aayu",
+      "date": "2022-11-06",
+      "month": "Nov",
+      "status": "P",
+      "id": 1
     },
     {
-      "id": 2,
-      "userid": 1,
-      "username": "aman",
-      "date": "2022-11-10",
-      "month":"Nov",
-      "status":"P"
-    },{
-      "id": 3,
-      "userid": 1,
-      "username": "aman",
-      "date": "2022-10-03",
-      "month":"Oct",
-      "status":"A"
-    },{
-      "id": 4,
-      "userid": 2,
-      "username": "shiv",
+      "userid": "1",
+      "username": "aayu",
       "date": "2022-11-01",
-      "month":"Nov",
-      "status":"A"
-    },{
-      "id": 5,
+      "month": "Nov",
+      "status": "A",
+      "id": 2
+    },
+    {
+      "userid": "1",
+      "username": "aayu",
+      "date": "2022-11-03",
+      "month": "Nov",
+      "status": "A",
+      "id": 5
+    },
+    {
+      "userid": "1",
+      "username": "aayu",
+      "date": "2022-11-04",
+      "month": "Nov",
+      "status": "P",
+      "id": 7
+    },
+    {
       "userid": 2,
-      "username": "shiv",
-      "date": "2022-10-02",
-      "month":"Oct",
-      "status":"P"
+      "username": "this is my story",
+      "date": "2022-11-02",
+      "month": "Nov",
+      "status": "A",
+      "id": 10
+    },
+    {
+      "userid": 7,
+      "username": "Rajaram",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "A",
+      "id": 13
+    },
+    {
+      "userid": 7,
+      "username": "Rajaram",
+      "date": "2022-11-02",
+      "month": "Nov",
+      "status": "A",
+      "id": 15
+    },
+    {
+      "userid": 7,
+      "username": "Rajaram",
+      "date": "2022-11-03",
+      "month": "Nov",
+      "status": "A",
+      "id": 17
+    },
+    {
+      "userid": 2,
+      "username": "this is my story",
+      "date": "2022-11-03",
+      "month": "Nov",
+      "status": "A",
+      "id": 19
+    },
+    {
+      "userid": 2,
+      "username": "this is my story",
+      "date": "2022-11-06",
+      "month": "Nov",
+      "status": "P",
+      "id": 21
+    },
+    {
+      "userid": 3,
+      "username": "goru",
+      "date": "2022-11-04",
+      "month": "Nov",
+      "status": "P",
+      "id": 22
+    },
+    {
+      "userid": 3,
+      "username": "goru",
+      "date": "2022-11-06",
+      "month": "Nov",
+      "status": "P",
+      "id": 24
+    },
+    {
+      "userid": "1",
+      "username": "aayu",
+      "date": "2022-11-08",
+      "month": "Nov",
+      "status": "P",
+      "id": 25
+    },
+    {
+      "userid": 2,
+      "username": "this is my story",
+      "date": "2022-11-08",
+      "month": "Nov",
+      "status": "P",
+      "id": 26
+    },
+    {
+      "userid": "1",
+      "username": "aayu",
+      "date": "2022-10-01",
+      "month": "Oct",
+      "status": "P",
+      "id": 27
+    },
+    {
+      "userid": 2,
+      "username": "this is my story",
+      "date": "2022-11-10",
+      "month": "Nov",
+      "status": "A",
+      "id": 28
+    },
+    {
+      "userid": "1",
+      "username": "aayu",
+      "date": "2022-12-01",
+      "month": "Dec",
+      "status": "P",
+      "id": 29
     }
-   
   ]
 }
-
