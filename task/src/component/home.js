@@ -174,8 +174,11 @@ const getUser = async (e) => {
       >
         <option selected={row.assignto === '' ? true : false} value={""}>Select</option>
         {(userdata || []).map((username) =>{
-        <option selected={row.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
+          return (
 
+          
+        <option selected={row.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
+          )
         })}
         {/* <option selected={row.assignto === 'Shivani' ? true : false} value={"Shivani"}>Shivani</option>
         <option selected={row.assignto === 'Vijendra' ? true : false} value={"Vijendra"}>Vijendra</option>
