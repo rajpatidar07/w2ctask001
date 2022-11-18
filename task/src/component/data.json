@@ -1,6 +1,26 @@
 {
   "user": [
     {
+<<<<<<< HEAD
+=======
+      "id": "1",
+      "name": "aayu",
+      "mobile": "7894561232",
+      "address": "Maharashtraaa",
+      "email": "aayu01@gmail.com",
+      "status": "Active",
+      "id": 1
+    },
+    {
+      "name": "this is my story",
+      "mobile": "789456123",
+      "address": "mp",
+      "email": "vijendra@gmail.com",
+      "status": "Active",
+      "id": 2
+    },
+    {
+>>>>>>> 8cc0f46dc7fa7d9493337f6a186579592db0b871
       "email": "bhavnaraut@gmail.com",
       "address": "mp",
       "mobile": "12345",
@@ -131,5 +151,46 @@
       "description": "aa",
       "id": 10
     }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "userid": 1,
+      "username": "aman",
+      "date": "2022-11-03",
+      "month":"Nov",
+      "status":"P"
+    },
+    {
+      "id": 2,
+      "userid": 1,
+      "username": "aman",
+      "date": "2022-11-10",
+      "month":"Nov",
+      "status":"P"
+    },{
+      "id": 3,
+      "userid": 1,
+      "username": "aman",
+      "date": "2022-10-03",
+      "month":"Oct",
+      "status":"A"
+    },{
+      "id": 4,
+      "userid": 2,
+      "username": "shiv",
+      "date": "2022-11-01",
+      "month":"Nov",
+      "status":"A"
+    },{
+      "id": 5,
+      "userid": 2,
+      "username": "shiv",
+      "date": "2022-10-02",
+      "month":"Oct",
+      "status":"P"
+    }
+   
   ]
 }
+
