@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,12 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { getallUser } from "../services/api";
 // import data from './data.json';
 const Login = () => {
-  const Navigate=useNavigate();
+  const navigate=useNavigate();
   const [login, setLogin] = useState([]);
   const [logindata, setLoginData] = useState([]);
-  useEffect(() => {
-    getUser();
-  }, [handlesubmit]);
+
   const onValueChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
@@ -22,33 +20,25 @@ const Login = () => {
     const response = await getallUser();
     setLoginData(response.data);
   };
-  useEffect(() => {
-    if((localStorage.getItem("loginid"))===''){
-            Navigate('/user');
-  console.log("------empty---------" +login.email);
-          
-    }
-    else{
-  console.log("-----idget---------" +login.email);
 
-
-    }
-  }, []);
-  const handlesubmit = (e) => {
-    {logindata.map((ldata)=>{
+const LoginCheck = () =>{
+  localStorage.setItem("loginid",login.email);
+  navigate('/user') 
+}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handlesubmit = useCallback((e) => {
+    logindata.map((ldata)=>{
         return(
         ((ldata.email===login.email) && (ldata.password===login.password))?
-        localStorage.setItem("loginid",login.email)
+        LoginCheck()
         : console.log("---"+login.email+"-------"+login.password)
         )
-      })}
+      })
     e.preventDefault();
-    // let x = logindata.some((e) => e.email === "bhavnaraut@gmail.com");
-    // let y = logindata.some((e) => e.password === "b");
-    // console.log("xxxxxx--> " + JSON.stringify(x));
-    // console.log("yyyyyy--> " + JSON.stringify(y));
-  };
-
+  });
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <div className="container text-center">
       <div className="row align-items-start">

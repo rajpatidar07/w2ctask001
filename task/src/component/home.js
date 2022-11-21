@@ -291,7 +291,12 @@ const Home = () => {
                 >
                   <Link to="/User" className="text-dark text-decoration-none"> User</Link>
                 </button>
-
+                <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/login" className="text-dark text-decoration-none">Login</Link>
+                </button>
               </div>
             </div>
           </div>
