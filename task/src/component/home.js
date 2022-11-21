@@ -30,6 +30,7 @@ const Home = () => {
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
     </div>
   </div>;
+  
   useEffect(() => {
     getTasks();
   }, [filter, apicall]);
@@ -262,12 +263,19 @@ const Home = () => {
             <div className=" button_section ">
             <button
               className="btn btn-info  ms-auto"
+              aria-controls="example-collapse-text"
+            >
+              <Link to="/Login" className="text-dark text-decoration-none">Login</Link>
+            </button>
+            <button
+              className="btn btn-info  ms-auto"
               onClick={handleShow}
               aria-controls="example-collapse-text"
               aria-expanded={open}
             >
               Add Task
             </button>
+            
             <button
              className="btn btn-info  ms-auto"
              aria-controls="example-collapse-text"

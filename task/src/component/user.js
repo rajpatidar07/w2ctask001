@@ -10,7 +10,7 @@ import { addUser, deleteUser, getallUser,UpdateUsers } from "../services/api";
 const User = () => {
   const fs = require('fs-extra')
 
-fs.writeJsonSync('./package.json', {name: 'fs-extra'})
+// fs.writeJsonSync('./package.json', {name: 'fs-extra'})
   
   const formRef = useRef();
   const [user, setUser] = useState([]);
@@ -18,7 +18,6 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
   const [image,setImage]=useState();
-  const [imagename,setImageName]=useState();
   
   useEffect(() => {
     getUser();
@@ -26,8 +25,8 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
   const onValueChange = (e) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
     // setImage(URL.createObjectURL(e.target.files[0]));
-    setImage(URL.createObjectURL(e.target.files[0].name));
-  };
+  //   setImage(URL.createObjectURL(e.target.files[0].name));
+   };
   console.log("-----imgeeee- "+image)
   // const handleChange= (e) => {
     // setFile(URL.createObjectURL(e.target.files[0]));
@@ -201,6 +200,10 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" required placeholder="Enter Email"onChange={(e) => onValueChange(e)} value={adduser.email} name="email"/>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" required placeholder="Enter Passwoed" onChange={(e) => onValueChange(e)} value={adduser.password} name="password"/>
               </Form.Group>
               <Form.Group className="mb-3" >
                 <Form.Label>Status</Form.Label>

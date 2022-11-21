@@ -1,78 +1,56 @@
 {
+  "login": [
+    {
+      "id": 1,
+      "email": "bhavnat@gmail.com",
+      "password": "123456"
+    }
+  ],
   "user": [
     {
-<<<<<<< HEAD
-=======
-      "id": "1",
-      "name": "aayu",
-      "mobile": "7894561232",
-      "address": "Maharashtraaa",
-      "email": "aayu01@gmail.com",
+      "name": "goru",
+      "mobile": "789456",
+      "address": "mp",
+      "email": "bhavnat@gmail.com",
+      "password": "123456",
       "status": "Active",
-      "id": 1
+      "id": 10
     },
     {
       "name": "this is my story",
-      "mobile": "789456123",
-      "address": "mp",
-      "email": "vijendra@gmail.com",
-      "status": "Active",
-      "id": 2
-    },
-    {
->>>>>>> 8cc0f46dc7fa7d9493337f6a186579592db0b871
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "12345",
-      "name": "goru",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png",
-      "id": 3
-    },
-    {
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "1223",
-      "name": "goru",
-      "id": 4
-    },
-    {
-      "email": "shivani@gmail.com",
-      "address": "mp",
-      "mobile": "789456123",
-      "name": "shiavni",
-      "id": 5
-    },
-    {
-      "status": "Active",
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "4546",
-      "name": "goru",
-      "id": 6
-    },
-    {
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "213236",
-      "name": "goru",
-      "id": 7
-    },
-    {
-      "name": "bhavnaaa",
-      "mobile": "78",
-      "address": "mp",
-      "email": "bhavnaraut@gmail.com",
-      "status": "InActive",
-      "id": 8
-    },
-    {
-      "image": "C:\\fakepath\\women-model-brunette-smiling-wallpaper-preview.jpg",
-      "name": "bhavnaaa",
-      "mobile": "1235465",
+      "mobile": "7894",
       "address": "Bhopal",
       "email": "vijendra@gmail.com",
+      "password": "789456",
       "status": "Active",
-      "id": 9
+      "id": 11
+    },
+    {
+      "name": "goru",
+      "mobile": "789456",
+      "address": "mp",
+      "email": "chetan0122@gmail.com",
+      "password": "789456123",
+      "status": "InActive",
+      "id": 12
+    },
+    {
+      "name": "jyotish",
+      "mobile": "9178456123",
+      "address": "mp",
+      "email": "jyotish@gmail.com",
+      "password": "jyotish",
+      "status": "Active",
+      "id": 14
+    },
+    {
+      "name": "bhavnaaa",
+      "mobile": "788",
+      "address": "mp",
+      "email": "bhavnaraut@gmail.com",
+      "password": "bb",
+      "status": "Active",
+      "id": 15
     }
   ],
   "task": [
@@ -158,39 +136,40 @@
       "userid": 1,
       "username": "aman",
       "date": "2022-11-03",
-      "month":"Nov",
-      "status":"P"
+      "month": "Nov",
+      "status": "P"
     },
     {
       "id": 2,
       "userid": 1,
       "username": "aman",
       "date": "2022-11-10",
-      "month":"Nov",
-      "status":"P"
-    },{
+      "month": "Nov",
+      "status": "P"
+    },
+    {
       "id": 3,
       "userid": 1,
       "username": "aman",
       "date": "2022-10-03",
-      "month":"Oct",
-      "status":"A"
-    },{
+      "month": "Oct",
+      "status": "A"
+    },
+    {
       "id": 4,
       "userid": 2,
       "username": "shiv",
       "date": "2022-11-01",
-      "month":"Nov",
-      "status":"A"
-    },{
+      "month": "Nov",
+      "status": "A"
+    },
+    {
       "id": 5,
       "userid": 2,
       "username": "shiv",
       "date": "2022-10-02",
-      "month":"Oct",
-      "status":"P"
+      "month": "Oct",
+      "status": "P"
     }
-   
   ]
 }
-
