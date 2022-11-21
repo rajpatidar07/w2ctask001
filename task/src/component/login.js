@@ -23,7 +23,7 @@ const Login = () => {
     setLoginData(response.data);
   };
   useEffect(() => {
-    if((localStorage.getItem("loginid"))===''){
+    if((localStorage.getItem("loginid"))==''){
             Navigate('/user');
   console.log("------empty---------" +login.email);
           
