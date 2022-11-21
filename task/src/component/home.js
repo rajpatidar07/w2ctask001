@@ -2,7 +2,7 @@ import { addTask } from "../services/api";
 import Form from "react-bootstrap/Form";
 import React, { useEffect, useState, useRef } from "react";
 import Badge from 'react-bootstrap/Badge';
-import { deleteTask, UpdateUser, FilterUser,getallUser } from "../services/api";
+import { deleteTask, UpdateUser, FilterUser, getActiveUser } from "../services/api";
 import DataTable from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
@@ -12,8 +12,8 @@ import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 import Modal from 'react-bootstrap/Modal';
 import moment from 'moment';
 import 'moment-timezone';
-// import User from "./user";
 import { Link } from "react-router-dom";
+// import User from "./user";
 const Home = () => {
   const [task, setTask] = useState([]);
   const [addtask, setAddTask] = useState([]);
@@ -27,7 +27,7 @@ const Home = () => {
   const formRef = useRef();
   const [show, setShow] = useState(false);
   const [userdata, setuserdata] = useState([]);
-
+  const editor = React.createRef();
   const ExpandedComponent = ({ data }) => <div className="taskdescription">
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
     </div>
@@ -42,11 +42,11 @@ const Home = () => {
     // e.preventDefault();
     setAddTask({ ...addtask, [e.target.name]: e.target.value });
   };
-//  end array
-const getUser = async (e) => {
-    const response = await getallUser();
+  //  end array
+  const getUser = async (e) => {
+    const response = await getActiveUser();
     setuserdata(response.data)
-}
+  }
 
   // console.log("-chalaternge"+JSON.stringify(addtask))
   const onTableChange = async (e, id) => {
@@ -164,31 +164,26 @@ const getUser = async (e) => {
 
     {
       name: 'AssignTo',
-      selector: row => 
-      <div className="d-flex align-items-center user_img_box">
-       <img src="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template/demo-1/images/profile/user-uploads/user-04.jpg" className="user_round_img"/>
-      <select
-        className="select form-control assigntask"
-        // value={row.assignto}
-        onChange={(e) => onTableChange(e, row.id)}
-        name='assignto'
-      >
-        <option selected={row.assignto === '' ? true : false} value={""}>Select</option>
-        {(userdata || []).map((username) =>{
-          return (
+      selector: row =>
+        <div className="d-flex align-items-center user_img_box">
+          {/* <img src="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template/demo-1/images/profile/user-uploads/user-04.jpg" className="user_round_img" /> */}
+          <select
+            className="select form-control assigntask"
+            // value={row.assignto}
+            onChange={(e) => onTableChange(e, row.id)}
+            name='assignto'
+          >
+            <option selected={row.assignto === '' ? true : false} value={""}>Select</option>
+            {(userdata || []).map((username) => {
+              return (
 
-          
-        <option selected={row.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
-          )
-        })}
-        {/* <option selected={row.assignto === 'Shivani' ? true : false} value={"Shivani"}>Shivani</option>
-        <option selected={row.assignto === 'Vijendra' ? true : false} value={"Vijendra"}>Vijendra</option>
-        <option selected={row.assignto === 'Gaurav' ? true : false} value={"Gaurav"}>Gaurav</option>
-        <option selected={row.assignto === 'Jyotish' ? true : false} value={"Jyotish"}>Jyotish</option>
-        <option selected={row.assignto === 'Shubham' ? true : false} value={"Shubham"}>Shubham</option> */}
-      </select>
-      </div>,
-      width:"150px",
+
+                <option selected={row.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
+              )
+            })}
+          </select>
+        </div>,
+      width: "150px",
       sortable: true,
     },
     {
@@ -206,7 +201,7 @@ const getUser = async (e) => {
         <option selected={row.status === 'Not Started' ? true : false} value={"Not Started"}>Not Started</option>
         <option selected={row.status === 'Blocked' ? true : false} value={"Blocked"}>Blocked</option>
       </select>,
-      width:"150px",
+      width: "150px",
       sortable: true,
     },
     {
@@ -274,37 +269,30 @@ const getUser = async (e) => {
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
           <div className="header text-start d-flex p-2">
             <div className="header_section w-100 d-flex justify-content-between">
-            <h3>Task Management </h3>
-            <div className=" button_section ">
-            <button
-              className="btn btn-info  ms-auto"
-              aria-controls="example-collapse-text"
-            >
-              <Link to="/Login" className="text-dark text-decoration-none">Login</Link>
-            </button>
-            <button
-              className="btn btn-info  ms-auto"
-              onClick={handleShow}
-              aria-controls="example-collapse-text"
-              aria-expanded={open}
-            >
-              Add Task
-            </button>
-            
-            <button
-             className="btn btn-info  ms-auto"
-             aria-controls="example-collapse-text"
-            >
-             <Link to="/attendance" className="text-dark text-decoration-none">Attendance</Link> 
-            </button>
-            <button
-              className="btn btn-info  ms-auto"
-              aria-controls="example-collapse-text"
-            >
-              <Link to="/User" className="text-dark text-decoration-none">Add User</Link>
-            </button>
+              <h3>Task Management </h3>
+              <div className=" button_section ">
+                <button
+                  className="btn btn-info  ms-auto"
+                  onClick={handleShow}
+                  aria-controls="example-collapse-text"
+                  aria-expanded={open}
+                >
+                  Add Task
+                </button>
+                <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/attendance" className="text-dark text-decoration-none">Attendance</Link>
+                </button>
+                <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/User" className="text-dark text-decoration-none"> User</Link>
+                </button>
 
-            </div>
+              </div>
             </div>
           </div>
           <Modal show={show} onHide={handleClose}>
@@ -368,13 +356,14 @@ const getUser = async (e) => {
                           onChange={(e) => onValueChange(e)}
                           value={addtask.assignto}
                         >
-                          <option value={""}>Select</option>
-                          <option value={"Bhavna"}>Bhavna</option>
-                          <option value={"Shivani"}>Shivani</option>
-                          <option value={"Vijendra"}>Vijendra</option>
-                          <option value={"Gaurav"}>Gaurav</option>
-                          <option value={"Jyotish"}>Jyotish</option>
-                          <option value={"Shubham"}>Shubham</option>
+                          <option selected={addtask.assignto === '' ? true : false} value={""}>Select</option>
+                          {(userdata || []).map((username) => {
+                            return (
+
+
+                              <option selected={addtask.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
+                            )
+                          })}
                         </select>
                       </div>
                     </div>
@@ -418,15 +407,21 @@ const getUser = async (e) => {
                     <Form.Label className="m-0 pb-1 text-start w-100">
                       Description
                     </Form.Label>
-                    <Form.Control
+                    <CKEditor
+                      editor={ClassicEditor}
+                      data={addtask.description}
+                      onChange={handledescription}
+                    />
+                    {/* <Form.Control
                       required
                       className="mb-3"
                       as="textarea"
-                      placeholder="Enter date"
+                      placeholder="Enter Description"
                       onChange={(e) => onValueChange(e)}
                       name="description"
                       value={addtask.description}
-                    />
+                    /> */}
+
                   </Form.Group>
                   <Form.Control.Feedback type="invalid">
                     Please Enter Description!
@@ -468,11 +463,14 @@ const getUser = async (e) => {
                   name={'assignto'}
                 >
                   <option value={""}>Select Name</option>
-                  <option value={"Shivani"}>Shivani</option>
-                  <option value={"Vijendra"}>Vijendra</option>
-                  <option value={"Gaurav"}>Gaurav</option>
-                  <option value={"Jyotish"}>Jyotish</option>
-                  <option value={"Shubham"}>Shubham</option>
+
+                   {(userdata || []).map((username) => {
+              return (
+
+
+                <option selected={addtask.assignto === username.name ? true : false} value={username.name}>{username.name}</option>
+              )
+            })}
                 </select>
               </div>
               <div className="col-md-3 my-md-0 my-2">

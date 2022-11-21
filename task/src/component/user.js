@@ -8,11 +8,9 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { addUser, deleteUser, getallUser, UpdateUsers } from "../services/api";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 const User = () => {
-  //   const fs = require('fs-extra')
-
-  // fs.writeJsonSync('./package.json', {name: 'fs-extra'})
-
   const formRef = useRef();
   const [user, setUser] = useState([]);
   const [adduser, setAddUser] = useState([]);
@@ -26,20 +24,15 @@ const User = () => {
   const onValueChange = (e) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
     // setImage(URL.createObjectURL(e.target.files[0]));
-  //   setImage(URL.createObjectURL(e.target.files[0].name));
-   };
-  console.log("-----imgeeee- "+image)
-  // const handleChange= (e) => {
-  // setFile(URL.createObjectURL(e.target.files[0]));
-  // };
-  const handleClose = () => {
+  };
+
+  const handleClose = () =>{
     formRef.current.reset();
     setAddUser("");
     setValidated(false);
     setShow(false);
   };
   const handleShow = () => setShow(true);
-  // console.log("file-----------"+file)
   const addUserDetails = async (event, id) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -111,26 +104,7 @@ const User = () => {
       ),
       sortable: true,
     },
-    {
-      name: "Image",
-      selector: true,
-      cell: (row) => (
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-lg-12">
-            <img
-              src={row.image}
-              style={{
-                width: "60px",
-                height: "40px",
-                borderRadius: "100%",
-                marginTop: "5px",
-              }}
-            />
-            <p>Nature</p>
-          </div>
-        </div>
-      ),
-    },
+   
     {
       name: "Action",
       button: true,
@@ -170,10 +144,23 @@ const ButtonClick=()=>{
     <div className="container text-center">
       <div className="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
-          <div className="header text-start d-flex p-2">
-            <h3>Add Users</h3>
-            <button
-              className="btn btn-info  ms-auto"
+        <div className="header_section w-100 d-flex justify-content-between">
+              <h3> User Management </h3>
+              <div className="button_section ">
+              <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/" className="text-dark text-decoration-none">Task</Link>
+                </button>
+                <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/attendance" className="text-dark text-decoration-none">Attendance</Link>
+                </button>
+                <button
+              className="btn btn-info"
               onClick={handleShow}
               aria-controls="example-collapse-text"
             >
@@ -188,6 +175,7 @@ const ButtonClick=()=>{
             >
               SignOut
             </button>
+          </div>
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>

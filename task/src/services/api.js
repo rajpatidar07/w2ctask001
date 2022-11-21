@@ -7,6 +7,9 @@ export const getallUser=async(id)=>{
     id = id || '';
     return await axios.get(`${urll}/${id}`);
 }
+export const getActiveUser=async()=>{
+    return await axios.get(`${urll}?status=Active`);
+}
 export const addUser = async (user,id) => {
     if(id ==='' || id === null || id === undefined){
         console.log("====adduser")
@@ -28,7 +31,6 @@ export const getallTask = async (id) => {
     id = id || '';
     console.log("====alltask")
     return await axios.get(`${url}/${id}`);
-
 }
 export const addTask = async (task, id) => {
     if(id ==='' || id === null || id === undefined){
