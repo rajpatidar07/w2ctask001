@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const url3 = "http://127.0.0.1:3003/attendance";
 
 export const getAllRecord = async (monthh,uid) => {
     return await axios.get(`http://127.0.0.1:3003/attendance?month=${monthh}&userid=${uid}`);

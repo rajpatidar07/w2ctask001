@@ -4,22 +4,24 @@
       "email": "bhavnaraut@gmail.com",
       "address": "mp",
       "mobile": "12345",
-      "name": "goru",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png",
+      "name": "Vijendra",
+      "status": "InActive",
       "id": 3
     },
     {
       "email": "bhavnaraut@gmail.com",
       "address": "mp",
       "mobile": "1223",
-      "name": "goru",
+      "name": "bhavna",
+      "status": "Active",
       "id": 4
     },
     {
       "email": "shivani@gmail.com",
       "address": "mp",
       "mobile": "789456123",
-      "name": "shiavni",
+      "name": "Shivani",
+      "status": "Active",
       "id": 5
     },
     {
@@ -37,6 +39,30 @@
       "email": "raj.we2code@gmail.com",
       "status": "Active",
       "id": 7
+    },
+    {
+      "email": "jyotish@gmail.com",
+      "address": "mp",
+      "mobile": "1223",
+      "name": "Jyotish",
+      "status": "InActive",
+      "id": 8
+    },
+    {
+      "name": "img",
+      "mobile": "635465",
+      "address": "indore",
+      "email": "malti@gmail.com",
+      "status": "Active",
+      "id": 9
+    },
+    {
+      "name": "rrr",
+      "mobile": "352",
+      "address": "indore",
+      "email": "atsush@gfg",
+      "status": "Active",
+      "id": 10
     }
   ],
   "task": [
@@ -67,7 +93,7 @@
     {
       "taskname": "test3",
       "priority": "High",
-      "assignto": "Jyotish",
+      "assignto": "Rajaram",
       "end_date": "2022-11-19",
       "status": "In Progress",
       "id": 5
@@ -75,7 +101,7 @@
     {
       "taskname": "React-Redux",
       "priority": "High",
-      "assignto": "Vijendra",
+      "assignto": "img",
       "end_date": "2022-11-19",
       "status": "Not Started",
       "id": 6
@@ -118,140 +144,98 @@
   ],
   "attendance": [
     {
-      "userid": "1",
-      "username": "aayu",
-      "date": "2022-11-06",
+      "userid": 4,
+      "username": "bhavna",
+      "date": "2022-11-01",
       "month": "Nov",
       "status": "P",
       "id": 1
     },
     {
-      "userid": "1",
-      "username": "aayu",
+      "userid": 5,
+      "username": "Shivani",
       "date": "2022-11-01",
       "month": "Nov",
-      "status": "A",
-      "id": 2
+      "status": "P",
+      "id": 3
     },
     {
-      "userid": "1",
-      "username": "aayu",
-      "date": "2022-11-03",
+      "userid": 5,
+      "username": "Shivani",
+      "date": "2022-11-02",
       "month": "Nov",
       "status": "A",
+      "id": 4
+    },
+    {
+      "userid": 4,
+      "username": "bhavna",
+      "date": "2022-11-04",
+      "month": "Nov",
+      "status": "L",
       "id": 5
     },
     {
-      "userid": "1",
-      "username": "aayu",
-      "date": "2022-11-04",
+      "userid": 5,
+      "username": "Shivani",
+      "date": "2022-11-05",
       "month": "Nov",
-      "status": "P",
+      "status": "CL",
+      "id": 6
+    },
+    {
+      "userid": 6,
+      "username": "goru",
+      "date": "2022-11-03",
+      "month": "Nov",
+      "status": "L",
       "id": 7
     },
     {
-      "userid": 2,
-      "username": "this is my story",
+      "userid": 6,
+      "username": "goru",
+      "date": "2022-11-04",
+      "month": "Nov",
+      "status": "P",
+      "id": 8
+    },
+    {
+      "userid": 6,
+      "username": "goru",
       "date": "2022-11-02",
+      "month": "Nov",
+      "status": "HD",
+      "id": 9
+    },
+    {
+      "userid": 6,
+      "username": "goru",
+      "date": "2022-11-14",
       "month": "Nov",
       "status": "A",
       "id": 10
     },
     {
-      "userid": 7,
-      "username": "Rajaram",
-      "date": "2022-11-01",
-      "month": "Nov",
-      "status": "A",
-      "id": 13
-    },
-    {
-      "userid": 7,
-      "username": "Rajaram",
-      "date": "2022-11-02",
-      "month": "Nov",
-      "status": "A",
-      "id": 15
-    },
-    {
-      "userid": 7,
-      "username": "Rajaram",
-      "date": "2022-11-03",
-      "month": "Nov",
-      "status": "A",
-      "id": 17
-    },
-    {
-      "userid": 2,
-      "username": "this is my story",
-      "date": "2022-11-03",
-      "month": "Nov",
-      "status": "A",
-      "id": 19
-    },
-    {
-      "userid": 2,
-      "username": "this is my story",
-      "date": "2022-11-06",
-      "month": "Nov",
-      "status": "P",
-      "id": 21
-    },
-    {
-      "userid": 3,
-      "username": "goru",
-      "date": "2022-11-04",
-      "month": "Nov",
-      "status": "P",
-      "id": 22
-    },
-    {
-      "userid": 3,
-      "username": "goru",
-      "date": "2022-11-06",
-      "month": "Nov",
-      "status": "P",
-      "id": 24
-    },
-    {
-      "userid": "1",
-      "username": "aayu",
+      "userid": 10,
+      "username": "rrr",
       "date": "2022-11-08",
       "month": "Nov",
-      "status": "P",
-      "id": 25
+      "status": "L",
+      "id": 11
+    }
+  ],
+  "holiday": [
+    {
+      "id": 1,
+      "name": "Christmas",
+      "start_date": "2022-11-12",
+      "end_date": "2022-11-13"
     },
     {
-      "userid": 2,
-      "username": "this is my story",
-      "date": "2022-11-08",
-      "month": "Nov",
-      "status": "P",
-      "id": 26
-    },
-    {
-      "userid": "1",
-      "username": "aayu",
-      "date": "2022-10-01",
-      "month": "Oct",
-      "status": "P",
-      "id": 27
-    },
-    {
-      "userid": 2,
-      "username": "this is my story",
-      "date": "2022-11-10",
-      "month": "Nov",
-      "status": "A",
-      "id": 28
-    },
-    {
-      "userid": "1",
-      "username": "aayu",
-      "date": "2022-12-01",
-      "month": "Dec",
-      "status": "P",
-      "id": 29
+      "id": 2,
+      "name": "New Year",
+      "start_date": "2022-11-15",
+      "end_date": "2022-11-17"
     }
   ]
 }

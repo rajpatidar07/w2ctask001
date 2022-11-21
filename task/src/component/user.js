@@ -7,32 +7,23 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { addUser, deleteUser, getallUser, UpdateUsers } from "../services/api";
-const User = () => {
-  const fs = require('fs-extra')
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-fs.writeJsonSync('./package.json', {name: 'fs-extra'})
-  
+const User = () => {
   const formRef = useRef();
   const [user, setUser] = useState([]);
   const [adduser, setAddUser] = useState([]);
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
-  const [image,setImage]=useState();
-  const [imagename,setImageName]=useState();
-  
   useEffect(() => {
     getUser();
   }, []);
   const onValueChange = (e) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
     // setImage(URL.createObjectURL(e.target.files[0]));
-    setImage(URL.createObjectURL(e.target.files[0].name));
   };
-  console.log("-----imgeeee- "+image)
-  // const handleChange= (e) => {
-    // setFile(URL.createObjectURL(e.target.files[0]));
-  // };
-  console.log(JSON.stringify(adduser) )
+
   const handleClose = () =>{
     formRef.current.reset();
     setAddUser('')
@@ -40,7 +31,6 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
     setShow(false)
   };
   const handleShow = () => setShow(true);
-// console.log("file-----------"+file)
   const addUserDetails = async (event, id) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -111,18 +101,7 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
       </select>,
       sortable: true
     },
-    {
-      name: "Image",
-      selector: true,
-      cell: (row) => (
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-lg-12">
-            <img src={row.image}  style={{width:"60px",height:"40px",borderRadius:"100%",marginTop:"5px"}}/>
-            <p>Nature</p>
-          </div>
-        </div>
-      ),
-    },
+   
     {
       name: "Action",
       button: true,
@@ -153,21 +132,37 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
     },
   ];
 
-  console.log("-----------"+adduser.image)
+
   return (
     <div className="container text-center">
       <div className="row align-items-start">
         <div className="col-md-12 col-sm-12 col-lg-12 content_div">
-          <div className="header text-start d-flex p-2">
-            <h3>Add Users</h3>
-            <button
-              className="btn btn-info  ms-auto"
+        <div className="header_section w-100 d-flex justify-content-between">
+              <h3> User Management </h3>
+              <div className="button_section ">
+              <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/" className="text-dark text-decoration-none">Task</Link>
+                </button>
+                <button
+                  className="btn btn-info  ms-auto"
+                  aria-controls="example-collapse-text"
+                >
+                  <Link to="/attendance" className="text-dark text-decoration-none">Attendance</Link>
+                </button>
+                <button
+              className="btn btn-info"
               onClick={handleShow}
               aria-controls="example-collapse-text"
             >
               Add User
             </button>
-          </div>
+
+              </div>
+            </div>
+        
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Add User</Modal.Title>
@@ -215,15 +210,7 @@ fs.writeJsonSync('./package.json', {name: 'fs-extra'})
                         <option value={"InActive"}>InActive</option>
                       </select>
               </Form.Group>
-              <Form.Group className="mb-3" type="file" >
-                <Form.Label>Image</Form.Label>
-                <Form.Control type="file" name="image" onChange={(e) => onValueChange(e)} ></Form.Control>
-                <img src={image} style={{width:"140px"}}/>
-                {/* <input type="file"  onChange={handleChange} />
-            <img src={file}height="200" width="200" alt="med1"value={adduser.image} /> */}
-                {/* <Form.Control type="file" 	multiple accept="image/*,.png,.jpg,.jpeg,.gif" required placeholder="Select Image" onChange={(e) => onImageChange(e)}  value={adduser.image} name="image" >
-                </Form.Control> */}
-                </Form.Group>
+             
                 <button
                   className="btn btn-info opecity  m-3"
                   type="submit"
