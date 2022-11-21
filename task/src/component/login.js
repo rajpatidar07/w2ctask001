@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-// import { Link, Navigate } from "react-router-dom";
-// import {useHistory} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getallUser } from "../services/api";
 // import data from './data.json';
@@ -79,7 +77,7 @@ const Login = () => {
                 <Form.Control
                   type="password"
                   placeholder="Password"
-                  onChange={(e) => onValueChange(e)}
+                  onChange={(e) => onValueChange(e)}        
                   name="password"
                 />
               </Form.Group>

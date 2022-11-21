@@ -23,7 +23,6 @@ function Dropdown(props) {
         const monthh = moment(props.dateval).format('MMM')
         const response = await getAllRecord(monthh, props.uid);
         setattenddata(response.data)
-        props.adata(response.data)
     }
     useEffect(() => {
         getHoliday();
