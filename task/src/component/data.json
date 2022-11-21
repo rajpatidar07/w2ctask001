@@ -1,5 +1,5 @@
 {
-   "login": [
+  "login": [
     {
       "id": 1,
       "email": "bhavnat@gmail.com",
@@ -208,6 +208,43 @@
       "month": "Nov",
       "status": "L",
       "id": 7
+    }
+  ],
+  "holiday": [
+    {
+      "id": 2,
+      "event": "diwali",
+      "status": "Active",
+      "start_date": "2022-11-02",
+      "end_date": "2022-11-20"
+    },
+    {
+      "id": 3,
+      "event": "holi",
+      "status": "InActive",
+      "start_date": "2022-11-02",
+      "end_date": "2022-11-05"
+    },
+    {
+      "event": "christmas",
+      "start_date": "2022-11-25",
+      "end_date": "2022-11-30",
+      "status": "InActive",
+      "id": 4
+    },
+    {
+      "event": "new year",
+      "start_date": "2022-11-30",
+      "end_date": "2022-12-02",
+      "status": "Active",
+      "id": 5
+    },
+    {
+      "event": "rakhi",
+      "start_date": "2022-11-26",
+      "end_date": "2022-11-27",
+      "status": "InActive",
+      "id": 6
     }
   ]
 }

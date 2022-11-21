@@ -5,7 +5,6 @@ import Table from 'react-bootstrap/Table';
 import { getActiveUser } from '../services/api';
 import Dropdown from './dropdown';
 import { Link } from "react-router-dom";
-import { CSVLink, CSVDownload } from "react-csv";
 function Attendance(props) {
     const currentmonth = moment().format('')
     const [dateval, setDateval] = useState(currentmonth);
@@ -51,7 +50,6 @@ function Attendance(props) {
                 >
                   <Link to="/" className="text-dark text-decoration-none">Task</Link>
                 </button>
-                <CSVLink data={adata}>Download me</CSVLink>;
                             <Form>
                                 <Form.Group>
                                     <Form.Control
