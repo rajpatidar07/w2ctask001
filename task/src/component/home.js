@@ -32,6 +32,7 @@ const Home = () => {
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
     </div>
   </div>;
+  
   useEffect(() => {
     getTasks();
     getUser();

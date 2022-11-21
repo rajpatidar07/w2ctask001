@@ -3,9 +3,9 @@ import DataTable from "react-data-table-component";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { useState, useEffect, useRef } from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 import { addUser, deleteUser, getallUser, UpdateUsers } from "../services/api";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -16,6 +16,8 @@ const User = () => {
   const [adduser, setAddUser] = useState([]);
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
+  const [image,setImage]=useState();
+  
   useEffect(() => {
     getUser();
   }, []);
@@ -26,9 +28,9 @@ const User = () => {
 
   const handleClose = () =>{
     formRef.current.reset();
-    setAddUser('')
-    setValidated(false)
-    setShow(false)
+    setAddUser("");
+    setValidated(false);
+    setShow(false);
   };
   const handleShow = () => setShow(true);
   const addUserDetails = async (event, id) => {
@@ -38,16 +40,16 @@ const User = () => {
       event.preventDefault();
       event.stopPropagation();
       setValidated(true);
-    }
-    else {
+    } else {
       event.preventDefault();
       await addUser(adduser, id);
       formRef.current.reset();
-      setAddUser('')
-      setValidated(false)
-      setShow(false)
+      setAddUser("");
+      setValidated(false);
+      setShow(false);
     }
   };
+  console.log("----------fulldata"+JSON.stringify(adduser))
 
   const getUser = async () => {
     const response = await getallUser();
@@ -60,7 +62,6 @@ const User = () => {
     setOpen(!open);
     // setapicall(true)
     handleShow();
-
   };
   const deleteDataa = async (id) => {
     await deleteUser(id);
@@ -90,16 +91,18 @@ const User = () => {
     },
     {
       name: "Status",
-      selector: (row) => <select
-        className="select form-control statusslect_box assigntask"
-        value={row.status}
-        name='status'
-      >
-        <option value={""}>Select</option>
-        <option value={"Active"}>Active</option>
-        <option value={"InActive"}>InActive</option>
-      </select>,
-      sortable: true
+      selector: (row) => (
+        <select
+          className="select form-control statusslect_box assigntask"
+          value={row.status}
+          name="status"
+        >
+          <option value={""}>Select</option>
+          <option value={"Active"}>Active</option>
+          <option value={"InActive"}>InActive</option>
+        </select>
+      ),
+      sortable: true,
     },
    
     {
@@ -128,11 +131,15 @@ const User = () => {
             </Button>
           </div>
         </div>
-      )
+      ),
     },
   ];
+const ButtonClick=()=>{
+  console.log("-----cluickjhj------");
 
-
+  localStorage.removeItem("loginid")
+}
+  console.log("-----------" + adduser.image);
   return (
     <div className="container text-center">
       <div className="row align-items-start">
@@ -159,27 +166,42 @@ const User = () => {
             >
               Add User
             </button>
-
-              </div>
-            </div>
-        
+            <button
+              className="btn btn-info  ms-auto"
+              onClick={()=>
+                ButtonClick()
+              }
+              aria-controls="example-collapse-text"
+            >
+              SignOut
+            </button>
+          </div>
+          </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Add User</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form className="form-row" noValidate validated={validated} onSubmit={(event) => addUserDetails(event, adduser.id)} ref={formRef}>
+              <Form
+                className="form-row"
+                noValidate
+                validated={validated}
+                onSubmit={(event) => addUserDetails(event, adduser.id)}
+                ref={formRef}
+              >
                 <input
                   name="id"
                   type={"hidden"}
                   value={
                     adduser.id !== "" ||
-                      adduser.id !== null ||
-                      adduser.id !== undefined
-                        ? adduser.id
-                        : ""
-                    }
-                  />
+                    adduser.id !== null ||
+                    adduser.id !== undefined
+                      ? adduser.id
+                      : ""
+                  }
+                />
+               
+            
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
                 <Form.Control required type="text" placeholder="Enter Name" onChange={(e) => onValueChange(e)} value={adduser.name} name="name" />
@@ -197,6 +219,10 @@ const User = () => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" required placeholder="Enter Email"onChange={(e) => onValueChange(e)} value={adduser.email} name="email"/>
               </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" required placeholder="Enter Passwoed" onChange={(e) => onValueChange(e)} value={adduser.password} name="password"/>
+              </Form.Group>
               <Form.Group className="mb-3" >
                 <Form.Label>Status</Form.Label>
                 <select
@@ -211,21 +237,17 @@ const User = () => {
                       </select>
               </Form.Group>
              
-                <button
-                  className="btn btn-info opecity  m-3"
-                  type="submit"
-                >
+                <button className="btn btn-info opecity  m-3" type="submit">
                   {adduser.id === "" ||
-                    adduser.id === null ||
-                    adduser.id === undefined
+                  adduser.id === null ||
+                  adduser.id === undefined
                     ? "Add User"
                     : "Update User"}
                 </button>
-            </Form>
-        </Modal.Body>
-      </Modal>
-          <DataTable columns={columns} data={user}  pagination
-                fixedHeader/>
+              </Form>
+            </Modal.Body>
+          </Modal>
+          <DataTable columns={columns} data={user} pagination fixedHeader />
         </div>
       </div>
     </div>

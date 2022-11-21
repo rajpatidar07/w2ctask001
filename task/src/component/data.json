@@ -1,68 +1,56 @@
 {
+   "login": [
+    {
+      "id": 1,
+      "email": "bhavnat@gmail.com",
+      "password": "123456"
+    }
+  ],
   "user": [
     {
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "12345",
-      "name": "Vijendra",
-      "status": "InActive",
-      "id": 3
-    },
-    {
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "1223",
-      "name": "bhavna",
-      "status": "Active",
-      "id": 4
-    },
-    {
-      "email": "shivani@gmail.com",
-      "address": "mp",
-      "mobile": "789456123",
-      "name": "Shivani",
-      "status": "Active",
-      "id": 5
-    },
-    {
-      "status": "Active",
-      "email": "bhavnaraut@gmail.com",
-      "address": "mp",
-      "mobile": "4546",
       "name": "goru",
-      "id": 6
-    },
-    {
-      "name": "Rajaram",
-      "mobile": "9455646465645",
-      "address": "indore",
-      "email": "raj.we2code@gmail.com",
-      "status": "Active",
-      "id": 7
-    },
-    {
-      "email": "jyotish@gmail.com",
+      "mobile": "789456",
       "address": "mp",
-      "mobile": "1223",
-      "name": "Jyotish",
-      "status": "InActive",
-      "id": 8
-    },
-    {
-      "name": "img",
-      "mobile": "635465",
-      "address": "indore",
-      "email": "malti@gmail.com",
-      "status": "Active",
-      "id": 9
-    },
-    {
-      "name": "rrr",
-      "mobile": "352",
-      "address": "indore",
-      "email": "atsush@gfg",
+      "email": "bhavnat@gmail.com",
+      "password": "123456",
       "status": "Active",
       "id": 10
+    },
+    {
+      "name": "this is my story",
+      "mobile": "7894",
+      "address": "Bhopal",
+      "email": "vijendra@gmail.com",
+      "password": "789456",
+      "status": "Active",
+      "id": 11
+    },
+    {
+      "name": "goru",
+      "mobile": "789456",
+      "address": "mp",
+      "email": "chetan0122@gmail.com",
+      "password": "789456123",
+      "status": "InActive",
+      "id": 12
+    },
+    {
+      "name": "jyotish",
+      "mobile": "9178456123",
+      "address": "mp",
+      "email": "jyotish@gmail.com",
+      "password": "jyotish",
+      "status": "Active",
+      "id": 14
+    },
+    {
+      "name": "bhavnaaa",
+      "mobile": "788",
+      "address": "mp",
+      "email": "bhavnaraut@gmail.com",
+      "password": "bb",
+      "status": "Active",
+      "id": 15
     }
   ],
   "task": [
@@ -144,98 +132,82 @@
   ],
   "attendance": [
     {
-      "userid": 4,
-      "username": "bhavna",
-      "date": "2022-11-01",
+      "userid": "1",
+      "username": "bhavnaaa",
+      "date": "2022-11-06",
       "month": "Nov",
       "status": "P",
       "id": 1
     },
     {
-      "userid": 5,
-      "username": "Shivani",
+      "userid": "1",
+      "username": "bhavnaaa",
       "date": "2022-11-01",
       "month": "Nov",
       "status": "P",
       "id": 3
     },
     {
-      "userid": 5,
-      "username": "Shivani",
-      "date": "2022-11-02",
-      "month": "Nov",
-      "status": "A",
-      "id": 4
-    },
-    {
-      "userid": 4,
-      "username": "bhavna",
-      "date": "2022-11-04",
-      "month": "Nov",
-      "status": "L",
-      "id": 5
-    },
-    {
-      "userid": 5,
-      "username": "Shivani",
-      "date": "2022-11-05",
-      "month": "Nov",
-      "status": "CL",
-      "id": 6
-    },
-    {
-      "userid": 6,
-      "username": "goru",
+      "userid": "1",
+      "username": "bhavnaaa",
       "date": "2022-11-03",
       "month": "Nov",
-      "status": "L",
-      "id": 7
-    },
-    {
-      "userid": 6,
-      "username": "goru",
-      "date": "2022-11-04",
-      "month": "Nov",
-      "status": "P",
-      "id": 8
-    },
-    {
-      "userid": 6,
-      "username": "goru",
-      "date": "2022-11-02",
-      "month": "Nov",
-      "status": "HD",
-      "id": 9
-    },
-    {
-      "userid": 6,
-      "username": "goru",
-      "date": "2022-11-14",
-      "month": "Nov",
-      "status": "A",
-      "id": 10
-    },
-    {
-      "userid": 10,
-      "username": "rrr",
-      "date": "2022-11-08",
-      "month": "Nov",
-      "status": "L",
-      "id": 11
-    }
-  ],
-  "holiday": [
-    {
-      "id": 1,
-      "name": "Christmas",
-      "start_date": "2022-11-12",
-      "end_date": "2022-11-13"
+      "status": "P"
     },
     {
       "id": 2,
-      "name": "New Year",
-      "start_date": "2022-11-15",
-      "end_date": "2022-11-17"
+      "userid": 1,
+      "username": "jyotish",
+      "date": "2022-11-10",
+      "month": "Nov",
+      "status": "P"
+    },
+    {
+      "id": 3,
+      "userid": 1,
+      "username": "jyotish",
+      "date": "2022-10-03",
+      "month": "Oct",
+      "status": "A"
+    },
+    {
+      "id": 4,
+      "userid": 2,
+      "username": "this is my story",
+      "date": "2022-11-02",
+      "month": "Nov",
+      "status": "A"
+    },
+    {
+      "userid": 7,
+      "username": "Rajaram",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "A"
+    },
+    {
+      "id": 5,
+      "userid": 2,
+      "username": "shiv",
+      "date": "2022-10-02",
+      "month": "Oct",
+      "status": "P"
+    },
+    {
+      "userid": 11,
+      "username": "this is my story",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "HD",
+      "id": 6
+    },
+    {
+      "userid": 15,
+      "username": "bhavnaaa",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "L",
+      "id": 7
     }
   ]
 }
