@@ -2,16 +2,17 @@ import React from "react";
 import DataTable from "react-data-table-component";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { useState,useEffect,useRef} from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import { addUser, deleteUser, getallUser,UpdateUsers } from "../services/api";
+import { useState, useEffect, useRef } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import { addUser, deleteUser, getallUser, UpdateUsers } from "../services/api";
+import axios from "axios";
 const User = () => {
-  const fs = require('fs-extra')
+  //   const fs = require('fs-extra')
 
-// fs.writeJsonSync('./package.json', {name: 'fs-extra'})
-  
+  // fs.writeJsonSync('./package.json', {name: 'fs-extra'})
+
   const formRef = useRef();
   const [user, setUser] = useState([]);
   const [adduser, setAddUser] = useState([]);
@@ -21,7 +22,7 @@ const User = () => {
   
   useEffect(() => {
     getUser();
-  },[]);
+  }, []);
   const onValueChange = (e) => {
     setAddUser({ ...adduser, [e.target.name]: e.target.value });
     // setImage(URL.createObjectURL(e.target.files[0]));
@@ -29,17 +30,16 @@ const User = () => {
    };
   console.log("-----imgeeee- "+image)
   // const handleChange= (e) => {
-    // setFile(URL.createObjectURL(e.target.files[0]));
+  // setFile(URL.createObjectURL(e.target.files[0]));
   // };
-  console.log(JSON.stringify(adduser) )
-  const handleClose = () =>{
+  const handleClose = () => {
     formRef.current.reset();
-    setAddUser('')
-    setValidated(false)
-    setShow(false)
+    setAddUser("");
+    setValidated(false);
+    setShow(false);
   };
   const handleShow = () => setShow(true);
-// console.log("file-----------"+file)
+  // console.log("file-----------"+file)
   const addUserDetails = async (event, id) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -47,16 +47,16 @@ const User = () => {
       event.preventDefault();
       event.stopPropagation();
       setValidated(true);
-    }
-    else {
+    } else {
       event.preventDefault();
       await addUser(adduser, id);
       formRef.current.reset();
-      setAddUser('')
-      setValidated(false)
-      setShow(false)
+      setAddUser("");
+      setValidated(false);
+      setShow(false);
     }
   };
+  console.log("----------fulldata"+JSON.stringify(adduser))
 
   const getUser = async () => {
     const response = await getallUser();
@@ -69,7 +69,6 @@ const User = () => {
     setOpen(!open);
     // setapicall(true)
     handleShow();
-
   };
   const deleteDataa = async (id) => {
     await deleteUser(id);
@@ -99,60 +98,74 @@ const User = () => {
     },
     {
       name: "Status",
-      selector: (row) =><select
-      className="select form-control statusslect_box assigntask"
-      value={row.status}
-      name='status'
-    >
-      <option value={""}>Select</option>
-      <option value={"Active"}>Active</option>
-      <option value={"InActive"}>InActive</option>
-    </select>,
-      sortable: true
+      selector: (row) => (
+        <select
+          className="select form-control statusslect_box assigntask"
+          value={row.status}
+          name="status"
+        >
+          <option value={""}>Select</option>
+          <option value={"Active"}>Active</option>
+          <option value={"InActive"}>InActive</option>
+        </select>
+      ),
+      sortable: true,
     },
     {
-    name:"Image",
-    selector:true,
-    cell:(row) => (
+      name: "Image",
+      selector: true,
+      cell: (row) => (
         <div className="row">
           <div className="col-md-12 col-sm-12 col-lg-12">
-            <img src={row.image}  style={{width:"60px",height:"40px",borderRadius:"100%",marginTop:"5px"}}/>
+            <img
+              src={row.image}
+              style={{
+                width: "60px",
+                height: "40px",
+                borderRadius: "100%",
+                marginTop: "5px",
+              }}
+            />
             <p>Nature</p>
-          </div> 
+          </div>
         </div>
       ),
     },
     {
-        name:"Action",
-        button: true,
-        cell: (row) => (
-          <div className="row">
-            <div className="col-md-12 col-sm-12 col-lg-12">
-              <Button
-                type="button"
-                variant="info"
-                size="sm"
-                className="fs-6 me-1"
-                onClick={editUserDetails.bind(this, row.id)}
-              >
-                <FiEdit  />
-              </Button>
-              <Button
-               variant="danger"
-                size="sm"
-                type="button"
-                className="fs-6"
-                onClick={deleteDataa.bind(this, row.id)}
-              >
-                <AiOutlineDelete/>
-              </Button>
-            </div>
+      name: "Action",
+      button: true,
+      cell: (row) => (
+        <div className="row">
+          <div className="col-md-12 col-sm-12 col-lg-12">
+            <Button
+              type="button"
+              variant="info"
+              size="sm"
+              className="fs-6 me-1"
+              onClick={editUserDetails.bind(this, row.id)}
+            >
+              <FiEdit />
+            </Button>
+            <Button
+              variant="danger"
+              size="sm"
+              type="button"
+              className="fs-6"
+              onClick={deleteDataa.bind(this, row.id)}
+            >
+              <AiOutlineDelete />
+            </Button>
           </div>
-        )
-      },
+        </div>
+      ),
+    },
   ];
+const ButtonClick=()=>{
+  console.log("-----cluickjhj------");
 
-  console.log("-----------"+adduser.image)
+  localStorage.removeItem("loginid")
+}
+  console.log("-----------" + adduser.image);
   return (
     <div className="container text-center">
       <div className="row align-items-start">
@@ -166,24 +179,41 @@ const User = () => {
             >
               Add User
             </button>
+            <button
+              className="btn btn-info  ms-auto"
+              onClick={()=>
+                ButtonClick()
+              }
+              aria-controls="example-collapse-text"
+            >
+              SignOut
+            </button>
           </div>
           <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-              <Form className="form-row" noValidate validated={validated} onSubmit={(event) => addUserDetails(event, adduser.id)} ref={formRef}>
-              <input
-                    name="id"
-                    type={"hidden"}
-                    value={
-                      adduser.id !== "" ||
-                      adduser.id !== null ||
-                      adduser.id !== undefined
-                        ? adduser.id
-                        : ""
-                    }
-                  />
+            <Modal.Header closeButton>
+              <Modal.Title>Add User</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form
+                className="form-row"
+                noValidate
+                validated={validated}
+                onSubmit={(event) => addUserDetails(event, adduser.id)}
+                ref={formRef}
+              >
+                <input
+                  name="id"
+                  type={"hidden"}
+                  value={
+                    adduser.id !== "" ||
+                    adduser.id !== null ||
+                    adduser.id !== undefined
+                      ? adduser.id
+                      : ""
+                  }
+                />
+               
+            
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
                 <Form.Control required type="text" placeholder="Enter Name" onChange={(e) => onValueChange(e)} value={adduser.name} name="name" />
@@ -218,30 +248,18 @@ const User = () => {
                         <option value={"InActive"}>InActive</option>
                       </select>
               </Form.Group>
-              <Form.Group className="mb-3" type="file" >
-                <Form.Label>Image</Form.Label>
-                <Form.Control type="file" name="image" onChange={(e) => onValueChange(e)} ></Form.Control>
-                <img src={image} style={{width:"140px"}}/>
-                {/* <input type="file"  onChange={handleChange} />
-            <img src={file}height="200" width="200" alt="med1"value={adduser.image} /> */}
-                {/* <Form.Control type="file" 	multiple accept="image/*,.png,.jpg,.jpeg,.gif" required placeholder="Select Image" onChange={(e) => onImageChange(e)}  value={adduser.image} name="image" >
-                </Form.Control> */}
-              </Form.Group>
-              <button
-                  className="btn btn-info opecity  m-3"
-                  type="submit"
-                >
+             
+                <button className="btn btn-info opecity  m-3" type="submit">
                   {adduser.id === "" ||
-                    adduser.id === null ||
-                    adduser.id === undefined
+                  adduser.id === null ||
+                  adduser.id === undefined
                     ? "Add User"
                     : "Update User"}
                 </button>
-            </Form>
-        </Modal.Body>
-      </Modal>
-          <DataTable columns={columns} data={user}  pagination
-                fixedHeader/>
+              </Form>
+            </Modal.Body>
+          </Modal>
+          <DataTable columns={columns} data={user} pagination fixedHeader />
         </div>
       </div>
     </div>

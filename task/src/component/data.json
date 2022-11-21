@@ -132,9 +132,24 @@
   ],
   "attendance": [
     {
-      "id": 1,
-      "userid": 1,
-      "username": "aman",
+      "userid": "1",
+      "username": "bhavnaaa",
+      "date": "2022-11-06",
+      "month": "Nov",
+      "status": "P",
+      "id": 1
+    },
+    {
+      "userid": "1",
+      "username": "bhavnaaa",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "A",
+      "id": 2
+    },
+    {
+      "userid": "1",
+      "username": "bhavnaaa",
       "date": "2022-11-03",
       "month": "Nov",
       "status": "P"
@@ -142,7 +157,7 @@
     {
       "id": 2,
       "userid": 1,
-      "username": "aman",
+      "username": "jyotish",
       "date": "2022-11-10",
       "month": "Nov",
       "status": "P"
@@ -150,7 +165,7 @@
     {
       "id": 3,
       "userid": 1,
-      "username": "aman",
+      "username": "jyotish",
       "date": "2022-10-03",
       "month": "Oct",
       "status": "A"
@@ -158,7 +173,14 @@
     {
       "id": 4,
       "userid": 2,
-      "username": "shiv",
+      "username": "this is my story",
+      "date": "2022-11-02",
+      "month": "Nov",
+      "status": "A"
+    },
+    {
+      "userid": 7,
+      "username": "Rajaram",
       "date": "2022-11-01",
       "month": "Nov",
       "status": "A"
@@ -170,6 +192,22 @@
       "date": "2022-10-02",
       "month": "Oct",
       "status": "P"
+    },
+    {
+      "userid": 11,
+      "username": "this is my story",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "HD",
+      "id": 6
+    },
+    {
+      "userid": 15,
+      "username": "bhavnaaa",
+      "date": "2022-11-01",
+      "month": "Nov",
+      "status": "L",
+      "id": 7
     }
   ]
 }
