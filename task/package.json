@@ -1,6 +1,6 @@
 {
   "name": "task",
-  "homepage": "https://shivaniwe2code/w2ctask001.git",
+  "homepage": "https://github.com/w2ctask001.git",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "deploy": "gh-pages -b herotest -d build",
+    "deploy": "gh-pages -b test -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
