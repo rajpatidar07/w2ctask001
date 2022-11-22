@@ -26,10 +26,9 @@ const Holiday = () => {
 
   const navigate = useNavigate();
   let loginid = localStorage.getItem("loginid");
-  console.log("---login" + loginid);
-  // if(loginid === '' || loginid === null || loginid === undefined ){
-  //   navigate('/login')
-  // }
+  if(loginid === '' || loginid === null || loginid === undefined ){
+    navigate('/')
+  }
   useEffect(() => {
     getHoliday();
   }, [apicall]);
@@ -62,7 +61,6 @@ const Holiday = () => {
       setShow(false);
     }
   };
-  console.log("----------fulldata" + JSON.stringify(addholiday));
 
   const getHoliday = async () => {
     const response = await getAllHoliday();

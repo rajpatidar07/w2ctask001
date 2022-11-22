@@ -12,7 +12,7 @@ import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 import Modal from 'react-bootstrap/Modal';
 import moment from 'moment';
 import 'moment-timezone';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import User from "./user";
 const Home = () => {
   const [task, setTask] = useState([]);
@@ -32,7 +32,11 @@ const Home = () => {
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
     </div>
   </div>;
-  
+    const navigate = useNavigate();
+    let loginid = localStorage.getItem("loginid")
+    if(loginid === '' || loginid === null || loginid === undefined ){
+      navigate('/')
+    }
   useEffect(() => {
     getTasks();
     getUser();
@@ -261,7 +265,10 @@ const Home = () => {
       )
     },
   ];
-
+  const ButtonClick=()=>{
+    localStorage.removeItem("loginid")
+    navigate('/')
+  }
 
   return (
     <div className="container text-center">
@@ -301,8 +308,17 @@ const Home = () => {
                   className="btn btn-info  ms-auto"
                   aria-controls="example-collapse-text"
                 >
-                  <Link to="/login" className="text-dark text-decoration-none">Login</Link>
+                  <Link to="/" className="text-dark text-decoration-none">Login</Link>
                 </button>
+                <button
+              className="btn btn-info  ms-auto"
+              onClick={()=>
+                ButtonClick()
+              }
+              aria-controls="example-collapse-text"
+            >
+              SignOut
+            </button>
               </div>
             </div>
           </div>

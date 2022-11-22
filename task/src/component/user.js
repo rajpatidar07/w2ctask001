@@ -19,9 +19,8 @@ const User = () => {
   const [image,setImage]=useState();
   const navigate = useNavigate();
   let loginid = localStorage.getItem("loginid")
-  console.log("---login"+loginid)
   if(loginid === '' || loginid === null || loginid === undefined ){
-    navigate('/login')
+    navigate('/')
   }
   useEffect(() => {
     getUser();
@@ -54,7 +53,6 @@ const User = () => {
       setShow(false);
     }
   };
-  console.log("----------fulldata"+JSON.stringify(adduser))
 
   const getUser = async () => {
     const response = await getallUser();
@@ -139,11 +137,11 @@ const User = () => {
       ),
     },
   ];
-const ButtonClick=()=>{
-  localStorage.removeItem("loginid")
-  console.log("-----cluickjhj------"+loginid);
-  navigate('/login')
-}
+// const ButtonClick=()=>{
+//   localStorage.removeItem("loginid")
+//   console.log("-----cluickjhj------"+loginid);
+//   navigate('/login')
+// }
   return (
     <div className="container text-center">
       <div className="row align-items-start">
@@ -171,7 +169,7 @@ const ButtonClick=()=>{
             >
               Add User
             </button>
-            <button
+            {/* <button
               className="btn btn-info  ms-auto"
               onClick={()=>
                 ButtonClick()
@@ -179,7 +177,7 @@ const ButtonClick=()=>{
               aria-controls="example-collapse-text"
             >
               SignOut
-            </button>
+            </button> */}
           </div>
           </div>
           <Modal show={show} onHide={handleClose}>

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Table from 'react-bootstrap/Table';
 import { getActiveUser } from '../services/api';
 import Dropdown from './dropdown';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllHoliday } from '../services/holiday';
 
 function Attendance(props) {
@@ -13,7 +13,11 @@ function Attendance(props) {
     const [userdata, setuserdata] = useState([]);
     const [holidaydata, setholidaydata] = useState([]);
     const [presentcount, setpresentcount] = useState('');
-
+    const navigate = useNavigate();
+    let loginid = localStorage.getItem("loginid")
+    if(loginid === '' || loginid === null || loginid === undefined ){
+      navigate('/')
+    }
 
 
     const onSelectChange = (e) => {

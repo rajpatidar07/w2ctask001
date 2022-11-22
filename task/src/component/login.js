@@ -23,7 +23,7 @@ const Login = () => {
 
 const LoginCheck = () =>{
   localStorage.setItem("loginid",login.email);
-  navigate('/user') 
+  navigate('/home') 
 }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handlesubmit = useCallback((e) => {
