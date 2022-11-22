@@ -1,11 +1,4 @@
 {
-  "login": [
-    {
-      "id": 1,
-      "email": "bhavnat@gmail.com",
-      "password": "123456"
-    }
-  ],
   "user": [
     {
       "name": "goru",
@@ -51,6 +44,15 @@
       "password": "bb",
       "status": "Active",
       "id": 15
+    },
+    {
+      "name": "Bhavna Raut",
+      "mobile": "9131456388",
+      "address": "Khandwa",
+      "email": "bhavnaraut05141@gmail.com",
+      "password": "bhavna",
+      "status": "Active",
+      "id": 16
     }
   ],
   "task": [
@@ -330,13 +332,7 @@
       "id": 22
     }
   ],
-  "holiday": [
-    {
-      "id": 1,
-      "holiday": "Christmas",
-      "start_date": "2022-11-11"
-    }
-  ],
+  
   "holiday": [
     {
       "id": 2,

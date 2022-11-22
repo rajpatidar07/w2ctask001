@@ -7,6 +7,8 @@ import DataTable from 'react-data-table-component';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import Button from "react-bootstrap/Button";
+// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 import Modal from 'react-bootstrap/Modal';
@@ -28,15 +30,17 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [userdata, setuserdata] = useState([]);
   const editor = React.createRef();
+  const navigate = useNavigate();
+  let loginid = localStorage.getItem("loginid")
+  console.log("---login"+loginid)
+  if(loginid === '' || loginid === null || loginid === undefined ){
+    navigate('/')
+  }
   const ExpandedComponent = ({ data }) => <div className="taskdescription">
     <div dangerouslySetInnerHTML={{ __html: data.description }} className='editor'>
     </div>
   </div>;
-    const navigate = useNavigate();
-    let loginid = localStorage.getItem("loginid")
-    if(loginid === '' || loginid === null || loginid === undefined ){
-      navigate('/')
-    }
+ 
   useEffect(() => {
     getTasks();
     getUser();
