@@ -155,7 +155,16 @@ align-items: center;
   max-width: 30px;
   border-radius: 20px;
 }
-
+.table_contant  .user_name_data{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 160px;
+ }
+ 
+.table_contant  .attendance_status_select{
+ vertical-align:middle !important;
+}
 
 
 .header .header_section .button_section{
