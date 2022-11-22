@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/shivaniwe2code/w2ctask001.git/static/css/main.e520c93a.css",
-    "main.js": "/shivaniwe2code/w2ctask001.git/static/js/main.15f0c698.js",
+    "main.css": "/shivaniwe2code/w2ctask001.git/static/css/main.85768c17.css",
+    "main.js": "/shivaniwe2code/w2ctask001.git/static/js/main.330f25df.js",
     "index.html": "/shivaniwe2code/w2ctask001.git/index.html",
-    "main.e520c93a.css.map": "/shivaniwe2code/w2ctask001.git/static/css/main.e520c93a.css.map",
-    "main.15f0c698.js.map": "/shivaniwe2code/w2ctask001.git/static/js/main.15f0c698.js.map"
+    "main.85768c17.css.map": "/shivaniwe2code/w2ctask001.git/static/css/main.85768c17.css.map",
+    "main.330f25df.js.map": "/shivaniwe2code/w2ctask001.git/static/js/main.330f25df.js.map"
   },
   "entrypoints": [
-    "static/css/main.e520c93a.css",
-    "static/js/main.15f0c698.js"
+    "static/css/main.85768c17.css",
+    "static/js/main.330f25df.js"
   ]
 }
