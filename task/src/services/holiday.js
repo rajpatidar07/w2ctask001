@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url3 = "http://127.0.0.1:3003/holiday";
+const url3 = "https://my-json-server.typicode.com/shivaniwe2code/we2codejson/holiday";
 
 export const getAllHoliday = async () => {
     return await axios.get(`${url3}`);
@@ -20,6 +20,6 @@ export const deleteHoliday = async (id) => {
     return await axios.delete(`${url3}/${id}`);
 }
 export const UpdateHoliday = async (hid) => {
-    const data= await axios.get(`http://127.0.0.1:3003/holiday/${hid}`);
+    const data= await axios.get(`https://my-json-server.typicode.com/shivaniwe2code/we2codejson/holiday/${hid}`);
     return data;
 }

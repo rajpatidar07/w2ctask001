@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-const url = "http://127.0.0.1:3003/task";
-const urll = "http://127.0.0.1:3003/user";
+const url = "https://my-json-server.typicode.com/shivaniwe2code/we2codejson/task";
+const urll = "https://my-json-server.typicode.com/shivaniwe2code/we2codejson/user";
 export const getallUser=async(id)=>{
     id = id || '';
     return await axios.get(`${urll}/${id}`);
@@ -24,7 +24,7 @@ export const deleteUser = async (id) => {
     return await axios.delete(`${urll}/${id}`);
 }
 export const UpdateUsers = async (id) => {
-    const data= await axios.get(`http://127.0.0.1:3003/user/${id}`);
+    const data= await axios.get(`https://my-json-server.typicode.com/shivaniwe2code/we2codejson/user/${id}`);
     return data;
 }
 export const getallTask = async (id) => {
@@ -48,13 +48,13 @@ export const deleteTask = async (id) => {
 }
 export const UpdateUser = async (id) => {
     console.log("====singlrtask")
-        const data= await axios.get(`http://127.0.0.1:3003/task/${id}`);
+        const data= await axios.get(`https://my-json-server.typicode.com/shivaniwe2code/we2codejson/task/${id}`);
         return data;
 }
 
 export const FilterUser = async (state) => {
     console.log("====filtertask")
 
-    const data= await axios.get(`http://127.0.0.1:3003/task?t=1${(state.status === '' || state.status === undefined || state.status === null) ?'':'&status='+state.status}${(state.priority === '' || state.priority === undefined || state.priority === null) ?'':'&priority='+state.priority}${(state.assignto === '' || state.assignto === undefined || state.assignto === null) ?'':'&assignto='+state.assignto}${(state.end_date === '' || state.end_date === undefined || state.end_date === null) ?'':'&end_date='+state.end_date}`);
+    const data= await axios.get(`https://my-json-server.typicode.com/shivaniwe2code/we2codejson/task?t=1${(state.status === '' || state.status === undefined || state.status === null) ?'':'&status='+state.status}${(state.priority === '' || state.priority === undefined || state.priority === null) ?'':'&priority='+state.priority}${(state.assignto === '' || state.assignto === undefined || state.assignto === null) ?'':'&assignto='+state.assignto}${(state.end_date === '' || state.end_date === undefined || state.end_date === null) ?'':'&end_date='+state.end_date}`);
     return data;
 }
