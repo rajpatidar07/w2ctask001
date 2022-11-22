@@ -1,11 +1,9 @@
 import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { getAllRecord, AdddAttendance, SingleAttendance, UpdateAttendance } from "../services/attendapi";
-import { getAllHoliday } from '../services/holiday';
 
 function Dropdown(props) {
     const [attenddata, setattenddata] = useState([]);
-    const [holidaydata, setholidaydata] = useState([]);
 
     const [addattenddata, setaddattenddata] = useState({
         userid: '',
@@ -23,15 +21,8 @@ function Dropdown(props) {
         const monthh = moment(props.dateval).format('MMM')
         const response = await getAllRecord(monthh, props.uid);
         setattenddata(response.data)
-        props.adata(response.data)
     }
-    useEffect(() => {
-        getHoliday();
-    }, []);
-    const getHoliday = async (e) => {
-        const response = await getAllHoliday();
-        setholidaydata(response.data)
-    }
+   
     // console.log("-holiday"+ JSON.stringify(holidaydata))
 
     const onattendChange = async (id, e) => {
@@ -76,7 +67,6 @@ function Dropdown(props) {
     let useridd = [];
     let attendid = [];
     let hodate = [];
-
     for (let index = 0; index < attenddata.length; index++) {
         let el = moment(attenddata[index].date).format(`YYYY-MM-DD`);
         element.push(el);
@@ -87,10 +77,20 @@ function Dropdown(props) {
         let aid = attenddata[index].id;
         attendid.push(aid)
     }
-    for (let index = 0; index < holidaydata.length; index++) {
-        let hdate = holidaydata[index].start_date;
+    for (let index = 0; index < props.holidaydata.length; index++) {
+        let hdate = props.holidaydata[index].start_date;
         hodate.push(hdate);
     }
+    const pcount = attendstatus.filter(item => item.includes('P'));
+    const acount = attendstatus.filter(item => (!item.includes('P')));
+    const hdcount = attendstatus.filter(item => (item.includes('HD')));
+    const clcount = attendstatus.filter(item => (item.includes('CL')));
+
+    const abcount = acount.length - hdcount.length - clcount.length
+
+    const wcount =props.mdays.length - pcount.length - abcount
+    console.log(abcount)
+
     //   endattendancvearray
     return (
         <>
@@ -99,10 +99,10 @@ function Dropdown(props) {
                 let y = hodate.indexOf(mday);
                 let attendmonth = moment(mday).format('MMM')
                 return (
-                    <td className='p-0' key={mday}>
-                        {moment(mday).format('dd') === 'Su' ?<p className='text-danger'>{moment(mday).format('ddd')}</p> : moment(hodate[y]).isSame(mday) ? <p className='text-danger'>{'Hol'}</p> :
+                    <td className='p-0 attendance_status_select' key={mday}>
+                        {moment(mday).format('ddd') === 'Sun' ?<p className='text-danger mb-0'>{moment(mday).format('ddd')}</p> : moment(hodate[y]).isSame(mday) ? <p className='text-danger mb-0'>{'Hol'}</p> :
                         <select
-                            className="select form-control"
+                            className="select form-control attendance_statuss p-1"
                             onChange={onattendChange.bind(this, [props.uid, props.username, mday, attendmonth, attendid[x]])}
                             // value={moment(element[x]).isSame(mday) ? attendstatus[x] : ''}
                             name='status'
@@ -118,9 +118,13 @@ function Dropdown(props) {
                         </select>  }
                        
                     </td>
-
                 )
             })}
+               {/* <td><input type='number' className='d-block w-100'/></td> */}
+                                                <td>{pcount.length}</td>
+                                                <td>{abcount}</td>
+                                                <td>{wcount}</td>
+
         </>
     );
 }
