@@ -63,19 +63,16 @@ function Attendance(props) {
                     <div className="header text-start d-flex p-2 align-items-center">
                         <h3>Attendance  ({moment(dateval).format('YYYY-MMM')})</h3>
                         <div className="col-md-7 my-md-0 my-2 mb-0 ms-auto me-0 d-flex align-items-center">
-                        <div className="col-md-5 my-md-0 my-2 mb-0 ms-auto me-0 d-flex">
+                        <div className="col-md-3 my-md-0 my-2 mb-0 ms-auto me-0 d-flex">
                             <h5 className='mb-0'>Working Days:{mdays.length - (sdays.length) - (holidaydata.length) }</h5>
-                            <h5 className='mb-0 me-3 ms-3'>Present:{2}</h5>
-                            <h5 className='mb-0'>Absent:{22}</h5>
-
 
 </div>
-                        <div className="col-md-3 my-md-0 my-2 mb-0 me-0 d-flex">
+                        <div className="col-md-4 my-md-0 my-2 mb-0 me-0 d-flex">
                             <button
-                                className="btn btn-info  ms-auto me-2"
+                                className="btn btn-info px-4 me-2"
                                 aria-controls="example-collapse-text"
                             >
-                                <Link to="/" className="text-dark text-decoration-none">Task</Link>
+                                <Link to="/home" className="text-dark text-decoration-none">Task</Link>
                             </button>
                             <Form>
                                 <Form.Group>
@@ -99,7 +96,7 @@ function Attendance(props) {
 
                         <div className="table_contant">
 
-                            <Table striped bordered hover>
+                            <Table striped bordered hover className='table-primary'>
                                 <thead>
                                     <tr>
                                         <th style={{ width: "160px" }}>UserName</th>
@@ -116,15 +113,16 @@ function Attendance(props) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {(userdata || []).map((udata, i) => {
+                                    {(userdata || []).map((udata,j) => {
                                         return (
-                                            <tr key={i}>
+                                            <tr key={j}>
                                                 <td name='username' className='text-start user_name_data p-1'>
                                                     <p className=' user_name_data '>
                                                     {'#' + udata.id} {udata.name}
                                                     </p>
                                                     </td>
                                                 <Dropdown
+                                                j={j}
                                                     holidaydata={holidaydata}
                                                     dateval={dateval}
                                                     mdays={mdays}
@@ -132,6 +130,7 @@ function Attendance(props) {
                                                     username={udata.name}
                                                     userdata={userdata}
                                                     presentcount={presentcount}
+                                                    currentmonth={currentmonth}
                                                 />
                                               
                                             </tr>

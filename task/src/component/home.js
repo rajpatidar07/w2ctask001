@@ -8,7 +8,6 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import Button from "react-bootstrap/Button";
 // import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 import Modal from 'react-bootstrap/Modal';

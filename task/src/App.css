@@ -166,10 +166,20 @@ align-items: center;
  vertical-align:middle !important;
 }
 
-
 .header .header_section .button_section{
 display: flex;
 gap: 5px;
+}
+.table-striped>tbody>tr .sunday_td {
+  word-break: break-all;
+  font-size: 20px;
+  width: 0;
+  vertical-align: middle;
+  padding: 12px !important;
+  white-space: pre-line;
+  /* background: #f5939c!important; */
+  color: red !important;
+  font-weight: 900;
 }
 /* media query */
 @media only screen and (max-width: 600px) {

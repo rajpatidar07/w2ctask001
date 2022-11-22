@@ -3,12 +3,12 @@ import axios from 'axios';
 
 export const getAllRecord = async (monthh,uid) => {
     return await axios.get(`http://127.0.0.1:3003/attendance?month=${monthh}&userid=${uid}`);
-
 }
-
+export const getAllCount = async (monthh) => {
+        return await axios.get(`http://127.0.0.1:3003/attendance?month=${monthh}`);
+    }
 export const AdddAttendance = async (addattenddata) => {
         if(addattenddata.username === ''){
-console.log("--------------*********************************************")
         }
         else{
                 console.log("====addattendance")
@@ -19,11 +19,8 @@ console.log("--------------*********************************************")
 }
 export const UpdateAttendance = async (addattenddata, attendidd) => {
         if(addattenddata.username === ''){
-                console.log("-------------*********************************************")
-
         }
         else{
-                console.log("====updateattendance"+JSON.stringify(addattenddata))
                 return await axios.put(`http://127.0.0.1:3003/attendance/${attendidd}`,addattenddata);
         }
        
