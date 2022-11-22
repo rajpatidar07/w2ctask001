@@ -7,8 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { addUser, deleteUser, getallUser, UpdateUsers } from "../services/api";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const User = () => {
   const formRef = useRef();
@@ -16,8 +15,12 @@ const User = () => {
   const [adduser, setAddUser] = useState([]);
   const [validated, setValidated] = useState(false);
   const [open, setOpen] = useState(false);
-  const [image,setImage]=useState();
-  
+  const navigate = useNavigate();
+  let loginid = localStorage.getItem("loginid")
+  console.log("---login"+loginid)
+  if(loginid === '' || loginid === null || loginid === undefined ){
+    navigate('/')
+  }
   useEffect(() => {
     getUser();
   }, []);
@@ -135,11 +138,10 @@ const User = () => {
     },
   ];
 const ButtonClick=()=>{
-  console.log("-----cluickjhj------");
-
   localStorage.removeItem("loginid")
+  console.log("-----cluickjhj------"+loginid);
+  navigate('/')
 }
-  console.log("-----------" + adduser.image);
   return (
     <div className="container text-center">
       <div className="row align-items-start">
@@ -151,23 +153,24 @@ const ButtonClick=()=>{
                   className="btn btn-info  ms-auto"
                   aria-controls="example-collapse-text"
                 >
-                  <Link to="/" className="text-dark text-decoration-none">Task</Link>
+                  <Link to="/home" className="text-dark text-decoration-none">Task</Link>
                 </button>
+               
                 <button
-                  className="btn btn-info  ms-auto"
+                  className="btn btn-info  ms-2"
                   aria-controls="example-collapse-text"
                 >
                   <Link to="/attendance" className="text-dark text-decoration-none">Attendance</Link>
                 </button>
                 <button
-              className="btn btn-info"
+              className="btn btn-info ms-2"
               onClick={handleShow}
               aria-controls="example-collapse-text"
             >
               Add User
             </button>
             <button
-              className="btn btn-info  ms-auto"
+              className="btn btn-info  ms-2"
               onClick={()=>
                 ButtonClick()
               }
