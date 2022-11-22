@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/w2ctask001.git/static/css/main.85768c17.css",
-    "main.js": "/w2ctask001.git/static/js/main.330f25df.js",
+    "main.css": "/w2ctask001.git/static/css/main.e520c93a.css",
+    "main.js": "/w2ctask001.git/static/js/main.b8aa9223.js",
     "index.html": "/w2ctask001.git/index.html",
-    "main.85768c17.css.map": "/w2ctask001.git/static/css/main.85768c17.css.map",
-    "main.330f25df.js.map": "/w2ctask001.git/static/js/main.330f25df.js.map"
+    "main.e520c93a.css.map": "/w2ctask001.git/static/css/main.e520c93a.css.map",
+    "main.b8aa9223.js.map": "/w2ctask001.git/static/js/main.b8aa9223.js.map"
   },
   "entrypoints": [
-    "static/css/main.85768c17.css",
-    "static/js/main.330f25df.js"
+    "static/css/main.e520c93a.css",
+    "static/js/main.b8aa9223.js"
   ]
 }
