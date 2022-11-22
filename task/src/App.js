@@ -6,6 +6,7 @@ import Login from './component/login';
 import Attendance from './component/attendance';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Route, BrowserRouter, Routes } from "react-router-dom";
+import Holiday from './component/holiday';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
     <Route path="/user" element={<User/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/attendance" element={<Attendance/>}/>
+    <Route path="/holiday" element={<Holiday/>}/>
+
 
    </Routes>
    </BrowserRouter>
